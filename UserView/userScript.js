@@ -32,3 +32,7 @@ const itemHTML = `
 `;
 
 menu.insertAdjacentHTML("beforeend", itemHTML);
+
+//MENU SENDER
+let data = `something`
+localStorage.setItem('keyName', data);

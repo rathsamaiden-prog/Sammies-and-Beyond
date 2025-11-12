@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="managerStyle.css">
     <title>S&B Manager Dash</title>
 </head>
 <body>
+    <div class="commitedMenu-Container flexBox">
+        <div class="container flexBox" id="menu">
+            <div class="containerContent">
+                
+            </div>
+        </div>
+    </div>
+    <!-- <div class="sizeAdjust"></div> -->
+    <div class="ordersAndItems">
+        <div class="addOrEditItem-Container flexBox">
+            <div class="container flexBox">
+                <div class="containerContent" id="add-or-edit">
+                    <div id="img-container" class="flexBox">
+                        <form action="/action_page.php" id="upload-img">
+                            <input type="file" id="myFile" name="filename">
+                        </form>
+                        <p>Drag and drop image here</p>
+                    </div>
+                    <div class="name-price-commit">
+                        <h3>Dish/Drink Name</h3>
+                        <input type="text" name="" class="namePrice" placeholder="Enter Name">
+                        <h3>Dish/Drink Price</h3>
+                        <input type="text" name="" class="namePrice" placeholder="Enter Price ($)">
+                        <button id="commit-btn">test</button>
+                    </div>
+                    <h3>Dish/Drink Description</h3>
+                    <textarea rows="20" cols="50" id="item-description" placeholder="Enter Description (*** Character Max)"></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="sizeAdjust"></div> -->
+        <div class="activeOrders-Container flexBox">
+            <div class="container flexBox" id="remove">
+                <div class="containerContent flexBox">
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
+    <script src="managerScript.js"></script>
 </body>
 </html>
