@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S&B LogIn_SignIn</title>
     <link rel="stylesheet" href="logSignStyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-
+    <div class="pages">
+    <h1 id="main"> Mission Control: New Astronaut Onboard!</h1>
 <div class="container">
    <div class="section">
      <div class="tab-container">
@@ -22,6 +24,11 @@
         <input type="text" placeholder="name" id="signUpName">
         <input type="email" placeholder="email" id="signUpEmail">
         <input type="password" placeholder="password" id="signUpPassword">
+        <h3>Password Requirements</h3>
+        <div class="passwordRequirements">
+            <p id="capRequire" class="req">1 capital letter</p>
+            <p id="numRequirement" class="req">1 number</p>
+        </div>
         <button onclick="signUp()">continue</button>
     </div>
 
@@ -29,6 +36,7 @@
         <h1> sign in </h1>
         <input type="text" placeholder="email" id="signInEmail">
         <input type="password" placeholder="password" id="signInPassword">
+
         <button onclick="signIn()">continue</button>
     </div>
 
@@ -37,8 +45,8 @@
         <button onclick="guest()">continue</button>
     </div>
     </div>
+    </div>
 </div>
-
 
 
 
