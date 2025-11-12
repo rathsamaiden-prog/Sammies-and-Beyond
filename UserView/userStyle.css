@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.menuBody{
+    height: 1500px;
+    background-color: darkgrey;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+.menuRow{
+    height: 200px;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}
+.item{
+    height: 100%;
+    width: 200px;
+    margin: 20px;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+.itemName{
+    font-weight: bold;
+    padding-top: 7px;
+}
+.itemImg img{
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    border-radius: 20px;
+}
+.itemPrice{
+    font-weight: bold;
+    padding: 5px;
+}
+.itemInfo{
+    font-weight: bold;
+    padding: 5px;
+    max-width: 180px;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+.itemAdd{
+    padding: 5px;
+}
+.itemAdd button{
+    background-color: #21be8a;
+    padding: 5px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+.itemAdd button:hover{
+    background-color: #188a64;
+}
+.itemFooter{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    margin-top: auto;
+    justify-content: space-between;
+}
+#desc{
+  opacity: 0;
+  font-size: small;
+  transition: opacity 1s ease;
+}
+.item:hover #desc{
+  opacity: 1;
+}
+
