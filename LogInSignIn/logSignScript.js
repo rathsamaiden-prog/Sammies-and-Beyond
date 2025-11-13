@@ -8,6 +8,9 @@ function signUp() {
     alert("Please fill all fields");
     return;
   }
+  if(!passwordcheck(password)){
+    return
+  }
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -16,6 +19,8 @@ function signUp() {
     alert("Email already exists");
     return;
   }
+  
+  
   users.push({ name, email, password });
   localStorage.setItem("users", JSON.stringify(users));
 
@@ -41,16 +46,15 @@ function signIn(){
      if(user){
       window.location.href = "https://www.google.com/"
      }else if(email==="manager"&& password==="manager") {
-      window.location.href = "https://www.youtube.com/"
+      window.location.href = "../ManagerView/managerView.html"
     }else{
       alert("invalid")
     }
-    
-     
+      
 } 
 
 function guest(){
-  window.location.href = "https://www.google.com/"
+  window.location.href ="https://www.google.com/"
 }
 
 function showSignIn() {
@@ -68,3 +72,41 @@ function showSignUp() {
     document.getElementById("btnSignIn").classList.remove("active");
     document.getElementById("btnSignUp").classList.add("active");
 }
+
+function passwordcheck(password){
+
+  var upperCase = /[A-Z]/
+  var number = /[0-9]/
+  
+  if (!upperCase.test(password)&&!number.test(password)){
+    alert("invalid password")
+    return false
+  }else if (!number.test(password)){
+    alert("add number")
+    return false
+  }else if (!upperCase.test(password)){
+    alert("add capital letter")
+    return false
+  }
+  else {
+    alert("password set")
+    return true
+  }
+
+}
+
+// Get the password input and requirement elements
+const signUpPassword = document.getElementById("signUpPassword");
+const capRequirement = document.getElementById("capRequire");
+const numRequirement = document.getElementById("numRequirement");
+
+// Live update while typing
+signUpPassword.addEventListener("input", () => {
+    const password = signUpPassword.value;
+
+    // Check for capital letter
+    capRequirement.style.color = /[A-Z]/.test(password) ? "lightgreen" : "red";
+
+    // Check for number
+    numRequirement.style.color = /[0-9]/.test(password) ? "lightgreen" : "red";
+});

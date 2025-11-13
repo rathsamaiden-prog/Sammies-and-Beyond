@@ -1,15 +1,55 @@
-import { MenuItem } from "/menuItem.js";
+class MenuItem {
+  constructor(name, imageURL, description, allergies, price) {
+    this.name = name;
+    this.imageURL = imageURL;
+    this.description = description;
+    this.allergies = allergies;
+    this.price = price;
+}
 
-const menuRow1 = document.getElementsByClassName("menuRow1")[0];
-const menuRow2 = document.getElementsByClassName("menuRow2")[0];
-const menuRow3 = document.getElementsByClassName("menuRow3")[0];
-const menuRow4 = document.getElementsByClassName("menuRow4")[0];
-const menuRow5 = document.getElementsByClassName("menuRow5")[0];
+  appendItem() {
+    return `
+      <div class="item">
+            <!-- Item Name -->
+            <div class="itemName">
+                <p id="name">${this.name}</p>
+            </div>
+            <!-- Item Image -->
+            <div class="itemImg">
+                <img src="${this.imageURL}" alt="item img">
+            </div>
+            <!-- Item Info -->
+            <div class="itemInfo">
+                <p id="desc">${this.description}</p>
+                <p id="dietR">${this.allergies}</p>
+            </div>
+            <!-- Item Footer: Price + Add Button -->
+            <div class="itemFooter">
+                <div class="itemPrice">
+                    <p id="price">$${this.price}</p>
+                </div>
+                <div class="itemAdd">
+                    <button class="add">Add</button>
+                </div>
+                <div class="itemRemove">
+                    <button class="remove">Remove</button>
+                </div>
+            </div>
+      </div>
+    `;
+  }
+}
 
 
 
 
-let apple = new MenuItem(
+const menu = document.getElementsByClassName("menu")[0];
+
+
+
+
+
+const apple = new MenuItem(
     "Apple",
     "https://cdn.discordapp.com/attachments/1416088170876895303/1435976344923275306/apple.jpg?ex=690decaf&is=690c9b2f&hm=250721ec6e09846fd33b180a463686037f0291a526df17f7d697ea8df0dbfd61&",
     "This is a fugi apple, it's sweet with a bit of tang.",
@@ -17,7 +57,7 @@ let apple = new MenuItem(
     "1.49"
 );
 
-let lunarLoaf = new MenuItem(
+const sammy1 = new MenuItem(
     "Lunar Loaf",
     "Lunar-loaf.png",
     "Meatball sub with moon dusted parmesan.",
@@ -25,7 +65,7 @@ let lunarLoaf = new MenuItem(
     "11.99"
 );
 
-let theEclipse = new MenuItem(
+const sammy2 = new MenuItem(
     "The Eclipse",
     "The-Eclipse.png",
     "Black rye bread with white cheddar and ham.",
@@ -33,21 +73,21 @@ let theEclipse = new MenuItem(
     "10.99"
 );
 
-let rocketReubon = new MenuItem(
+const sammy3 = new MenuItem(
     "Rocket Reuben",
     "Rocket-Reuben.png",
     "Toasted multigrain with veggies and crispy onions.",
     "Gluten",
     "9.99"
 );
-let cosmicCrunch = new MenuItem(
+const sammy4 = new MenuItem(
     "Cosmic Crunch",
     "Cosmic-Crunch.png",
     "Corned beef, sauerkraut, and cosmic sauce.",
     "Gluten, Meat",
     "10.99"
 );
-let theNebulaMelt = new MenuItem(
+const sammy5 = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
     "swirling layers of cheese and roast beef.",
@@ -55,7 +95,7 @@ let theNebulaMelt = new MenuItem(
     "10.99"
 );
 
-let theSpaceJamwich = new MenuItem(
+const sammy6 = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
     "peanut butter, banana, and berry jam fusion.",
@@ -63,7 +103,7 @@ let theSpaceJamwich = new MenuItem(
     "8.99"
 );
 
-let astroBLT = new MenuItem(
+const sammy7 = new MenuItem(
     "AstroBLT",
     "AstroBLT.png",
     "Classic bacon, lettuce, and tomato with meteorite-spiced mayo.",
@@ -71,7 +111,7 @@ let astroBLT = new MenuItem(
     "9.99"
 );
 
-let solarFlarePanini = new MenuItem(
+const sammy8 = new MenuItem(
     "Solar Flare Panini",
     "Solar-Flare-Panini.png",
     "Spicy grilled chicken panini with pepper jack and jalapeños.",
@@ -79,7 +119,7 @@ let solarFlarePanini = new MenuItem(
     "10.49"
 );
 
-let alienAvocadoSmash = new MenuItem(
+const sammy9 = new MenuItem(
     "Alien Avocado Smash",
     "Alien-Avocado-Smash.png",
     "Mashed avocado, lime, garlic, and sprouts on toasted rye.",
@@ -87,7 +127,7 @@ let alienAvocadoSmash = new MenuItem(
     "8.99"
 );
 
-let galaxyGrilledCheese = new MenuItem(
+const sammy10 = new MenuItem(
     "Galaxy Grilled Cheese",
     "Galaxy-Grilled-Cheese.png",
     "Rainbow cheese blend melted between star-shaped brioche slices.",
@@ -95,7 +135,7 @@ let galaxyGrilledCheese = new MenuItem(
     "7.99"
 );
 
-let blackHoleBBQ = new MenuItem(
+const sammy11 = new MenuItem(
     "Black Hole BBQ",
     "Black-Hole-BBQ.png",
     "Pulled pork with smoky barbecue sauce on a dark brioche bun.",
@@ -103,9 +143,7 @@ let blackHoleBBQ = new MenuItem(
     "10.99"
 );
 
-// let sammies = [lunarLoaf, theEclipse, rocketReubon, cosmicCrunch, theNebulaMelt, theSpaceJamwich, astroBLT, solarFlarePanini, alienAvocadoSmash, galaxyGrilledCheese, blackHoleBBQ]
-
-let cometCola = new MenuItem(
+const drink1 = new MenuItem(
     "Comet Cola",
     "Comet-Cola.png",
     "Classic cola with a twist of lime and starfruit.",
@@ -113,7 +151,7 @@ let cometCola = new MenuItem(
     "2.99"
 );
 
-let milkeyWayShake = new MenuItem(
+const drink2 = new MenuItem(
     "Milky Way Shake",
     "Milky-Way-Shake.png",
     "Chocolate malt with whipped cream and caramel drizzle.",
@@ -121,7 +159,7 @@ let milkeyWayShake = new MenuItem(
     "4.99"
 );
 
-let astroFizz = new MenuItem(
+const drink3 = new MenuItem(
     "AstroFizz",
     "AstroFizz.png",
     "Orange soda with popping candy rim.",
@@ -129,7 +167,7 @@ let astroFizz = new MenuItem(
     "3.49"
 );
 
-let cosmoCocoa = new MenuItem(
+const drink4 = new MenuItem(
     "Cosmo Cocoa",
     "Cosmo-Cocoa.png",
     "Chilled chocolate drink with marshmallow meteors.",
@@ -137,9 +175,7 @@ let cosmoCocoa = new MenuItem(
     "4.49"
 );
 
-// let drinks = [cometCola, milkeyWayShake, astroFizz, cosmoCocoa]
-
-let asteroidFries = new MenuItem(
+const side1 = new MenuItem(
     "Asteroid Fries",
     "Asteroid-Fries.png",
     "Crispy potato wedges with cratered seasoning.",
@@ -147,7 +183,7 @@ let asteroidFries = new MenuItem(
     "3.99"
 );
 
-let rocketRings = new MenuItem(
+const side2 = new MenuItem(
     "Rocket Rings",
     "Rocket-Rings.png",
     "Golden onion rings with spicy launch sauce.",
@@ -155,7 +191,7 @@ let rocketRings = new MenuItem(
     "4.49"
 );
 
-let solarSlaw = new MenuItem(
+const side3 = new MenuItem(
     "Solar Slaw",
     "Solar-Slaw.png",
     "Tangy cabbage slaw with sunburst citrus dressing.",
@@ -163,7 +199,7 @@ let solarSlaw = new MenuItem(
     "3.49"
 );
 
-let orbitTots = new MenuItem(
+const side4 = new MenuItem(
     "Orbit Tots",
     "Orbit-Tots.png",
     "Seasoned tater tots with planetary dipping sauces.",
@@ -171,40 +207,146 @@ let orbitTots = new MenuItem(
     "4.49"
 );
 
-// let sides = [asteroidFries, rocketRings, solarSlaw, orbitTots]
+menu.insertAdjacentHTML("afterbegin", `
+  <section id="sammies"></section>
+  <section id="sides"></section>
+  <section id="drinks"></section>
+`);
 
-menuRow1.insertAdjacentHTML("beforeend", lunarLoaf.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", theEclipse.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", rocketReubon.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", cosmicCrunch.appendItem());
+// Get references to each section
+const sammies = document.getElementById("sammies");
+const drinks = document.getElementById("drinks");
+const sides = document.getElementById("sides");
 
-menuRow2.insertAdjacentHTML("beforeend", theNebulaMelt.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", theSpaceJamwich.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", astroBLT.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", solarFlarePanini.appendItem());
+// Add sammies
+[
+  sammy1, sammy2, sammy3, sammy4,
+  sammy5, sammy6, sammy7, sammy8,
+  sammy9, sammy10, sammy11
+].forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
 
-menuRow3.insertAdjacentHTML("beforeend", alienAvocadoSmash.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", galaxyGrilledCheese.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", blackHoleBBQ.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", cometCola.appendItem());
+// Add drinks
+[drink1, drink2, drink3, drink4].forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
 
-menuRow4.insertAdjacentHTML("beforeend", milkeyWayShake.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", astroFizz.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", cosmoCocoa.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", asteroidFries.appendItem());
-
-menuRow5.insertAdjacentHTML("beforeend", rocketRings.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", solarSlaw.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", orbitTots.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", apple.appendItem());
+// Add sides
+[side1, side2, side3, side4, apple].forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 
 
-menu.insertAdjacentHTML("beforeend", itemHTML);
 
-//MENU SENDER
-let data = `something`
-localStorage.setItem('keyName', data);
 
-//MENU RECIEVER
-const retrievedValue = localStorage.getItem('keyName');
-console.log(retrievedValue)
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cartBtn = document.getElementById("cartBtn");
+  const cart = document.getElementById("cart");
+  const itemsContainer = document.querySelector(".items");
+  const totalDisplay = document.querySelector(".total");
+
+  let total = 0;
+
+  // Toggle cart visibility
+  cartBtn.addEventListener("click", function () {
+    cart.style.display = (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
+  });
+
+  document.addEventListener("click", function (e) {
+    const item = e.target.closest(".item");
+
+    // ADD button clicked
+    if(e.target.classList.contains("add")){
+        const name = item.querySelector("#name").textContent;
+        const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
+        const img = item.querySelector(".itemImg img").src;
+
+        // Create new item in cart
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.setAttribute("data-name", name);
+        cartItem.setAttribute("data-price", price);
+        cartItem.setAttribute("data-quantity", 1);
+
+        cartItem.innerHTML = `<img src="${img}" alt="Cart item image"><p>${name} - $${price.toFixed(2)}</p>`;
+
+        const quantity = document.createElement("div");
+        quantity.classList.add("cart-quantity");
+        quantity.insertAdjacentHTML("beforeend", `
+            <div class="qty-control">
+            <button class="qty-minus">−</button>
+            <span class="qty-count">1</span>
+            <button class="qty-plus">+</button>
+            </div>
+        `);
+
+        cartItem.appendChild(quantity);
+        itemsContainer.appendChild(cartItem);
+
+        // Update total
+        total += price;
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+
+        // Toggle buttons
+        item.querySelector(".add").style.display = "none";
+        item.querySelector(".itemRemove").style.display = "block";
+    }
+
+    // REMOVE button clicked
+    if(e.target.classList.contains("remove")){
+        const name = item.querySelector("#name").textContent;
+        const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
+
+        const cartItems = itemsContainer.querySelectorAll(".cart-item");
+        for (let cartItem of cartItems){
+            if(cartItem.getAttribute("data-name") === name){
+                const quantity = parseInt(cartItem.getAttribute("data-quantity"));
+                total -= price * quantity;
+                itemsContainer.removeChild(cartItem);
+                break;
+            }
+        }
+
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+        item.querySelector(".add").style.display = "block";
+        item.querySelector(".itemRemove").style.display = "none";
+    }
+
+    // Quantity control clicked
+    if(e.target.classList.contains("qty-plus") || e.target.classList.contains("qty-minus")){
+        const control = e.target.closest(".qty-control");
+        const countSpan = control.querySelector(".qty-count");
+        const cartItem = e.target.closest(".cart-item");
+        const basePrice = parseFloat(cartItem.getAttribute("data-price"));
+        let quantity = parseInt(cartItem.getAttribute("data-quantity"));
+
+        if(e.target.classList.contains("qty-plus")){
+            quantity++;
+            total += basePrice;
+        } else if(e.target.classList.contains("qty-minus") && quantity > 1){
+            quantity--;
+            total -= basePrice;
+        }
+
+        countSpan.textContent = quantity;
+        cartItem.setAttribute("data-quantity", quantity);
+        cartItem.querySelector("p").textContent = `${cartItem.getAttribute("data-name")} - $${(basePrice * quantity).toFixed(2)}`;
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+
+
+  });
+});
+
+const checkoutBtn = document.getElementById("checkout");
+const paymentScreen = document.querySelector(".payment-screen");
+
+checkoutBtn.addEventListener("click", function (){
+    document.querySelector(".items").style.display = "none";
+    document.querySelector(".total").style.display = "none";
+    document.querySelector("#cart").style.justifyContent = "flex-start";
+    paymentScreen.style.display = "block";
+});
+
+
+
+
