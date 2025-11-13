@@ -1,46 +1,4 @@
-class MenuItem {
-  constructor(name, imageURL, description, allergies, price) {
-    this.name = name;
-    this.imageURL = imageURL;
-    this.description = description;
-    this.allergies = allergies;
-    this.price = price;
-}
-
-  appendItem() {
-    return `
-      <div class="item">
-            <!-- Item Name -->
-            <div class="itemName">
-                <p id="name">${this.name}</p>
-            </div>
-            <!-- Item Image -->
-            <div class="itemImg">
-                <img src="${this.imageURL}" alt="item img">
-            </div>
-            <!-- Item Info -->
-            <div class="itemInfo">
-                <p id="desc">${this.description}</p>
-                <p id="dietR">${this.allergies}</p>
-            </div>
-            <!-- Item Footer: Price + Add Button -->
-            <div class="itemFooter">
-                <div class="itemPrice">
-                    <p id="price">$${this.price}</p>
-                </div>
-                <div class="itemAdd">
-                    <button class="add">Add</button>
-                </div>
-                <div class="itemRemove">
-                    <button class="remove">Remove</button>
-                </div>
-            </div>
-      </div>
-    `;
-  }
-}
-
-
+import { MenuItem } from "../menuItem.js";
 
 
 const menu = document.getElementsByClassName("menu")[0];
@@ -57,7 +15,7 @@ const apple = new MenuItem(
     "1.49"
 );
 
-const sammy1 = new MenuItem(
+const lunarLoaf = new MenuItem(
     "Lunar Loaf",
     "Lunar-loaf.png",
     "Meatball sub with moon dusted parmesan.",
@@ -65,7 +23,7 @@ const sammy1 = new MenuItem(
     "11.99"
 );
 
-const sammy2 = new MenuItem(
+const theEclipse = new MenuItem(
     "The Eclipse",
     "The-Eclipse.png",
     "Black rye bread with white cheddar and ham.",
@@ -73,21 +31,21 @@ const sammy2 = new MenuItem(
     "10.99"
 );
 
-const sammy3 = new MenuItem(
+const rocketReuben = new MenuItem(
     "Rocket Reuben",
     "Rocket-Reuben.png",
     "Toasted multigrain with veggies and crispy onions.",
     "Gluten",
     "9.99"
 );
-const sammy4 = new MenuItem(
+const cosmicCrunch = new MenuItem(
     "Cosmic Crunch",
     "Cosmic-Crunch.png",
     "Corned beef, sauerkraut, and cosmic sauce.",
     "Gluten, Meat",
     "10.99"
 );
-const sammy5 = new MenuItem(
+const theNebulaMelt = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
     "swirling layers of cheese and roast beef.",
@@ -95,7 +53,7 @@ const sammy5 = new MenuItem(
     "10.99"
 );
 
-const sammy6 = new MenuItem(
+const theSpaceJamwich = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
     "peanut butter, banana, and berry jam fusion.",
@@ -103,7 +61,7 @@ const sammy6 = new MenuItem(
     "8.99"
 );
 
-const sammy7 = new MenuItem(
+const astroBLT = new MenuItem(
     "AstroBLT",
     "AstroBLT.png",
     "Classic bacon, lettuce, and tomato with meteorite-spiced mayo.",
@@ -111,7 +69,7 @@ const sammy7 = new MenuItem(
     "9.99"
 );
 
-const sammy8 = new MenuItem(
+const solarFlarePanini = new MenuItem(
     "Solar Flare Panini",
     "Solar-Flare-Panini.png",
     "Spicy grilled chicken panini with pepper jack and jalapeños.",
@@ -119,7 +77,7 @@ const sammy8 = new MenuItem(
     "10.49"
 );
 
-const sammy9 = new MenuItem(
+const alienAvocadoSmash = new MenuItem(
     "Alien Avocado Smash",
     "Alien-Avocado-Smash.png",
     "Mashed avocado, lime, garlic, and sprouts on toasted rye.",
@@ -127,7 +85,7 @@ const sammy9 = new MenuItem(
     "8.99"
 );
 
-const sammy10 = new MenuItem(
+const galaxyGrilledCheese = new MenuItem(
     "Galaxy Grilled Cheese",
     "Galaxy-Grilled-Cheese.png",
     "Rainbow cheese blend melted between star-shaped brioche slices.",
@@ -135,7 +93,7 @@ const sammy10 = new MenuItem(
     "7.99"
 );
 
-const sammy11 = new MenuItem(
+const blackHoleBBQ = new MenuItem(
     "Black Hole BBQ",
     "Black-Hole-BBQ.png",
     "Pulled pork with smoky barbecue sauce on a dark brioche bun.",
@@ -143,7 +101,7 @@ const sammy11 = new MenuItem(
     "10.99"
 );
 
-const drink1 = new MenuItem(
+const cometCola = new MenuItem(
     "Comet Cola",
     "Comet-Cola.png",
     "Classic cola with a twist of lime and starfruit.",
@@ -151,7 +109,7 @@ const drink1 = new MenuItem(
     "2.99"
 );
 
-const drink2 = new MenuItem(
+const milkyWayShake = new MenuItem(
     "Milky Way Shake",
     "Milky-Way-Shake.png",
     "Chocolate malt with whipped cream and caramel drizzle.",
@@ -159,7 +117,7 @@ const drink2 = new MenuItem(
     "4.99"
 );
 
-const drink3 = new MenuItem(
+const astroFizz = new MenuItem(
     "AstroFizz",
     "AstroFizz.png",
     "Orange soda with popping candy rim.",
@@ -167,7 +125,7 @@ const drink3 = new MenuItem(
     "3.49"
 );
 
-const drink4 = new MenuItem(
+const cosmoCocoa = new MenuItem(
     "Cosmo Cocoa",
     "Cosmo-Cocoa.png",
     "Chilled chocolate drink with marshmallow meteors.",
@@ -175,7 +133,7 @@ const drink4 = new MenuItem(
     "4.49"
 );
 
-const side1 = new MenuItem(
+const asteriodFries = new MenuItem(
     "Asteroid Fries",
     "Asteroid-Fries.png",
     "Crispy potato wedges with cratered seasoning.",
@@ -183,7 +141,7 @@ const side1 = new MenuItem(
     "3.99"
 );
 
-const side2 = new MenuItem(
+const rocketRings = new MenuItem(
     "Rocket Rings",
     "Rocket-Rings.png",
     "Golden onion rings with spicy launch sauce.",
@@ -191,7 +149,7 @@ const side2 = new MenuItem(
     "4.49"
 );
 
-const side3 = new MenuItem(
+const solarSlaw = new MenuItem(
     "Solar Slaw",
     "Solar-Slaw.png",
     "Tangy cabbage slaw with sunburst citrus dressing.",
@@ -199,7 +157,7 @@ const side3 = new MenuItem(
     "3.49"
 );
 
-const side4 = new MenuItem(
+const orbitTots = new MenuItem(
     "Orbit Tots",
     "Orbit-Tots.png",
     "Seasoned tater tots with planetary dipping sauces.",
@@ -220,16 +178,16 @@ const sides = document.getElementById("sides");
 
 // Add sammies
 [
-  sammy1, sammy2, sammy3, sammy4,
-  sammy5, sammy6, sammy7, sammy8,
-  sammy9, sammy10, sammy11
+  lunarLoaf, theEclipse, rocketReuben, cosmicCrunch,
+  theNebulaMelt, theSpaceJamwich, astroBLT, solarFlarePanini,
+  alienAvocadoSmash, galaxyGrilledCheese, blackHoleBBQ
 ].forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
 
 // Add drinks
-[drink1, drink2, drink3, drink4].forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+[cometCola, milkyWayShake, astroFizz, cosmoCocoa].forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
 
 // Add sides
-[side1, side2, side3, side4, apple].forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+[asteriodFries, rocketRings, solarSlaw, orbitTots, apple].forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 
 
 
