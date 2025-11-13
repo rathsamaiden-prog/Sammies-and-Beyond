@@ -207,7 +207,6 @@ const side4 = new MenuItem(
     "4.49"
 );
 
-
 menu.insertAdjacentHTML("afterbegin", `
   <section id="sammies"></section>
   <section id="sides"></section>
