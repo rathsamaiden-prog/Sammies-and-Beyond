@@ -1,41 +1,4 @@
-class MenuItem {
-  constructor(name, imageURL, description, allergies, price) {
-    this.name = name;
-    this.imageURL = imageURL;
-    this.description = description;
-    this.allergies = allergies;
-    this.price = price;
-}
-
-  appendItem() {
-    return `
-      <div class="item">
-            <!-- Item Name -->
-            <div class="itemName">
-                <p id="name">${this.name}</p>
-            </div>
-            <!-- Item Image -->
-            <div class="itemImg">
-                <img src="${this.imageURL}" alt="item img">
-            </div>
-            <!-- Item Info -->
-            <div class="itemInfo">
-                <p id="desc">${this.description}</p>
-                <p id="dietR">${this.allergies}</p>
-            </div>
-            <!-- Item Footer: Price + Add Button -->
-            <div class="itemFooter">
-                <div class="itemPrice">
-                    <p id="price">$${this.price}</p>
-                </div>
-                <div class="itemAdd">
-                    <button class="add">Add</button>
-                </div>
-            </div>
-      </div>
-    `;
-  }
-}
+import { MenuItem } from "/menuItem.js";
 
 const menuRow1 = document.getElementsByClassName("menuRow1")[0];
 const menuRow2 = document.getElementsByClassName("menuRow2")[0];
@@ -46,7 +9,7 @@ const menuRow5 = document.getElementsByClassName("menuRow5")[0];
 
 
 
-const apple = new MenuItem(
+let apple = new MenuItem(
     "Apple",
     "https://cdn.discordapp.com/attachments/1416088170876895303/1435976344923275306/apple.jpg?ex=690decaf&is=690c9b2f&hm=250721ec6e09846fd33b180a463686037f0291a526df17f7d697ea8df0dbfd61&",
     "This is a fugi apple, it's sweet with a bit of tang.",
@@ -54,7 +17,7 @@ const apple = new MenuItem(
     "1.49"
 );
 
-const sammy1 = new MenuItem(
+let lunarLoaf = new MenuItem(
     "Lunar Loaf",
     "Lunar-loaf.png",
     "Meatball sub with moon dusted parmesan.",
@@ -62,7 +25,7 @@ const sammy1 = new MenuItem(
     "11.99"
 );
 
-const sammy2 = new MenuItem(
+let theEclipse = new MenuItem(
     "The Eclipse",
     "The-Eclipse.png",
     "Black rye bread with white cheddar and ham.",
@@ -70,21 +33,21 @@ const sammy2 = new MenuItem(
     "10.99"
 );
 
-const sammy3 = new MenuItem(
+let rocketReubon = new MenuItem(
     "Rocket Reuben",
     "Rocket-Reuben.png",
     "Toasted multigrain with veggies and crispy onions.",
     "Gluten",
     "9.99"
 );
-const sammy4 = new MenuItem(
+let cosmicCrunch = new MenuItem(
     "Cosmic Crunch",
     "Cosmic-Crunch.png",
     "Corned beef, sauerkraut, and cosmic sauce.",
     "Gluten, Meat",
     "10.99"
 );
-const sammy5 = new MenuItem(
+let theNebulaMelt = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
     "swirling layers of cheese and roast beef.",
@@ -92,7 +55,7 @@ const sammy5 = new MenuItem(
     "10.99"
 );
 
-const sammy6 = new MenuItem(
+let theSpaceJamwich = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
     "peanut butter, banana, and berry jam fusion.",
@@ -100,7 +63,7 @@ const sammy6 = new MenuItem(
     "8.99"
 );
 
-const sammy7 = new MenuItem(
+let astroBLT = new MenuItem(
     "AstroBLT",
     "AstroBLT.png",
     "Classic bacon, lettuce, and tomato with meteorite-spiced mayo.",
@@ -108,7 +71,7 @@ const sammy7 = new MenuItem(
     "9.99"
 );
 
-const sammy8 = new MenuItem(
+let solarFlarePanini = new MenuItem(
     "Solar Flare Panini",
     "Solar-Flare-Panini.png",
     "Spicy grilled chicken panini with pepper jack and jalapeños.",
@@ -116,7 +79,7 @@ const sammy8 = new MenuItem(
     "10.49"
 );
 
-const sammy9 = new MenuItem(
+let alienAvocadoSmash = new MenuItem(
     "Alien Avocado Smash",
     "Alien-Avocado-Smash.png",
     "Mashed avocado, lime, garlic, and sprouts on toasted rye.",
@@ -124,7 +87,7 @@ const sammy9 = new MenuItem(
     "8.99"
 );
 
-const sammy10 = new MenuItem(
+let galaxyGrilledCheese = new MenuItem(
     "Galaxy Grilled Cheese",
     "Galaxy-Grilled-Cheese.png",
     "Rainbow cheese blend melted between star-shaped brioche slices.",
@@ -132,7 +95,7 @@ const sammy10 = new MenuItem(
     "7.99"
 );
 
-const sammy11 = new MenuItem(
+let blackHoleBBQ = new MenuItem(
     "Black Hole BBQ",
     "Black-Hole-BBQ.png",
     "Pulled pork with smoky barbecue sauce on a dark brioche bun.",
@@ -140,7 +103,9 @@ const sammy11 = new MenuItem(
     "10.99"
 );
 
-const drink1 = new MenuItem(
+// let sammies = [lunarLoaf, theEclipse, rocketReubon, cosmicCrunch, theNebulaMelt, theSpaceJamwich, astroBLT, solarFlarePanini, alienAvocadoSmash, galaxyGrilledCheese, blackHoleBBQ]
+
+let cometCola = new MenuItem(
     "Comet Cola",
     "Comet-Cola.png",
     "Classic cola with a twist of lime and starfruit.",
@@ -148,7 +113,7 @@ const drink1 = new MenuItem(
     "2.99"
 );
 
-const drink2 = new MenuItem(
+let milkeyWayShake = new MenuItem(
     "Milky Way Shake",
     "Milky-Way-Shake.png",
     "Chocolate malt with whipped cream and caramel drizzle.",
@@ -156,7 +121,7 @@ const drink2 = new MenuItem(
     "4.99"
 );
 
-const drink3 = new MenuItem(
+let astroFizz = new MenuItem(
     "AstroFizz",
     "AstroFizz.png",
     "Orange soda with popping candy rim.",
@@ -164,7 +129,7 @@ const drink3 = new MenuItem(
     "3.49"
 );
 
-const drink4 = new MenuItem(
+let cosmoCocoa = new MenuItem(
     "Cosmo Cocoa",
     "Cosmo-Cocoa.png",
     "Chilled chocolate drink with marshmallow meteors.",
@@ -172,7 +137,9 @@ const drink4 = new MenuItem(
     "4.49"
 );
 
-const side1 = new MenuItem(
+// let drinks = [cometCola, milkeyWayShake, astroFizz, cosmoCocoa]
+
+let asteroidFries = new MenuItem(
     "Asteroid Fries",
     "Asteroid-Fries.png",
     "Crispy potato wedges with cratered seasoning.",
@@ -180,7 +147,7 @@ const side1 = new MenuItem(
     "3.99"
 );
 
-const side2 = new MenuItem(
+let rocketRings = new MenuItem(
     "Rocket Rings",
     "Rocket-Rings.png",
     "Golden onion rings with spicy launch sauce.",
@@ -188,7 +155,7 @@ const side2 = new MenuItem(
     "4.49"
 );
 
-const side3 = new MenuItem(
+let solarSlaw = new MenuItem(
     "Solar Slaw",
     "Solar-Slaw.png",
     "Tangy cabbage slaw with sunburst citrus dressing.",
@@ -196,7 +163,7 @@ const side3 = new MenuItem(
     "3.49"
 );
 
-const side4 = new MenuItem(
+let orbitTots = new MenuItem(
     "Orbit Tots",
     "Orbit-Tots.png",
     "Seasoned tater tots with planetary dipping sauces.",
@@ -204,37 +171,40 @@ const side4 = new MenuItem(
     "4.49"
 );
 
-menuRow1.insertAdjacentHTML("beforeend", sammy1.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy2.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy3.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy4.appendItem());
+// let sides = [asteroidFries, rocketRings, solarSlaw, orbitTots]
 
-menuRow2.insertAdjacentHTML("beforeend", sammy5.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy6.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy7.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy8.appendItem());
+menuRow1.insertAdjacentHTML("beforeend", lunarLoaf.appendItem());
+menuRow1.insertAdjacentHTML("beforeend", theEclipse.appendItem());
+menuRow1.insertAdjacentHTML("beforeend", rocketReubon.appendItem());
+menuRow1.insertAdjacentHTML("beforeend", cosmicCrunch.appendItem());
 
-menuRow3.insertAdjacentHTML("beforeend", sammy9.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", sammy10.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", sammy11.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", drink1.appendItem());
+menuRow2.insertAdjacentHTML("beforeend", theNebulaMelt.appendItem());
+menuRow2.insertAdjacentHTML("beforeend", theSpaceJamwich.appendItem());
+menuRow2.insertAdjacentHTML("beforeend", astroBLT.appendItem());
+menuRow2.insertAdjacentHTML("beforeend", solarFlarePanini.appendItem());
 
-menuRow4.insertAdjacentHTML("beforeend", drink2.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", drink3.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", drink4.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", side1.appendItem());
+menuRow3.insertAdjacentHTML("beforeend", alienAvocadoSmash.appendItem());
+menuRow3.insertAdjacentHTML("beforeend", galaxyGrilledCheese.appendItem());
+menuRow3.insertAdjacentHTML("beforeend", blackHoleBBQ.appendItem());
+menuRow3.insertAdjacentHTML("beforeend", cometCola.appendItem());
 
-menuRow5.insertAdjacentHTML("beforeend", side2.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", side3.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", side4.appendItem());
+menuRow4.insertAdjacentHTML("beforeend", milkeyWayShake.appendItem());
+menuRow4.insertAdjacentHTML("beforeend", astroFizz.appendItem());
+menuRow4.insertAdjacentHTML("beforeend", cosmoCocoa.appendItem());
+menuRow4.insertAdjacentHTML("beforeend", asteroidFries.appendItem());
+
+menuRow5.insertAdjacentHTML("beforeend", rocketRings.appendItem());
+menuRow5.insertAdjacentHTML("beforeend", solarSlaw.appendItem());
+menuRow5.insertAdjacentHTML("beforeend", orbitTots.appendItem());
 menuRow5.insertAdjacentHTML("beforeend", apple.appendItem());
 
 
-<<<<<<< HEAD
 menu.insertAdjacentHTML("beforeend", itemHTML);
 
 //MENU SENDER
 let data = `something`
 localStorage.setItem('keyName', data);
-=======
->>>>>>> 9727350c51bfd496455974a17f4bb00481b9ebe0
+
+//MENU RECIEVER
+const retrievedValue = localStorage.getItem('keyName');
+console.log(retrievedValue)

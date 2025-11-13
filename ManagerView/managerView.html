@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="commitedMenu-Container flexBox">
-        <div class="container flexBox" id="menu">
-            <div class="containerContent">
+        <div class="container flexBox">
+            <div class="containerContent" id="menu">
                 
             </div>
         </div>
@@ -20,17 +20,19 @@
             <div class="container flexBox">
                 <div class="containerContent" id="add-or-edit">
                     <div id="img-container" class="flexBox">
+                        <p>Drag and drop image here</p>
                         <form action="/action_page.php" id="upload-img">
                             <input type="file" id="myFile" name="filename">
                         </form>
-                        <p>Drag and drop image here</p>
                     </div>
                     <div class="name-price-commit">
                         <h3>Dish/Drink Name</h3>
-                        <input type="text" name="" class="namePrice" placeholder="Enter Name">
+                        <input type="text" name="" class="editInput" placeholder="Enter Name">
                         <h3>Dish/Drink Price</h3>
-                        <input type="text" name="" class="namePrice" placeholder="Enter Price ($)">
-                        <button id="commit-btn">test</button>
+                        <input type="text" name="" class="editInput" placeholder="Enter Price ($)">
+                        <h3>Allergens</h3>
+                        <input type="text" name="" class="editInput" placeholder="Allergens">
+                        <button id="commit-btn">Add Item</button>
                     </div>
                     <h3>Dish/Drink Description</h3>
                     <textarea rows="20" cols="50" id="item-description" placeholder="Enter Description (*** Character Max)"></textarea>
@@ -49,6 +51,6 @@
         </div>
     </div>
     
-    <script src="managerScript.js"></script>
+    <script type="module" src="managerScript.js"></script>
 </body>
 </html>
