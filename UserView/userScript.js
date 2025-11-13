@@ -31,17 +31,20 @@ class MenuItem {
                 <div class="itemAdd">
                     <button class="add">Add</button>
                 </div>
+                <div class="itemRemove">
+                    <button class="remove">Remove</button>
+                </div>
             </div>
       </div>
     `;
   }
 }
 
-const menuRow1 = document.getElementsByClassName("menuRow1")[0];
-const menuRow2 = document.getElementsByClassName("menuRow2")[0];
-const menuRow3 = document.getElementsByClassName("menuRow3")[0];
-const menuRow4 = document.getElementsByClassName("menuRow4")[0];
-const menuRow5 = document.getElementsByClassName("menuRow5")[0];
+
+
+
+const menu = document.getElementsByClassName("menu")[0];
+
 
 
 
@@ -204,29 +207,147 @@ const side4 = new MenuItem(
     "4.49"
 );
 
-menuRow1.insertAdjacentHTML("beforeend", sammy1.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy2.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy3.appendItem());
-menuRow1.insertAdjacentHTML("beforeend", sammy4.appendItem());
 
-menuRow2.insertAdjacentHTML("beforeend", sammy5.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy6.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy7.appendItem());
-menuRow2.insertAdjacentHTML("beforeend", sammy8.appendItem());
+menu.insertAdjacentHTML("afterbegin", `
+  <section id="sammies"></section>
+  <section id="sides"></section>
+  <section id="drinks"></section>
+`);
 
-menuRow3.insertAdjacentHTML("beforeend", sammy9.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", sammy10.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", sammy11.appendItem());
-menuRow3.insertAdjacentHTML("beforeend", drink1.appendItem());
+// Get references to each section
+const sammies = document.getElementById("sammies");
+const drinks = document.getElementById("drinks");
+const sides = document.getElementById("sides");
 
-menuRow4.insertAdjacentHTML("beforeend", drink2.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", drink3.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", drink4.appendItem());
-menuRow4.insertAdjacentHTML("beforeend", side1.appendItem());
+// Add sammies
+[
+  sammy1, sammy2, sammy3, sammy4,
+  sammy5, sammy6, sammy7, sammy8,
+  sammy9, sammy10, sammy11
+].forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
 
-menuRow5.insertAdjacentHTML("beforeend", side2.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", side3.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", side4.appendItem());
-menuRow5.insertAdjacentHTML("beforeend", apple.appendItem());
+// Add drinks
+[drink1, drink2, drink3, drink4].forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+
+// Add sides
+[side1, side2, side3, side4, apple].forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cartBtn = document.getElementById("cartBtn");
+  const cart = document.getElementById("cart");
+  const itemsContainer = document.querySelector(".items");
+  const totalDisplay = document.querySelector(".total");
+
+  let total = 0;
+
+  // Toggle cart visibility
+  cartBtn.addEventListener("click", function () {
+    cart.style.display = (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
+  });
+
+  document.addEventListener("click", function (e) {
+    const item = e.target.closest(".item");
+
+    // ADD button clicked
+    if(e.target.classList.contains("add")){
+        const name = item.querySelector("#name").textContent;
+        const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
+        const img = item.querySelector(".itemImg img").src;
+
+        // Create new item in cart
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.setAttribute("data-name", name);
+        cartItem.setAttribute("data-price", price);
+        cartItem.setAttribute("data-quantity", 1);
+
+        cartItem.innerHTML = `<img src="${img}" alt="Cart item image"><p>${name} - $${price.toFixed(2)}</p>`;
+
+        const quantity = document.createElement("div");
+        quantity.classList.add("cart-quantity");
+        quantity.insertAdjacentHTML("beforeend", `
+            <div class="qty-control">
+            <button class="qty-minus">−</button>
+            <span class="qty-count">1</span>
+            <button class="qty-plus">+</button>
+            </div>
+        `);
+
+        cartItem.appendChild(quantity);
+        itemsContainer.appendChild(cartItem);
+
+        // Update total
+        total += price;
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+
+        // Toggle buttons
+        item.querySelector(".add").style.display = "none";
+        item.querySelector(".itemRemove").style.display = "block";
+    }
+
+    // REMOVE button clicked
+    if(e.target.classList.contains("remove")){
+        const name = item.querySelector("#name").textContent;
+        const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
+
+        const cartItems = itemsContainer.querySelectorAll(".cart-item");
+        for (let cartItem of cartItems){
+            if(cartItem.getAttribute("data-name") === name){
+                const quantity = parseInt(cartItem.getAttribute("data-quantity"));
+                total -= price * quantity;
+                itemsContainer.removeChild(cartItem);
+                break;
+            }
+        }
+
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+        item.querySelector(".add").style.display = "block";
+        item.querySelector(".itemRemove").style.display = "none";
+    }
+
+    // Quantity control clicked
+    if(e.target.classList.contains("qty-plus") || e.target.classList.contains("qty-minus")){
+        const control = e.target.closest(".qty-control");
+        const countSpan = control.querySelector(".qty-count");
+        const cartItem = e.target.closest(".cart-item");
+        const basePrice = parseFloat(cartItem.getAttribute("data-price"));
+        let quantity = parseInt(cartItem.getAttribute("data-quantity"));
+
+        if(e.target.classList.contains("qty-plus")){
+            quantity++;
+            total += basePrice;
+        } else if(e.target.classList.contains("qty-minus") && quantity > 1){
+            quantity--;
+            total -= basePrice;
+        }
+
+        countSpan.textContent = quantity;
+        cartItem.setAttribute("data-quantity", quantity);
+        cartItem.querySelector("p").textContent = `${cartItem.getAttribute("data-name")} - $${(basePrice * quantity).toFixed(2)}`;
+        totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+
+
+  });
+});
+
+const checkoutBtn = document.getElementById("checkout");
+const paymentScreen = document.querySelector(".payment-screen");
+
+checkoutBtn.addEventListener("click", function (){
+    document.querySelector(".items").style.display = "none";
+    document.querySelector(".total").style.display = "none";
+    document.querySelector("#cart").style.justifyContent = "flex-start";
+    paymentScreen.style.display = "block";
+});
+
+
 
 
