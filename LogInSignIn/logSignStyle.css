@@ -1,0 +1,91 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+     background: url("sandwich.webp") center/cover no-repeat;
+     display: flex;
+     justify-content: center;
+     align-items:center ;
+      font-family: 'Audiowide', sans-serif;
+}
+.section{
+    position: relative;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+
+}
+button{
+    width: 50%;
+    align-self:center;
+}
+h1{
+    text-align: center;
+    color: aliceblue;
+}
+.group{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    margin: 10px;
+    padding: 10px;
+      background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+     backdrop-filter: blur(20px);
+     color: aliceblue;
+     border-radius: 20px;
+
+     
+}
+
+button{
+     background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+     backdrop-filter: blur(20px);
+     color: aliceblue;
+    backdrop-filter: blur(20px);
+     border-radius: 20px;
+     margin: 10px;
+      font-family: 'Audiowide', sans-serif;
+}
+::placeholder{
+    color: white;
+     font-family: 'Audiowide', sans-serif;
+}
+
+.req{
+    color: lightgreen;
+    margin: 10PX;
+}
+.passwordRequirements{
+    display: flex;
+    
+
+}
+#main{
+    color: aqua;
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+.page {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+}
