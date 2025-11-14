@@ -9,7 +9,7 @@ body{
     color: aliceblue;
 }
 header{
-    background-color:#be5103;
+    background-color:#0e0d0c;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,9 +20,12 @@ header{
     top: 0;
     z-index: 1000;
     transition: background 0.4s ease;
+    position: sticky;
 }
-
-
+.headerText:hover{
+    color: rgba(0, 255, 255, 0.3) ;
+   
+}
 
 .hero-img{
     background-image:url("toast.jpg");
@@ -53,9 +56,16 @@ header{
     backdrop-filter: blur(20px);
     color: aliceblue;
     border: 2px solid white;
-    width: 10vh;
-    height: 5vh;
-    margin: 3vh;
+    width: 25vh;
+    height: 8vh;
+    margin: 5vh;
+     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#order:hover{
+    transform: scale(1.3);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
 }
 
 
