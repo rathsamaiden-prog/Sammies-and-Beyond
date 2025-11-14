@@ -7,10 +7,11 @@ body{
     min-height: 100vh;
      background: url("cheesesteak.jpg.jpg") center/cover no-repeat;
      display: flex;
-     justify-content: center;
-     align-items:center ;
+    
      flex-direction: column;
+    
 }
+
 h1{
     font-size: 100px;
     color: aliceblue;
@@ -24,7 +25,7 @@ h2{
 
 .feedBackContainer{
     position: relative;
-    max-width: 400px;
+    width:50vw;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
@@ -32,6 +33,7 @@ h2{
     display: flex;
     flex-direction: column;
     padding: 10px;
+    
     
 }
 
@@ -67,3 +69,61 @@ ion-icon{
     color: rgb(84, 5, 136);
 }
 
+footer{
+    border: 2px solid rgb(233, 222, 222);
+    display: flex;
+    justify-content: space-between;
+   flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    margin-top: auto;
+   
+    
+}
+.footertop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 40px;
+}
+.footersocials{
+    margin-left: 50px;
+    display: flex;
+    gap: 100px;
+}
+ion-icon{
+    font-size: 30px;
+}
+ul{
+   display: flex;
+    list-style-type: none;
+    padding: 10px;
+    justify-content: center;
+    color: aliceblue;
+    
+}
+
+ul li a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: aliceblue;
+}
+.contact{
+    text-align: center;
+    margin: 5px;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    width: 100%;
+    padding: 20px;
+}
