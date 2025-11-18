@@ -7,24 +7,32 @@
     <link rel="stylesheet" href="userStyle.css">
 </head>
 <body>
- 
     <div class="header">
-        <div class="cartBtn">
-            <button id="cart">Cart</button>
+        <nav>
+            <div class="nav">
+                <a href="#sammies">Sammies</a>
+                <a href="#sides">Sides</a>
+                <a href="#drinks">Drinks</a>
+            </div>
+            <div class="cartBtn">
+                <button id="cartBtn">Cart</button>
+            </div>
+        </nav>
+    </div>
+    <div id="cart">
+        <div class="items"></div>
+        <div class="total">Total: $0.00</div>
+        <div class="payment">
+            <button id="checkout">Checkout</button>
+        </div>
+        <div class="payment-screen" style="display: none;">
+            <h2>Payment Details</h2>
         </div>
     </div>
     <div class="menuBody">
-        <div class="menu">
-            <div class="menuRow1"></div>
-            <div class="menuRow2"></div>            
-            <div class="menuRow3"></div>
-            <div class="menuRow4"></div>
-            <div class="menuRow5"></div>
-        </div>
+        <div class="menu"></div>
     </div>
-
-    
-
-    <script src="userScript.js"></script>
+  
+    <script type="module" src="userScript.js"></script>
 </body>
 </html>
