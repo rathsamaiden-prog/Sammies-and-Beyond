@@ -3,19 +3,7 @@ import { MenuItem } from "../menuItem.js";
 
 const menu = document.getElementsByClassName("menu")[0];
 
-
-
-
-
-const apple = new MenuItem(
-    "Apple",
-    "https://cdn.discordapp.com/attachments/1416088170876895303/1435976344923275306/apple.jpg?ex=690decaf&is=690c9b2f&hm=250721ec6e09846fd33b180a463686037f0291a526df17f7d697ea8df0dbfd61&",
-    "This is a fugi apple, it's sweet with a bit of tang.",
-    "Vegan",
-    "1.49"
-);
-
-const lunarLoaf = new MenuItem(
+const sammie1 = new MenuItem(
     "Lunar Loaf",
     "Lunar-loaf.png",
     "Meatball sub with moon dusted parmesan.",
@@ -23,7 +11,7 @@ const lunarLoaf = new MenuItem(
     "11.99"
 );
 
-const theEclipse = new MenuItem(
+const sammie2 = new MenuItem(
     "The Eclipse",
     "The-Eclipse.png",
     "Black rye bread with white cheddar and ham.",
@@ -31,21 +19,21 @@ const theEclipse = new MenuItem(
     "10.99"
 );
 
-const rocketReuben = new MenuItem(
+const sammie3 = new MenuItem(
     "Rocket Reuben",
     "Rocket-Reuben.png",
     "Toasted multigrain with veggies and crispy onions.",
     "Gluten",
     "9.99"
 );
-const cosmicCrunch = new MenuItem(
+const sammie4 = new MenuItem(
     "Cosmic Crunch",
     "Cosmic-Crunch.png",
     "Corned beef, sauerkraut, and cosmic sauce.",
     "Gluten, Meat",
     "10.99"
 );
-const theNebulaMelt = new MenuItem(
+const sammie5 = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
     "swirling layers of cheese and roast beef.",
@@ -53,7 +41,7 @@ const theNebulaMelt = new MenuItem(
     "10.99"
 );
 
-const theSpaceJamwich = new MenuItem(
+const sammie6 = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
     "peanut butter, banana, and berry jam fusion.",
@@ -61,7 +49,7 @@ const theSpaceJamwich = new MenuItem(
     "8.99"
 );
 
-const astroBLT = new MenuItem(
+const sammie7 = new MenuItem(
     "AstroBLT",
     "AstroBLT.png",
     "Classic bacon, lettuce, and tomato with meteorite-spiced mayo.",
@@ -69,7 +57,7 @@ const astroBLT = new MenuItem(
     "9.99"
 );
 
-const solarFlarePanini = new MenuItem(
+const sammie8 = new MenuItem(
     "Solar Flare Panini",
     "Solar-Flare-Panini.png",
     "Spicy grilled chicken panini with pepper jack and jalapeños.",
@@ -77,7 +65,7 @@ const solarFlarePanini = new MenuItem(
     "10.49"
 );
 
-const alienAvocadoSmash = new MenuItem(
+const sammie9 = new MenuItem(
     "Alien Avocado Smash",
     "Alien-Avocado-Smash.png",
     "Mashed avocado, lime, garlic, and sprouts on toasted rye.",
@@ -85,7 +73,7 @@ const alienAvocadoSmash = new MenuItem(
     "8.99"
 );
 
-const galaxyGrilledCheese = new MenuItem(
+const sammie10 = new MenuItem(
     "Galaxy Grilled Cheese",
     "Galaxy-Grilled-Cheese.png",
     "Rainbow cheese blend melted between star-shaped brioche slices.",
@@ -93,7 +81,7 @@ const galaxyGrilledCheese = new MenuItem(
     "7.99"
 );
 
-const blackHoleBBQ = new MenuItem(
+const sammie11 = new MenuItem(
     "Black Hole BBQ",
     "Black-Hole-BBQ.png",
     "Pulled pork with smoky barbecue sauce on a dark brioche bun.",
@@ -101,7 +89,7 @@ const blackHoleBBQ = new MenuItem(
     "10.99"
 );
 
-const cometCola = new MenuItem(
+const drink1 = new MenuItem(
     "Comet Cola",
     "Comet-Cola.png",
     "Classic cola with a twist of lime and starfruit.",
@@ -109,7 +97,7 @@ const cometCola = new MenuItem(
     "2.99"
 );
 
-const milkyWayShake = new MenuItem(
+const drink2 = new MenuItem(
     "Milky Way Shake",
     "Milky-Way-Shake.png",
     "Chocolate malt with whipped cream and caramel drizzle.",
@@ -117,7 +105,7 @@ const milkyWayShake = new MenuItem(
     "4.99"
 );
 
-const astroFizz = new MenuItem(
+const drink3 = new MenuItem(
     "AstroFizz",
     "AstroFizz.png",
     "Orange soda with popping candy rim.",
@@ -125,7 +113,7 @@ const astroFizz = new MenuItem(
     "3.49"
 );
 
-const cosmoCocoa = new MenuItem(
+const drink4 = new MenuItem(
     "Cosmo Cocoa",
     "Cosmo-Cocoa.png",
     "Chilled chocolate drink with marshmallow meteors.",
@@ -133,7 +121,7 @@ const cosmoCocoa = new MenuItem(
     "4.49"
 );
 
-const asteriodFries = new MenuItem(
+const side1 = new MenuItem(
     "Asteroid Fries",
     "Asteroid-Fries.png",
     "Crispy potato wedges with cratered seasoning.",
@@ -141,7 +129,7 @@ const asteriodFries = new MenuItem(
     "3.99"
 );
 
-const rocketRings = new MenuItem(
+const side2 = new MenuItem(
     "Rocket Rings",
     "Rocket-Rings.png",
     "Golden onion rings with spicy launch sauce.",
@@ -149,7 +137,7 @@ const rocketRings = new MenuItem(
     "4.49"
 );
 
-const solarSlaw = new MenuItem(
+const side3 = new MenuItem(
     "Solar Slaw",
     "Solar-Slaw.png",
     "Tangy cabbage slaw with sunburst citrus dressing.",
@@ -157,12 +145,20 @@ const solarSlaw = new MenuItem(
     "3.49"
 );
 
-const orbitTots = new MenuItem(
+const side4 = new MenuItem(
     "Orbit Tots",
     "Orbit-Tots.png",
     "Seasoned tater tots with planetary dipping sauces.",
     "Vegetarian",
     "4.49"
+);
+
+const side5 = new MenuItem(
+    "Apple",
+    "https://cdn.discordapp.com/attachments/1416088170876895303/1435976344923275306/apple.jpg?ex=690decaf&is=690c9b2f&hm=250721ec6e09846fd33b180a463686037f0291a526df17f7d697ea8df0dbfd61&",
+    "This is a fugi apple, it's sweet with a bit of tang.",
+    "Vegan",
+    "1.49"
 );
 
 menu.insertAdjacentHTML("afterbegin", `
@@ -176,24 +172,15 @@ const sammies = document.getElementById("sammies");
 const drinks = document.getElementById("drinks");
 const sides = document.getElementById("sides");
 
-// Add sammies
-[
-  lunarLoaf, theEclipse, rocketReuben, cosmicCrunch,
-  theNebulaMelt, theSpaceJamwich, astroBLT, solarFlarePanini,
-  alienAvocadoSmash, galaxyGrilledCheese, blackHoleBBQ
-].forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+let totalSammies = [
+  sammie1, sammie2, sammie3, sammie4,
+  sammie5, sammie6, sammie7, sammie8,
+  sammie9, sammie10, sammie11
+]
+let totalDrinks = [drink1, drink2, drink3, drink4]
+let totalSides = [side1, side2, side3, side4, side5]
 
-// Add drinks
-[cometCola, milkyWayShake, astroFizz, cosmoCocoa].forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
-
-// Add sides
-[asteriodFries, rocketRings, solarSlaw, orbitTots, apple].forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
-
-
-
-
-
-
+refresh(sammies, sides, drinks)
 
 document.addEventListener("DOMContentLoaded", function () {
   const cartBtn = document.getElementById("cartBtn");
@@ -289,9 +276,6 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItem.querySelector("p").textContent = `${cartItem.getAttribute("data-name")} - $${(basePrice * quantity).toFixed(2)}`;
         totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
     }
-
-
-
   });
 });
 
@@ -308,3 +292,51 @@ checkoutBtn.addEventListener("click", function (){
 
 
 
+
+
+// MENU REFRESHER
+function refresh(sammies, sides, drinks){
+    // Add sammies
+    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+
+    // Add drinks
+    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+
+    // Add sides
+    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+}
+
+
+// MENU SENDER
+let itemCount = 0
+function sendItems(type, item){
+    let name = type+(++itemCount)
+    localStorage.setItem(name, JSON.stringify(item))
+}
+// send sammies
+totalSammies.forEach(s => sendItems(`sammie`, s))
+itemCount = 0
+// send drinks
+totalDrinks.forEach(d => sendItems(`drink`, d))
+itemCount = 0
+// send sides
+totalSides.forEach(s => sendItems(`side`, s))
+itemCount = 0
+
+
+// MENU RETRIEVER
+window.addEventListener(`storage`, (event) => {
+    menuRetriver()  
+})
+
+function menuRetriver(){
+    totalSammies = []
+    totalSides = []
+    totalDrinks = []
+    for(let i = 0; i < localStorage.length; i++){
+        let keyName = localStorage.key(i).replace(/[1-9]/g, ``)
+        if(keyName === `sammie`) totalSammies.push(localStorage.getItem(localStorage.key(i)))
+        else if(keyName === `side`) totalSides.push(localStorage.getItem(localStorage.key(i)))
+        else if(keyName === `drink`) totalDrinks.push(localStorage.getItem(localStorage.key(i)))
+    }
+}
