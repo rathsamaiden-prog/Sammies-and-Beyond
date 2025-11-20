@@ -1,6 +1,5 @@
 import { MenuItem } from "../menuItem.js";
 
-
 const menu = document.getElementsByClassName("menu")[0];
 
 const sammie1 = new MenuItem(
@@ -180,22 +179,26 @@ let totalSammies = [
 let totalDrinks = [drink1, drink2, drink3, drink4]
 let totalSides = [side1, side2, side3, side4, side5]
 
-refresh(sammies, sides, drinks)
+window.addEventListener(`load`, () => {
+    menuRetriver()
+    refresh(sammies, sides, drinks)
+})
 
 document.addEventListener("DOMContentLoaded", function () {
-  const cartBtn = document.getElementById("cartBtn");
-  const cart = document.getElementById("cart");
-  const itemsContainer = document.querySelector(".items");
-  const totalDisplay = document.querySelector(".total");
 
-  let total = 0;
+    const cartBtn = document.getElementById("cartBtn");
+    const cart = document.getElementById("cart");
+    const itemsContainer = document.querySelector(".items");
+    const totalDisplay = document.querySelector(".total");
 
-  // Toggle cart visibility
-  cartBtn.addEventListener("click", function () {
-    cart.style.display = (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
-  });
+    let total = 0;
 
-  document.addEventListener("click", function (e) {
+    // Toggle cart visibility
+    cartBtn.addEventListener("click", function () {
+        cart.style.display = (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
+    });
+
+    document.addEventListener("click", function (e) {
     const item = e.target.closest(".item");
 
     // ADD button clicked
@@ -290,23 +293,6 @@ checkoutBtn.addEventListener("click", function (){
 });
 
 
-
-
-
-
-// MENU REFRESHER
-function refresh(sammies, sides, drinks){
-    // Add sammies
-    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
-
-    // Add drinks
-    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
-
-    // Add sides
-    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
-}
-
-
 // MENU SENDER
 let itemCount = 0
 function sendItems(type, item){
@@ -325,8 +311,9 @@ itemCount = 0
 
 
 // MENU RETRIEVER
-window.addEventListener(`storage`, (event) => {
-    menuRetriver()  
+window.addEventListener(`storage`, () => {
+    menuRetriver() 
+    refresh(sammies, sides, drinks) 
 })
 
 function menuRetriver(){
@@ -334,9 +321,25 @@ function menuRetriver(){
     totalSides = []
     totalDrinks = []
     for(let i = 0; i < localStorage.length; i++){
-        let keyName = localStorage.key(i).replace(/[1-9]/g, ``)
-        if(keyName === `sammie`) totalSammies.push(localStorage.getItem(localStorage.key(i)))
-        else if(keyName === `side`) totalSides.push(localStorage.getItem(localStorage.key(i)))
-        else if(keyName === `drink`) totalDrinks.push(localStorage.getItem(localStorage.key(i)))
+        let keyName = localStorage.key(i).replace(/[0-9]/g, ``)
+        let item = JSON.parse(localStorage.getItem(localStorage.key(i)))
+        let itemInfo = new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price)
+        if(keyName === `sammie`) totalSammies.push(itemInfo)
+        else if(keyName === `side`) totalSides.push(itemInfo)
+        else if(keyName === `drink`) totalDrinks.push(itemInfo)
     }
+}
+
+function refresh(sammies, sides, drinks){
+    // Add sammies
+    sammies.innerHTML = ``
+    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+
+    // Add drinks
+    drinks.innerHTML = ``
+    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+
+    // Add sides
+    sides.innerHTML = ``
+    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 }

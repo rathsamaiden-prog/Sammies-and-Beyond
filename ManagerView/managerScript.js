@@ -1,26 +1,22 @@
 import { MenuItem } from "/menuItem.js";
+// localStorage.clear()
 
 // TOTAL ITEMS
 let totalSammies, totalDrinks, totalSides
 
 // MENU RETRIEVER
-menuRetriver()
+totalSammies = []
+totalSides = []
+totalDrinks = []
 
-function menuRetriver(){
-    totalSammies = []
-    totalSides = []
-    totalDrinks = []
-
-    for(let i = 0; i < localStorage.length; i++){
-        let keyName = localStorage.key(i).replace(/[1-9]/g, ``)
-        let item = JSON.parse(localStorage.getItem(localStorage.key(i)))
-        if(keyName === `sammie`) totalSammies.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
-        else if(keyName === `side`) totalSides.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
-        else if(keyName === `drink`) totalDrinks.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
-    }
+for(let i = 0; i < localStorage.length; i++){
+    let keyName = localStorage.key(i).replace(/[0-9]/g, ``)
+    console.log(keyName)
+    let item = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    if(keyName === `sammie`) totalSammies.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
+    else if(keyName === `side`) totalSides.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
+    else if(keyName === `drink`) totalDrinks.push(new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price))
 }
-
-console.log(totalSammies[0])
 
 // MENU REFRESHER
 const menu = document.getElementById(`menu`)
@@ -33,20 +29,15 @@ const sammies = document.getElementById(`sammies`)
 const sides = document.getElementById(`sides`)
 const drinks = document.getElementById(`drinks`)
 
-refresh(sammies, sides, drinks)
+// Add sammies
+totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
 
-function refresh(sammies, sides, drinks){
-    // Add sammies
-    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+// Add drinks
+totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
 
-    // Add drinks
-    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+// Add sides
+totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 
-    // Add sides
-    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
-}
-
-console.log(totalDrinks)
 
 // DRAG AND DROP
 function dragstartHandler(ev){
@@ -62,7 +53,6 @@ function dropHandler(ev){
 }
 
 // ADD - EDIT 
-let menuItemMap = new Map()
 
 const img = document.getElementById(`img-container`)
 const imgURL = document.getElementById(`myFile`)
@@ -71,15 +61,39 @@ const itemPrice = document.getElementsByClassName(`editInput`)[1]
 const itemAllergy = document.getElementsByClassName(`editInput`)[2]
 const itemDescr = document.getElementById(`item-description`)
 
-function commitAdd(){
-    let value = itemName.value
+function addItem(section){
     let itemInfo = new MenuItem(itemName.value, "Orbit-Tots.png", itemDescr.value, itemAllergy.value, itemPrice.value)
-    menuItemMap.set(value, itemInfo)
-    menu.insertAdjacentHTML("beforeend", menuItemMap.get(value).appendItem());
-    console.log(imgURL.value)
-    img.style.backgroundImage = `url(${imgURL.value})`
-    const computedStyle = window.getComputedStyle(img);
-    console.log(computedStyle.backgroundImage)
+    if(section === `sammie`){
+        sammies.insertAdjacentHTML("beforeend", itemInfo.appendItem());
+        totalSammies.push(itemInfo)
+    } 
+    if(section === `side`){
+        sides.insertAdjacentHTML("beforeend", itemInfo.appendItem());
+        totalSides.push(itemInfo)
+    }
+    if(section === `drink`){
+        drinks.insertAdjacentHTML("beforeend", itemInfo.appendItem());
+        totalDrinks.push(itemInfo)
+    } 
+}
+
+function sendMenu(){
+    localStorage.clear()
+    console.log(totalSammies)
+    let itemCount = 0
+    function sendItems(type, item){
+        let name = type+(++itemCount)
+        localStorage.setItem(name, JSON.stringify(item))
+    }
+    // send sammies
+    totalSammies.forEach(s => sendItems(`sammie`, s))
+    itemCount = 0
+    // send drinks
+    totalDrinks.forEach(d => sendItems(`drink`, d))
+    itemCount = 0
+    // send sides
+    totalSides.forEach(s => sendItems(`side`, s))
+    itemCount = 0
 }
 
 
@@ -87,15 +101,15 @@ function commitAdd(){
 
 
 
-// MENU SENDER
-
-
-
-
-
-
 // BTN LISTENERS
-const commitBtns = document.querySelectorAll(`.commitBtns`)
-commitBtns.forEach(btn => {
-    btn.addEventListener(`click`, commitAdd)
-});
+const addSammieBtn = document.getElementById(`add-sammie`)
+const addSideBtn = document.getElementById(`add-side`)
+const addDrinkBtn = document.getElementById(`add-drink`)
+
+addSammieBtn.addEventListener(`click`, () => addItem(`sammie`))
+addSideBtn.addEventListener(`click`, () => addItem(`side`))
+addDrinkBtn.addEventListener(`click`, () => addItem(`drink`))
+
+const commitBtn = document.getElementById(`commitBtn`)
+
+commitBtn.addEventListener(`click`, sendMenu)
