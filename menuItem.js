@@ -16,7 +16,7 @@ export class MenuItem {
             </div>
             <!-- Item Image -->
             <div class="itemImg">
-                <img src="/Imgs/${this.imageURL}" alt="item img"></img>
+                <img src="../Imgs/${this.imageURL}" alt="item img"></img>
             </div>
             <!-- Item Info -->
             <div class="itemInfo">
