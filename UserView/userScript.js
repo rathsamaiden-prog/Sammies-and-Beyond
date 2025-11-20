@@ -421,8 +421,46 @@ payNowBtn.addEventListener("click", function (e) {
 
 });
 
+document.querySelector(".newOrder").addEventListener("click", function () {
+    const confirmationScreen = document.querySelector(".confirmationScreen");
+    const paymentScreen = document.querySelector(".payment-screen");
+    const cart = document.getElementById("cart");
 
+    confirmationScreen.style.display = "none";
 
+    document.querySelector(".OrderedItems").innerHTML = "";
+    document.querySelector(".address").innerHTML = "";
+    document.querySelector(".download").innerHTML = "";
+    document.querySelector(".totalPrice").textContent = "";
+
+    const deliveryForm = document.getElementById("fake-delivery-form");
+    deliveryForm.reset();
+    deliveryForm.style.display = "none";
+
+    document.querySelector('input[name="order"][value="pickup"]').checked = true;
+
+    document.getElementById("fake-payment-form").reset();
+
+    document.querySelector(".items").innerHTML = "";
+    document.querySelector(".total").textContent = "Total: $0.00";
+
+    document.querySelector(".items").style.display = "block";
+    document.querySelector(".total").style.display = "block";
+
+    cart.style.display = "flex";
+    cart.style.justifyContent = "center";
+
+    document.getElementById("checkout").style.display = "block";
+
+    paymentScreen.style.display = "none";
+
+    document.querySelectorAll(".item").forEach(i => {
+        i.querySelector(".add").style.display = "block";
+        i.querySelector(".itemRemove").style.display = "none";
+    });
+    total = 0;
+
+});
 
 
 

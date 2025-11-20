@@ -329,6 +329,27 @@ input[type="text"]{
 .download{
     padding: 15px 0;
 }
-
-
-
+.downloadReceipt{
+    padding: 10px 20px;
+    background-color: #2c417c; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.downloadReceipt:hover{
+    background-color: #22325e;
+}
+.newOrder{
+    padding: 10px 20px;
+    background-color: #2c417c; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.newOrder:hover{
+    background-color: #22325e;
+}
