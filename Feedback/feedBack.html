@@ -18,6 +18,7 @@
     <nav>
       <ul class="navigation">
         <li><a href="../homeScreen/home.html">Home</a></li>
+        <li><a href="../LogInSignIn/index.html">Join now </a></li>
         <li><a href="../homeScreen/home.html#About-us">About us</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="../Feedback/feedBack.html">Reviews</a></li>
@@ -27,30 +28,38 @@
   </header>
 
 
+
+
     <div class="page">
      <h1>Reviews</h1>
     <section>
         <div class="feedBackContainer">
             <h2>Name</h2>
-            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Name" id="nameInput">
             <h2>review</h2>
             <input type="text" placeholder="Review" id="reviewContainer">
             <div class="starReview">
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                 <ion-icon name="star-outline" class="star"></ion-icon>
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                 <ion-icon name="star-outline" class="star"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="1"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="2"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="3"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="4"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="5"></ion-icon>
             </div>
-            <button>Submit</button>
+            <button onclick=reviews() id="submitButton">Submit</button>
         </div>
     </section>
-       
-    <section class="reviewGallery">
+       <section>
         <h1> Astronaut Feedback </h1>
+        
+        
+        <div class="reviewGallery">
+
+        </div>
     </section> 
 
 </main>
+
+
 
 
     <footer>
@@ -72,10 +81,11 @@
         <div class="footnav">
             <nav>
                 <ul>
+                    <li><a href="../homeScreen/home.html">home </a></li>
                     <li><a href="../LogInSignIn/index.html">Join now </a></li>
-                    <li><a href="../UserView/userView.html">Menu</a></li>
-                    <li><a href="../aboutUs/aboutUs.html">About us </a></li>
+                    <li><a href="../homeScreen/home.html#About-us">About us</a></li>
                     <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+                    <li><a href="../UserView/userView.html">Menu</a></li>
                 </ul>
             </nav>
         </div>
@@ -85,6 +95,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="logSignScript.js"></script>
+    <script src="Feedback.js"></script>
 </body>
 </html> 

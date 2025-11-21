@@ -184,7 +184,7 @@ ion-icon:hover {
   transform: scale(1.4);
    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
 }  
-ul{
+.footnav ul{
    display: flex;
     list-style-type: none;
     padding: 10px;
@@ -194,7 +194,8 @@ ul{
 }
 
 ul li a {
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: 14px 16px;
     text-decoration: none;
     color: aliceblue;

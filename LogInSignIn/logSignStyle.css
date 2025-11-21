@@ -46,11 +46,19 @@ li :hover{
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3),
+                0 0 20px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(0, 255, 255, 0.3);
 
 }
 button{
     width: 50%;
     align-self:center;
+    transition: 0.3s ease;
+
+}
+button:hover{
+    transform: scale(1.1);
 }
 h1,h3{
     text-align: center;
@@ -73,8 +81,8 @@ input{
     padding: 10px;
       background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
-     backdrop-filter: blur(20px);
-     color: aliceblue;
+     backdrop-filter: blur(40px);
+     color: white;
      border-radius: 20px;
 
      
@@ -141,6 +149,7 @@ footer{
   align-items: center;
   width: 100%;
   padding: 10px 40px;
+  flex-direction: column;
 }
 .footersocials{
     margin-left: 50px;
@@ -172,6 +181,7 @@ ul li a {
     padding: 14px 16px;
     text-decoration: none;
     color: aliceblue;
+    
 }
 .contact{
     text-align: center;
