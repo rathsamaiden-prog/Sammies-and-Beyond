@@ -529,3 +529,4 @@ function refresh(sammies, sides, drinks) {
     sides.innerHTML = "";
     totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 }
+//gdk,jgclg
