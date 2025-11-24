@@ -373,18 +373,16 @@ footer{
     border: 2px solid rgb(233, 222, 222);
     display: flex;
     justify-content: space-between;
-   flex-direction: column;
+    flex-direction: column;
     width: 100%;
     padding: 10px;
     color: white;
     background-color: transparent;
     backdrop-filter: blur(20px);
     margin-top: auto;
-    background: linear-gradient(to bottom, #1a1a2e, #16213e);
-   
-    
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);   
 }
-.footertop {
+.footertop{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -399,20 +397,16 @@ footer{
 ion-icon{
     font-size: 30px;
     transition:0.3s ease
-     
-    
 }
 ion-icon:hover {
-  
-  transform: scale(1.4);
+   transform: scale(1.4);
    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
 }  
 .footnav ul{
-   display: flex;
+    display: flex;
     list-style-type: none;
     padding: 10px;
     justify-content: center;
     color: aliceblue;
-    
 }
 
