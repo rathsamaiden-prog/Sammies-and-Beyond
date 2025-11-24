@@ -78,6 +78,7 @@ section{
     background: linear-gradient(to bottom, #0a0f1c, #050a18);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab;
 }
 #sammies, #sides, #drinks{
     margin-bottom: 125px;
@@ -115,6 +116,7 @@ section{
     white-space: normal;
 }
 .itemAdd{
+    display: none;
     padding: 5px;
 }
 .itemAdd button{
@@ -132,9 +134,7 @@ section{
     transform: scale(1.05);
 }
 .itemRemove{
-    display: none;
     padding: 5px;
-
 }
 .itemRemove button{
     background-color: #be2121;
@@ -188,6 +188,23 @@ section{
     flex-direction: column;
     flex-wrap: wrap;
 }
+#img-display{
+    width: 40%;
+    height: 100%;
+    margin: 2%;
+}
+#img-display img{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    height: 90%;
+    margin-bottom: 10%;
+}
+#img-display p, #img-display form{
+    display: none;
+    margin: 0;
+    padding: 0;
+}
 #img-container{
     flex-direction: column;
     border: 1px solid black;
@@ -198,13 +215,13 @@ section{
     margin: 2%;
 }
 #img-container p{
+    text-align: center;
     color: gray;
     width: 75%;
 }
 #img-container form{
-    align-content: center;
     margin-top: 3%;
-    width: 80%;
+    width: 75%;
 }
 #name-price-commit{
     display: flex;

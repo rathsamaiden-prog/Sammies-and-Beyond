@@ -405,7 +405,7 @@ payNowBtn.addEventListener("click", function (e) {
         confirmationScreen.style.display = "flex";
     }
 });
-// });
+});
 
 // MENU SENDER
 let itemCount = 0
@@ -447,13 +447,13 @@ function menuRetriver(){
 function refresh(sammies, sides, drinks){
     // Add sammies
     sammies.innerHTML = ``
-    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSammies.forEach(s => sammies.appendChild(s.appendItem()));
 
     // Add drinks
     drinks.innerHTML = ``
-    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+    totalDrinks.forEach(d => drinks.appendChild(d.appendItem()));
 
     // Add sides
     sides.innerHTML = ``
-    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSides.forEach(s => sides.appendChild(s.appendItem()));
 }
