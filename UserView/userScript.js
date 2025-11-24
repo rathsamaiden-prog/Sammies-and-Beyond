@@ -446,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmationScreen.style.display = "flex";
     });
 
-});
+
 
 
 document.querySelector(".newOrder").addEventListener("click", function () {
