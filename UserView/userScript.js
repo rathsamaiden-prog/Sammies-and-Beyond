@@ -316,14 +316,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const deliveryForm = document.getElementById("fake-delivery-form");
+    const scheduleForm = document.getElementById("fake-schedule-form");
     const orderRadios = document.getElementsByName("order");
 
     orderRadios.forEach(radio => {
-        radio.addEventListener("change", function () {
-            deliveryForm.style.display = this.value === "delivery" ? "block" : "none";
-
+        radio.addEventListener("change", function (){
+            if(this.value === "delivery"){
+                deliveryForm.style.display = "block";
+                scheduleForm.style.display = "none";
+            } 
+            else if(this.value === "schedule"){
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "block";
+            } 
+            else{
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "none";
+            }
         });
     });
+
 
 
     const payNowBtn = document.querySelector(".payNow");
@@ -367,9 +379,8 @@ document.addEventListener("DOMContentLoaded", function () {
             receiptText += `${name} x${quantity} — $${itemTotal.toFixed(2)}\n`;
         });
 
-        // Delivery address
-        const deliveryOption = document.querySelector('input[name="order"]:checked').value;
-        if (deliveryOption === "delivery") {
+        const option = document.querySelector('input[name="order"]:checked').value;
+        if (option === "delivery"){
             const street = deliveryForm.querySelector(".street").value;
             const city = deliveryForm.querySelector(".city").value;
             const state = deliveryForm.querySelector(".state").value;
@@ -381,7 +392,20 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             receiptText += `\nDelivery Address:\n${street}\n${city}, ${state} ${zip}\n`;
-        } else {
+        } 
+        else if (option === "schedule") {
+            const date = scheduleForm.querySelector(".date").value;
+            const time = scheduleForm.querySelector(".time").value;
+
+            addressDiv.innerHTML = `
+                <strong>Scheduled Pickup:</strong><br>
+                Ready on: ${date}<br>
+                At: ${time}
+            `;
+
+            receiptText += `\nScheduled Order:\nOrder will be ready for pick up on: ${date}\nAt: ${time}\n`;
+        }
+        else{
             addressDiv.style.display = "none";
         }
 
@@ -444,6 +468,10 @@ document.querySelector(".newOrder").addEventListener("click", function () {
     const deliveryForm = document.getElementById("fake-delivery-form");
     deliveryForm.reset();
     deliveryForm.style.display = "none";
+
+    const scheduleForm = document.getElementById("fake-schedule-form");
+    scheduleForm.reset();
+    scheduleForm.style.display = "none";
 
     document.querySelector('input[name="order"][value="pickup"]').checked = true;
 

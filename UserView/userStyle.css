@@ -272,10 +272,12 @@ nav{
 #order-type{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin-bottom: 1rem;
 }
 #order-type label{
     font-weight: bold;
+    padding: 5px;
 }
 form{
     margin-bottom: 1.5rem;

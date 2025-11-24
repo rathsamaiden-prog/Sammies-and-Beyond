@@ -35,6 +35,10 @@
                     <input type="radio" name="order" value="delivery" />
                     Delivery
                 </label>
+                <label>
+                    <input type="radio" name="order" value="schedule" />
+                    Schedule                
+                </label>
             </div>
             <form id="fake-delivery-form" style="display: none;">
                 <h2>Delivery Details</h2>
@@ -42,6 +46,11 @@
                 <input class="city" type="text" placeholder="City" required />
                 <input class="state" type="text" placeholder="State" required />
                 <input class="zip" type="text" placeholder="Zip" required />
+            </form>
+            <form id="fake-schedule-form" style="display: none;">
+                <h2>Schedule Details</h2>
+                <input class="date" type="text" placeholder="Month/Day" required />
+                <input class="time" type="text" placeholder="Time: 00:00 AM/PM" required />
             </form>
             <form id="fake-payment-form">
                 <h2>Payment Details</h2>
