@@ -307,6 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
+})
 
     const deliveryForm = document.getElementById("fake-delivery-form");
     const orderRadios = document.getElementsByName("order");
