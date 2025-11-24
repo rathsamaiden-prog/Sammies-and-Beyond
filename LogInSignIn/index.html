@@ -9,6 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
+<main>
+   <header>
+        <p id="headerText">Sammies and beyond </p>
+    <nav>
+      <ul class="navigation">
+        <li><a href="#home">Home</a></li>
+        <li><a href="../LogInSignIn/index.html">Join now </a></li>
+        <li><a href="#About-us">About us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+        <li><a href="../UserView/userView.html">Menu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
     <div class="pages">
     <h1 id="main"> Mission Control: New Astronaut Onboard!</h1>
 <div class="container">
@@ -21,36 +37,68 @@
         </div>
     <div class="group" id="signUp" style="display:none;">
         <h1> sign up </h1>
-        <input type="text" placeholder="name" id="signUpName">
-        <input type="email" placeholder="email" id="signUpEmail">
-        <input type="password" placeholder="password" id="signUpPassword">
+        <input type="text" placeholder="Name" id="signUpName">
+        <input type="email" placeholder="Email" id="signUpEmail">
+        <input type="password" placeholder="Password" id="signUpPassword">
         <h3>Password Requirements</h3>
         <div class="passwordRequirements">
-            <p id="capRequire" class="req">1 capital letter</p>
-            <p id="numRequirement" class="req">1 number</p>
+            <p id="capRequire" class="req">1 Capital letter</p>
+            <p id="numRequirement" class="req">1 Number</p>
         </div>
         <button onclick="signUp()">continue</button>
     </div>
 
     <div class="group" id="signIn">
-        <h1> sign in </h1>
-        <input type="text" placeholder="email" id="signInEmail">
-        <input type="password" placeholder="password" id="signInPassword">
+        <h1> Sign in </h1>
+        <input type="text" placeholder="Email" id="signInEmail">
+        <input type="password" placeholder="Password" id="signInPassword">
 
-        <button onclick="signIn()">continue</button>
+        <button onclick="signIn()">Continue</button>
     </div>
 
     <div class="group">
-        <h1> guest </h1>
-        <button onclick="guest()">continue</button>
+        <h1> Guest </h1>
+        <button onclick="guest()">Continue</button>
     </div>
     </div>
     </div>
 </div>
+</main>
 
+<footer>
 
+<div class="footertop">
+    <div class="footersocials">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="logo-snapchat"></ion-icon>
+        <ion-icon name="logo-facebook"></ion-icon>
+    </div>
+        <p id="copyrights">© 2025 Joshua,Aiden, Jackson. All Rights Reserved.</p>
+</div>   
+ <div class="contact">
+        <h3>Contact us</h3>
+        <p>Phone: 717-867-5309<br> Email: samies&beyond369@gmail.com<br>Adress: 750 E King St, Lancaster, PA 17602 </p>
+    </div>
 
-    
+        <div class="footnav">
+            <nav>
+                <ul>
+                    <li><a href="../homeScreen/home.html">home </a></li>
+                    <li><a href="../LogInSignIn/index.html">Join now </a></li>
+                    <li><a href="../homeScreen/home.html#About-us">About us</a></li>
+                    <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+                    <li><a href="../UserView/userView.html">Menu</a></li>
+                </ul>
+            </nav>
+        </div>
+
+</footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="logSignScript.js"></script>
+   
 </body>
+
 </html>
