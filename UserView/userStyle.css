@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    font-family: 'Orbitron', sans-serif;
 }
 .header{
     height: 50px;
@@ -34,7 +34,6 @@ nav{
 .cartBtn{
     margin-left: auto;
 }
-
 #cartBtn{
     padding: 8px 16px;
     color: white;
@@ -52,8 +51,7 @@ nav{
     min-height: 100vh;
     background: linear-gradient(to bottom, #1a1a2e, #16213e);
     color: #e0e0ff;
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 0px;
+    scrollbar-width: none;
 }
 .menu{
     display: flex;
@@ -84,7 +82,6 @@ nav{
     justify-content: space-around;
 }   
 .item{
-    height: 100%;
     max-height: 350px;
     width: 200px;
     margin: 50px;
@@ -194,7 +191,7 @@ nav{
     overflow-y: auto;
     scrollbar-width: none;
 }
-.items {
+.items{
     overflow-y: auto;
     scrollbar-width: none;
 }
@@ -241,7 +238,12 @@ nav{
     border-radius: 15px;
     margin: 10px;
 }
-
+.totalNum{
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px;
+}
 #checkout{
     padding: 10px;
     margin: 5px;
@@ -255,10 +257,78 @@ nav{
     transition: background-color 0.3s ease;
 }
 #checkout:hover{
-  background-color: #0a1530;
+    background-color: #0a1530;
 }
 #checkout:active{
-  transform: scale(0.98);
+    transform: scale(0.98);
+}
+.payment-screen{
+    display: flex;
+    max-width: 270px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+#order-type{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+#order-type label{
+    font-weight: bold;
+}
+form{
+    margin-bottom: 1.5rem;
+}
+h2{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+input[type="text"]{
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.payNow{
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #21be8a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.payNow:hover {
+    background-color: #188a64;
+}
+.confirmationScreen{
+    display: none;
+    flex-direction: column;
+    max-width: 270px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+.OrderedItems{
+    padding: 15px 0;
+}
+.totalPrice{
+    padding: 15px 0;
+}
+.address{
+    padding: 15px 0;
+}
+.download{
+    padding: 15px 0;
 }
 
 
@@ -307,25 +377,5 @@ ion-icon:hover {
     justify-content: center;
     color: aliceblue;
     
-}
-
-.footnav ul li a {
-    display: block;
-    padding: 14px 16px;
-    text-decoration: none;
-    color: aliceblue;
-    transform: 0.3s ease;
-    
-}
-
-.contact{
-    text-align: center;
-    margin: 5px;
-}
-.footnav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
 }
 

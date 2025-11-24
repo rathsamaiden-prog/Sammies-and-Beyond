@@ -26,9 +26,41 @@
             <button id="checkout">Checkout</button>
         </div>
         <div class="payment-screen" style="display: none;">
-            <h2>Payment Details</h2>
+            <div id="order-type">
+                <label>
+                    <input type="radio" name="order" value="pickup" checked />
+                    Pick Up
+                </label>
+                <label>
+                    <input type="radio" name="order" value="delivery" />
+                    Delivery
+                </label>
+            </div>
+            <form id="fake-delivery-form" style="display: none;">
+                <h2>Delivery Details</h2>
+                <input class="street" type="text" placeholder="Street Name" required />
+                <input class="city" type="text" placeholder="City" required />
+                <input class="state" type="text" placeholder="State" required />
+                <input class="zip" type="text" placeholder="Zip" required />
+            </form>
+            <form id="fake-payment-form">
+                <h2>Payment Details</h2>
+                <input class="cardNum" type="text" placeholder="Card Number" required />
+                <input class="my" type="text" placeholder="MM/YY" required />
+                <input class="cvc" type="text" placeholder="CVC" required />
+                <button class="payNow" type="submit" >Pay Now</button>
+                <div class="totalNum">Total: $0.00</div>
+            </form>
+        </div>
+        <div class="confirmationScreen">
+            <h2>Order Confirmation</h2>
+            <div class="OrderedItems"></div>
+            <div class="totalPrice"></div>
+            <div class="address"></div>
+            <div class="download"></div>
         </div>
     </div>
+
     <div class="menuBody">
         <div class="menu"></div>
     </div>

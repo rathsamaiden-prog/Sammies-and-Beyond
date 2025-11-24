@@ -9,6 +9,7 @@
 <body>
     <div class="commitedMenu-Container flexBox">
         <div class="container flexBox">
+            <button id="commitBtn">Commit Changes</button>
             <div class="containerContent" id="menu">
                 
             </div>
@@ -25,17 +26,25 @@
                             <input type="file" id="myFile" name="filename">
                         </form>
                     </div>
-                    <div class="name-price-commit">
-                        <h3>Dish/Drink Name</h3>
-                        <input type="text" name="" class="editInput" placeholder="Enter Name">
-                        <h3>Dish/Drink Price</h3>
-                        <input type="text" name="" class="editInput" placeholder="Enter Price ($)">
-                        <h3>Allergens</h3>
-                        <input type="text" name="" class="editInput" placeholder="Allergens">
-                        <button id="commit-btn">Add Item</button>
+                    <div id="name-price-commit">
+                        <div id="name-price">
+                            <h5 class="namePriceTitle">Dish/Drink Name</h5>
+                            <input type="text" name="" class="editInput" placeholder="Enter Name">
+                            <h5 class="namePriceTitle">Dish/Drink Price</h5>
+                            <input type="text" name="" class="editInput" placeholder="Enter Price ($)">
+                            <h5 class="namePriceTitle">Allergens</h5>
+                            <input type="text" name="" class="editInput" placeholder="Allergens">
+                        </div>
+                        <div id="commit-btns-container">
+                            <button class="commitBtns" id="add-sammie">Add Sandwich</button>
+                            <button class="commitBtns" id="add-side">Add Side</button>
+                            <button class="commitBtns" id="add-drink">Add Drink</button>
+                        </div>
                     </div>
-                    <h3>Dish/Drink Description</h3>
-                    <textarea rows="20" cols="50" id="item-description" placeholder="Enter Description (*** Character Max)"></textarea>
+                    <div id="textContainer">
+                        <h4 class="namePriceTitle">Dish/Drink Description</h4>
+                        <textarea rows="20" cols="50" id="item-description" placeholder="Enter Description (*** Character Max)"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
