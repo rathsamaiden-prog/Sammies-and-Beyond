@@ -185,182 +185,203 @@ window.addEventListener(`load`, () => {
     refresh(sammies, sides, drinks)
 })
 
-document.addEventListener("DOMContentLoaded", function () {
 
+let total = 0;
+let tip = 0;
+
+const totalDisplay = document.querySelector(".total");
+const totalNumDisplay = document.querySelector(".totalNum");
+
+function updateTotal() {
+    const grandTotal = total + tip;
+    totalDisplay.textContent = `Total: $${grandTotal.toFixed(2)}`;
+    totalNumDisplay.textContent = `Total: $${grandTotal.toFixed(2)}`;
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const cartBtn = document.getElementById("cartBtn");
     const cart = document.getElementById("cart");
     const itemsContainer = document.querySelector(".items");
-    const totalDisplay = document.querySelector(".total");
-    const totalNumDisplay = document.querySelector(".totalNum");
+    const tipInput = document.querySelector(".tip");
 
-    let total = 0;
 
-    // Toggle cart visibility
-    cartBtn.addEventListener("click", function (){
-        cart.style.display = (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
+    tipInput.addEventListener("input", () => {
+        tip = parseFloat(tipInput.value) || 0;
+        updateTotal();
     });
 
-    document.addEventListener("click", function (e){
+
+    cartBtn.addEventListener("click", function () {
+        cart.style.display =
+            (cart.style.display === "none" || cart.style.display === "") ? "flex" : "none";
+    });
+
+
+    document.addEventListener("click", function (e) {
+
         const item = e.target.closest(".item");
 
-        // ADD button clicked
-        if(e.target.classList.contains("add")){
+        // ADD
+        if (e.target.classList.contains("add")) {
+
             const name = item.querySelector("#name").textContent;
             const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
             const img = item.querySelector(".itemImg img").src;
 
-            // Create new item in cart
             const cartItem = document.createElement("div");
             cartItem.classList.add("cart-item");
-            cartItem.setAttribute("data-name", name);
-            cartItem.setAttribute("data-price", price);
-            cartItem.setAttribute("data-quantity", 1);
+            cartItem.dataset.name = name;
+            cartItem.dataset.price = price;
+            cartItem.dataset.quantity = 1;
 
-            cartItem.innerHTML = `<img src="${img}" alt="Cart item image"><p>${name} - $${price.toFixed(2)}</p>`;
-
-            const quantity = document.createElement("div");
-            quantity.classList.add("cart-quantity");
-            quantity.insertAdjacentHTML("beforeend", `
-                <div class="qty-control">
-                <button class="qty-minus">−</button>
-                <span class="qty-count">1</span>
-                <button class="qty-plus">+</button>
+            cartItem.innerHTML = `
+                <img src="${img}" alt="Cart item image">
+                <p>${name} - $${price.toFixed(2)}</p>
+                <div class="cart-quantity">
+                    <div class="qty-control">
+                        <button class="qty-minus">−</button>
+                        <span class="qty-count">1</span>
+                        <button class="qty-plus">+</button>
+                    </div>
                 </div>
-            `);
+            `;
 
-            cartItem.appendChild(quantity);
             itemsContainer.appendChild(cartItem);
 
-            // Update total
             total += price;
-            totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
-            totalNumDisplay.textContent = `Total: $${total.toFixed(2)}`;
+            updateTotal();
 
-
-
-            // Toggle buttons
             item.querySelector(".add").style.display = "none";
             item.querySelector(".itemRemove").style.display = "block";
         }
 
-        // REMOVE button clicked
-        if(e.target.classList.contains("remove")){
+        // REMOVE
+        if (e.target.classList.contains("remove")) {
+
             const name = item.querySelector("#name").textContent;
             const price = parseFloat(item.querySelector("#price").textContent.replace("$", ""));
-
             const cartItems = itemsContainer.querySelectorAll(".cart-item");
-            for (let cartItem of cartItems){
-                if(cartItem.getAttribute("data-name") === name){
-                    const quantity = parseInt(cartItem.getAttribute("data-quantity"));
+
+            for (let cartItem of cartItems) {
+                if (cartItem.dataset.name === name) {
+                    const quantity = parseInt(cartItem.dataset.quantity);
                     total -= price * quantity;
-                    itemsContainer.removeChild(cartItem);
+                    cartItem.remove();
                     break;
                 }
             }
 
-            totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+            updateTotal();
+
             item.querySelector(".add").style.display = "block";
             item.querySelector(".itemRemove").style.display = "none";
         }
 
-        // Quantity control clicked
-        if(e.target.classList.contains("qty-plus") || e.target.classList.contains("qty-minus")){
-            const control = e.target.closest(".qty-control");
-            const countSpan = control.querySelector(".qty-count");
-            const cartItem = e.target.closest(".cart-item");
-            const basePrice = parseFloat(cartItem.getAttribute("data-price"));
-            let quantity = parseInt(cartItem.getAttribute("data-quantity"));
+        // QUANTITY CONTROL
+        if (e.target.classList.contains("qty-plus") || e.target.classList.contains("qty-minus")) {
 
-            if(e.target.classList.contains("qty-plus")){
+            const cartItem = e.target.closest(".cart-item");
+            const countSpan = cartItem.querySelector(".qty-count");
+            const basePrice = parseFloat(cartItem.dataset.price);
+            let quantity = parseInt(cartItem.dataset.quantity);
+
+            if (e.target.classList.contains("qty-plus")) {
                 quantity++;
                 total += basePrice;
-            } else if(e.target.classList.contains("qty-minus") && quantity > 1){
+            } else if (e.target.classList.contains("qty-minus") && quantity > 1) {
                 quantity--;
                 total -= basePrice;
             }
 
             countSpan.textContent = quantity;
-            cartItem.setAttribute("data-quantity", quantity);
-            cartItem.querySelector("p").textContent = `${cartItem.getAttribute("data-name")} - $${(basePrice * quantity).toFixed(2)}`;
-            totalDisplay.textContent = `Total: $${total.toFixed(2)}`;
+            cartItem.dataset.quantity = quantity;
+            cartItem.querySelector("p").textContent = `${cartItem.dataset.name} - $${(basePrice * quantity).toFixed(2)}`;
+            updateTotal();
         }
+
     });
-});
 
 
-const checkoutBtn = document.getElementById("checkout");
-const paymentScreen = document.querySelector(".payment-screen");
-
-checkoutBtn.addEventListener("click", function (){
-    document.querySelector(".items").style.display = "none";
-    document.querySelector(".total").style.display = "none";
-    document.querySelector("#cart").style.justifyContent = "flex-start";
-    paymentScreen.style.display = "block";
-});
-  
-document.addEventListener("DOMContentLoaded", function () {
     const checkoutBtn = document.getElementById("checkout");
-    const paymentForm = document.getElementById("fake-payment-form");
-    const payNowBtn = document.querySelector(".payNow");
+    const paymentScreen = document.querySelector(".payment-screen");
 
     checkoutBtn.addEventListener("click", function () {
+        document.querySelector(".items").style.display = "none";
+        document.querySelector(".total").style.display = "none";
+        document.querySelector("#cart").style.justifyContent = "flex-start";
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
+})
+
 
     const deliveryForm = document.getElementById("fake-delivery-form");
+    const scheduleForm = document.getElementById("fake-schedule-form");
     const orderRadios = document.getElementsByName("order");
 
     orderRadios.forEach(radio => {
-        radio.addEventListener("change", function () {
-        deliveryForm.style.display = this.value === "delivery" ? "block" : "none";
-
+        radio.addEventListener("change", function (){
+            if(this.value === "delivery"){
+                deliveryForm.style.display = "block";
+                scheduleForm.style.display = "none";
+            } 
+            else if(this.value === "schedule"){
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "block";
+            } 
+            else{
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "none";
+            }
+        });
     });
-});
 
-payNowBtn.addEventListener("click", function (e) {
-    e.preventDefault();
 
-    const cardNum = document.querySelector(".cardNum").value.trim();
-    const expiry = document.querySelector(".my").value.trim();
-    const cvc = document.querySelector(".cvc").value.trim();
 
-    if (cardNum && expiry && cvc) {
-        const paymentScreen = document.querySelector(".payment-screen");
+    const payNowBtn = document.querySelector(".payNow");
+
+    payNowBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+
+        const cardNum = document.querySelector(".cardNum").value.trim();
+        const expiry = document.querySelector(".my").value.trim();
+        const cvc = document.querySelector(".cvc").value.trim();
+
+        if (!(cardNum && expiry && cvc)) return;
+
         const confirmationScreen = document.querySelector(".confirmationScreen");
         const orderedItems = document.querySelector(".OrderedItems");
         const totalPrice = document.querySelector(".totalPrice");
         const addressDiv = document.querySelector(".address");
         const downloadDiv = document.querySelector(".download");
 
-        const cartItems = document.querySelectorAll(".items .cart-item");
-        const deliveryForm = document.getElementById("fake-delivery-form");
-        const deliveryOption = document.querySelector('input[name="order"]:checked').value;
-
         orderedItems.innerHTML = "";
         addressDiv.innerHTML = "";
         downloadDiv.innerHTML = "";
 
-        let total = 0;
         let receiptText = "ORDER RECEIPT\n\n";
+        let orderTotal = 0;
 
-   
+        const cartItems = document.querySelectorAll(".items .cart-item");
+
         cartItems.forEach(item => {
-            const name = item.getAttribute("data-name");
-            const price = parseFloat(item.getAttribute("data-price"));
-            const quantity = parseInt(item.getAttribute("data-quantity"));
+            const name = item.dataset.name;
+            const price = parseFloat(item.dataset.price);
+            const quantity = parseInt(item.dataset.quantity);
             const itemTotal = price * quantity;
 
-            total += itemTotal;
+            orderTotal += itemTotal;
 
-            const itemDiv = document.createElement("div");
-            itemDiv.textContent = `${name} x${quantity} — $${itemTotal.toFixed(2)}`;
-            orderedItems.appendChild(itemDiv);
+            orderedItems.insertAdjacentHTML("beforeend",
+                `${name} x${quantity} — $${itemTotal.toFixed(2)}<br>`);
 
             receiptText += `${name} x${quantity} — $${itemTotal.toFixed(2)}\n`;
         });
 
-        if (deliveryOption === "delivery") {
+        const option = document.querySelector('input[name="order"]:checked').value;
+        if (option === "delivery"){
             const street = deliveryForm.querySelector(".street").value;
             const city = deliveryForm.querySelector(".city").value;
             const state = deliveryForm.querySelector(".state").value;
@@ -368,16 +389,35 @@ payNowBtn.addEventListener("click", function (e) {
 
             addressDiv.innerHTML = `
                 <strong>Delivery Address:</strong><br>
-                ${street}<br>
-                ${city}, ${state} ${zip}
+                ${street}<br>${city}, ${state} ${zip}
             `;
 
             receiptText += `\nDelivery Address:\n${street}\n${city}, ${state} ${zip}\n`;
+        } 
+        else if (option === "schedule") {
+            const date = scheduleForm.querySelector(".date").value;
+            const time = scheduleForm.querySelector(".time").value;
+
+            addressDiv.innerHTML = `
+                <strong>Scheduled Pickup:</strong><br>
+                Ready on: ${date}<br>
+                At: ${time}
+            `;
+
+            receiptText += `\nScheduled Order:\nOrder will be ready for pick up on: ${date}\nAt: ${time}\n`;
+        }
+        else{
+            addressDiv.style.display = "none";
         }
 
-        receiptText += `\nTOTAL: $${total.toFixed(2)}`;
-        totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+        const finalTotal = orderTotal + tip;
 
+        receiptText += `\nTip: $${tip.toFixed(2)}`;
+        receiptText += `\nTOTAL: $${finalTotal.toFixed(2)}`;
+
+        totalPrice.textContent = `Total: $${finalTotal.toFixed(2)}`;
+
+        // Reset cart
         document.querySelector(".items").innerHTML = "";
         document.querySelector(".total").textContent = "Total: $0.00";
 
@@ -385,7 +425,8 @@ payNowBtn.addEventListener("click", function (e) {
             i.querySelector(".add").style.display = "block";
             i.querySelector(".itemRemove").style.display = "none";
         });
-        
+
+        // Download receipt button
         const downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download Receipt";
         downloadBtn.classList.add("downloadReceipt");
@@ -403,57 +444,89 @@ payNowBtn.addEventListener("click", function (e) {
 
         paymentScreen.style.display = "none";
         confirmationScreen.style.display = "flex";
-    }
+    });
+
 });
 });
 
-// MENU SENDER
-let itemCount = 0
-function sendItems(type, item){
-    let name = type+(++itemCount)
-    localStorage.setItem(name, JSON.stringify(item))
-}
-// send sammies
-totalSammies.forEach(s => sendItems(`sammie`, s))
-itemCount = 0
-// send drinks
-totalDrinks.forEach(d => sendItems(`drink`, d))
-itemCount = 0
-// send sides
-totalSides.forEach(s => sendItems(`side`, s))
-itemCount = 0
+
+document.querySelector(".newOrder").addEventListener("click", function () {
+
+    total = 0;
+    tip = 0;
+    updateTotal();
+
+    const confirmationScreen = document.querySelector(".confirmationScreen");
+    const paymentScreen = document.querySelector(".payment-screen");
+    const cart = document.getElementById("cart");
+
+    confirmationScreen.style.display = "none";
+
+    document.querySelector(".OrderedItems").innerHTML = "";
+    document.querySelector(".address").innerHTML = "";
+    document.querySelector(".download").innerHTML = "";
+    document.querySelector(".totalPrice").textContent = "";
+
+    const deliveryForm = document.getElementById("fake-delivery-form");
+    deliveryForm.reset();
+    deliveryForm.style.display = "none";
+
+    const scheduleForm = document.getElementById("fake-schedule-form");
+    scheduleForm.reset();
+    scheduleForm.style.display = "none";
+
+    document.querySelector('input[name="order"][value="pickup"]').checked = true;
+
+    document.getElementById("fake-payment-form").reset();
+
+    document.querySelector(".items").innerHTML = "";
+    document.querySelector(".total").textContent = "Total: $0.00";
+
+    document.querySelector(".items").style.display = "block";
+    document.querySelector(".total").style.display = "block";
+
+    cart.style.display = "flex";
+    cart.style.justifyContent = "center";
+
+    document.getElementById("checkout").style.display = "block";
+
+    paymentScreen.style.display = "none";
+
+    document.querySelectorAll(".item").forEach(i => {
+        i.querySelector(".add").style.display = "block";
+        i.querySelector(".itemRemove").style.display = "none";
+    });
+});
 
 
-// MENU RETRIEVER
-window.addEventListener(`storage`, () => {
-    menuRetriver() 
-    refresh(sammies, sides, drinks) 
-})
+window.addEventListener("storage", () => {
+    menuRetriver();
+    refresh(sammies, sides, drinks);
+});
 
-function menuRetriver(){
-    totalSammies = []
-    totalSides = []
-    totalDrinks = []
-    for(let i = 0; i < localStorage.length; i++){
-        let keyName = localStorage.key(i).replace(/[0-9]/g, ``)
-        let item = JSON.parse(localStorage.getItem(localStorage.key(i)))
-        let itemInfo = new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price)
-        if(keyName === `sammie`) totalSammies.push(itemInfo)
-        else if(keyName === `side`) totalSides.push(itemInfo)
-        else if(keyName === `drink`) totalDrinks.push(itemInfo)
+function menuRetriver() {
+    totalSammies = [];
+    totalSides = [];
+    totalDrinks = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        let keyName = localStorage.key(i).replace(/[0-9]/g, ``);
+        let item = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        let itemInfo = new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price);
+
+        if (keyName === "sammie") totalSammies.push(itemInfo);
+        else if (keyName === "side") totalSides.push(itemInfo);
+        else if (keyName === "drink") totalDrinks.push(itemInfo);
     }
 }
 
-function refresh(sammies, sides, drinks){
-    // Add sammies
-    sammies.innerHTML = ``
-    totalSammies.forEach(s => sammies.appendChild(s.appendItem()));
+function refresh(sammies, sides, drinks) {
+    sammies.innerHTML = "";
+    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
 
-    // Add drinks
-    drinks.innerHTML = ``
-    totalDrinks.forEach(d => drinks.appendChild(d.appendItem()));
+    drinks.innerHTML = "";
+    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
 
-    // Add sides
-    sides.innerHTML = ``
-    totalSides.forEach(s => sides.appendChild(s.appendItem()));
+    sides.innerHTML = "";
+    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
 }

@@ -13,6 +13,7 @@
                 <a href="#sammies">Sammies</a>
                 <a href="#sides">Sides</a>
                 <a href="#drinks">Drinks</a>
+                <a href="#favorites">favorites</a>
             </div>
             <div class="cartBtn">
                 <button id="cartBtn">Cart</button>
@@ -35,6 +36,10 @@
                     <input type="radio" name="order" value="delivery" />
                     Delivery
                 </label>
+                <label>
+                    <input type="radio" name="order" value="schedule" />
+                    Schedule                
+                </label>
             </div>
             <form id="fake-delivery-form" style="display: none;">
                 <h2>Delivery Details</h2>
@@ -43,11 +48,17 @@
                 <input class="state" type="text" placeholder="State" required />
                 <input class="zip" type="text" placeholder="Zip" required />
             </form>
+            <form id="fake-schedule-form" style="display: none;">
+                <h2>Schedule Details</h2>
+                <input class="date" type="text" placeholder="Month/Day" required />
+                <input class="time" type="text" placeholder="Time: 00:00 AM/PM" required />
+            </form>
             <form id="fake-payment-form">
                 <h2>Payment Details</h2>
                 <input class="cardNum" type="text" placeholder="Card Number" required />
                 <input class="my" type="text" placeholder="MM/YY" required />
                 <input class="cvc" type="text" placeholder="CVC" required />
+                <input class="tip" type="text" placeholder="Tip: $0.00" required />
                 <button class="payNow" type="submit" >Pay Now</button>
                 <div class="totalNum">Total: $0.00</div>
             </form>
@@ -58,6 +69,7 @@
             <div class="totalPrice"></div>
             <div class="address"></div>
             <div class="download"></div>
+            <button class="newOrder">Start New Order</button>
         </div>
     </div>
 
@@ -65,6 +77,40 @@
         <div class="menu"></div>
     </div>
   
+
+<footer>
+
+<div class="footertop">
+    <div class="footersocials">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="logo-snapchat"></ion-icon>
+        <ion-icon name="logo-facebook"></ion-icon>
+    </div>
+        <p id="copyrights">© 2025 Joshua, Aiden, Jackson. All Rights Reserved.</p>
+</div>   
+    <div class="contact">
+        <h3>Contact us</h3>
+        <p>Phone: 717-867-5309<br> Email: samies&beyond369@gmail.com<br>Adress: 750 E King St, Lancaster, PA 17602 </p>
+    </div>
+</div>
+
+        <div class="footnav">
+            <nav>
+                <ul>
+                    <li><a href="../homeScreen/home.html">home</a></li>
+                    <li><a href="../LogInSignIn/index.html">Join now</a></li>
+                    <li><a href="../homeScreen/home.html#About-us">About us</a></li>
+                    <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+                    <li><a href="../UserView/userView.html">Menu</a></li>
+                </ul>
+            </nav>
+        </div>
+
+</footer>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="userScript.js"></script>
 </body>
 </html>
