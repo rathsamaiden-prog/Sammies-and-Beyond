@@ -95,18 +95,16 @@ function passwordcheck(password){
 
 }
 
-// Get the password input and requirement elements
 const signUpPassword = document.getElementById("signUpPassword");
 const capRequirement = document.getElementById("capRequire");
 const numRequirement = document.getElementById("numRequirement");
 
-// Live update while typing
+
 signUpPassword.addEventListener("input", () => {
     const password = signUpPassword.value;
 
-    // Check for capital letter
     capRequirement.style.color = /[A-Z]/.test(password) ? "lightgreen" : "red";
 
-    // Check for number
+ 
     numRequirement.style.color = /[0-9]/.test(password) ? "lightgreen" : "red";
 });

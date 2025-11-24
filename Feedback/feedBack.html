@@ -11,29 +11,90 @@
    
 </head>
 <body>
-     <h1>Feedback</h1>
+    <main>
+
+    <header>
+        <p id="headerText">Sammies and beyond </p>
+    <nav>
+      <ul class="navigation">
+        <li><a href="../homeScreen/home.html">Home</a></li>
+        <li><a href="../LogInSignIn/index.html">Join now </a></li>
+        <li><a href="../homeScreen/home.html#About-us">About us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+        <li><a href="../UserView/userView.html">Menu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+
+    <div class="page">
+     <h1>Reviews</h1>
     <section>
         <div class="feedBackContainer">
-            <h2>name</h2>
-            <input type="text" placeholder="name">
+            <h2>Name</h2>
+            <input type="text" placeholder="Name" id="nameInput">
             <h2>review</h2>
-            <input type="text" placeholder="review" id="reviewContainer">
+            <input type="text" placeholder="Review" id="reviewContainer">
             <div class="starReview">
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                 <ion-icon name="star-outline" class="star"></ion-icon>
-                <ion-icon name="star-outline" class="star"></ion-icon>
-                 <ion-icon name="star-outline" class="star"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="1"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="2"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="3"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="4"></ion-icon>
+                 <ion-icon name="star-outline" class="star" data-value="5"></ion-icon>
             </div>
-            <button>submit</button>
+            <button onclick=reviews() id="submitButton">Submit</button>
         </div>
     </section>
-       
-    <section class="reviewGallery">
+       <section>
+        <h1> Astronaut Feedback </h1>
+        
+        
+        <div class="reviewGallery">
 
+        </div>
     </section> 
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</main>
+
+
+
+
+    <footer>
+
+    <div class="footertop">
+        <div class="footersocials">
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-icon name="logo-snapchat"></ion-icon>
+             <ion-icon name="logo-facebook"></ion-icon>
+         </div>
+        <p id="copyrights">© 2025 Joshua,Aiden, Jackson. All Rights Reserved.</p>
+    </div>   
+    <div class="contact" id="contact">
+        <h3>Contact us</h3>
+        <p>Phone: 717-867-5309<br> Email: samies&beyond369@gmail.com<br>Adress: 750 E King St, Lancaster, PA 17602 </p>
+    </div>
+
+        <div class="footnav">
+            <nav>
+                <ul>
+                    <li><a href="../homeScreen/home.html">home </a></li>
+                    <li><a href="../LogInSignIn/index.html">Join now </a></li>
+                    <li><a href="../homeScreen/home.html#About-us">About us</a></li>
+                    <li><a href="../Feedback/feedBack.html">Reviews</a></li>
+                    <li><a href="../UserView/userView.html">Menu</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </footer>
+ </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="Feedback.js"></script>
 </body>
 </html> 

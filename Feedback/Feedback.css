@@ -7,31 +7,69 @@ body{
     min-height: 100vh;
      background: url("cheesesteak.jpg.jpg") center/cover no-repeat;
      display: flex;
-     justify-content: center;
-     align-items:center ;
+    
      flex-direction: column;
+    
 }
+header{
+    background-color:#0e0d0c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.4s ease;
+    position: sticky;
+    color: white;
+    width:100%
+}
+li :hover{
+    color: rgba(0, 255, 255, 0.3) ;
+    transform: scale(1.3);
+}
+#headerText{
+    transition: 0.3s ease;
+    margin-left: 20px;
+}
+#headerText:hover{
+       color: rgba(0, 255, 255, 0.3);
+    transform: scale(1.3);
+   
+}
+
 h1{
     font-size: 100px;
     color: aliceblue;
     font-family: 'Audiowide', sans-serif;
+    text-decoration: underline;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ;
+    text-align: center;
     
 }
 h2{
     color: aliceblue;
     font-family: 'Audiowide', sans-serif;
+    text-decoration: underline;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ;
 }
 
 .feedBackContainer{
     position: relative;
-    max-width: 400px;
+    width:60vw;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(40px);
     display: flex;
     flex-direction: column;
     padding: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3),
+                0 0 20px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(0, 255, 255, 0.3);
     
 }
 
@@ -41,16 +79,15 @@ input{
     border-radius: 20px;
     backdrop-filter: blur(20px);
     background-color: transparent;
+    color:white;
+    padding: 10px;
     
 }
 ::placeholder{
     color: aliceblue;
      font-family: 'Audiowide', sans-serif;
 }
-#reviewContainer{
-    height: 100px;
-    
-}
+
 button{
     color: aliceblue;
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -58,12 +95,137 @@ button{
     backdrop-filter: blur(20px);
     background-color: transparent;
      font-family: 'Audiowide', sans-serif;
+     transition: 0.3s ease-in-out;
 }
-ion-icon:hover{
-    color: rgb(185, 15, 171);
+button:hover{
+     transform: scale(1.1);
 }
+#submitButton{
+   transform: scale(.90);
+   transition: 0.3s ease-in-out;
+}
+#submitButton:hover{
+   transform: scale(1.0);
+}
+
 
 ion-icon{
-    color: rgb(84, 5, 136);
+    font-size: 30px;
+    transition:0.3s ease
+     
+    
+}
+ion-icon:hover {
+  
+  transform: scale(1.4);
+   text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
+}  
+
+#reviewContainer{
+    height: 100px;
+    overflow: auto;
+    word-break: break-word;
+    
 }
 
+
+
+.reviewCard{
+    height: 100%;
+    max-height: 350px;
+    width: 200px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #0a0f1c, #050a18);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    overflow: auto;
+    justify-content: center;
+    width: 40vw;
+    padding: 10px;
+    word-break: break-word;
+}
+.reviewCard:hover{
+    transform: scale(1.5);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+
+.reviewGallery{
+     display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  flex: 0 0 calc(30% - 40px);
+
+}
+
+
+
+
+
+
+
+footer{
+    border: 2px solid rgb(233, 222, 222);
+    display: flex;
+    justify-content: space-between;
+   flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    margin-top: auto;
+   
+    
+}
+.footertop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 40px;
+}
+.footersocials{
+    margin-left: 50px;
+    display: flex;
+    gap: 100px;
+}
+
+ul{
+   display: flex;
+    list-style-type: none;
+    padding: 10px;
+    justify-content: center;
+    color: aliceblue;
+    
+}
+
+ul li a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: aliceblue;
+}
+.contact{
+    text-align: center;
+    margin: 5px;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    width: 100%;
+    padding: 20px;
+}
