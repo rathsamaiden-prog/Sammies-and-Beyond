@@ -36,6 +36,10 @@
                     <input type="radio" name="order" value="delivery" />
                     Delivery
                 </label>
+                <label>
+                    <input type="radio" name="order" value="schedule" />
+                    Schedule                
+                </label>
             </div>
             <form id="fake-delivery-form" style="display: none;">
                 <h2>Delivery Details</h2>
@@ -44,11 +48,17 @@
                 <input class="state" type="text" placeholder="State" required />
                 <input class="zip" type="text" placeholder="Zip" required />
             </form>
+            <form id="fake-schedule-form" style="display: none;">
+                <h2>Schedule Details</h2>
+                <input class="date" type="text" placeholder="Month/Day" required />
+                <input class="time" type="text" placeholder="Time: 00:00 AM/PM" required />
+            </form>
             <form id="fake-payment-form">
                 <h2>Payment Details</h2>
                 <input class="cardNum" type="text" placeholder="Card Number" required />
                 <input class="my" type="text" placeholder="MM/YY" required />
                 <input class="cvc" type="text" placeholder="CVC" required />
+                <input class="tip" type="text" placeholder="Tip: $0.00" required />
                 <button class="payNow" type="submit" >Pay Now</button>
                 <div class="totalNum">Total: $0.00</div>
             </form>
@@ -59,6 +69,7 @@
             <div class="totalPrice"></div>
             <div class="address"></div>
             <div class="download"></div>
+            <button class="newOrder">Start New Order</button>
         </div>
     </div>
 
