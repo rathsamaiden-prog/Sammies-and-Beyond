@@ -446,9 +446,6 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmationScreen.style.display = "flex";
     });
 
-});
-});
-
 
 document.querySelector(".newOrder").addEventListener("click", function () {
 
@@ -522,11 +519,11 @@ function menuRetriver() {
 
 function refresh(sammies, sides, drinks) {
     sammies.innerHTML = "";
-    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSammies.forEach(s => sammies.appendChild(s.appendItem()));
 
     drinks.innerHTML = "";
-    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+    totalDrinks.forEach(d => drinks.appendChild(d.appendItem()));
 
     sides.innerHTML = "";
-    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSides.forEach(s => sides.appendChild(s.appendItem()));
 }
