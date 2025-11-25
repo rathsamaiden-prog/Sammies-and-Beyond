@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
             cartItem.querySelector("p").textContent = `${cartItem.dataset.name} - $${(basePrice * quantity).toFixed(2)}`;
             updateTotal();
         }
-
+ 
     });
 
 

@@ -383,11 +383,11 @@ footer{
     background: linear-gradient(to bottom, #1a1a2e, #16213e);   
 }
 .footertop{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 40px;
 }
 .footersocials{
     margin-left: 50px;
