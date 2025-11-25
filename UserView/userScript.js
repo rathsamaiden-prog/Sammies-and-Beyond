@@ -447,6 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+});
 
 
 document.querySelector(".newOrder").addEventListener("click", function () {

@@ -8,35 +8,66 @@ export class MenuItem {
 }
 
   appendItem() {
-    return `
-      <div class="item">
-            <!-- Item Name -->
-            <div class="itemName">
-                <p id="name">${this.name}</p>
-            </div>
-            <!-- Item Image -->
-            <div class="itemImg">
-                <img src="../Imgs/${this.imageURL}" alt="item img"></img>
-            </div>
-            <!-- Item Info -->
-            <div class="itemInfo">
-                <p id="desc">${this.description}</p>
-                <p id="dietR">${this.allergies}</p>
-            </div>
-            <!-- Item Footer: Price + Add Button -->
-            <div class="itemFooter">
-                <div class="itemPrice">
-                    <p id="price">$${this.price}</p>
-                </div>
-                <div class="itemAdd">
-                    <button class="add">Add</button>
-                </div>
-                <div class="itemRemove">
-                    <button class="remove">Remove</button>
-                </div>
-            </div>
-      </div>
-    `;
+    const template = document.createElement("template");
+    if(typeof this.imageURL === `string` && this.imageURL.startsWith(`data`)){
+      template.innerHTML = `
+        <div class="item">
+          <div class="itemName">
+              <p id="name">${this.name}</p>
+          </div>
+          <div class="itemImg">
+              <img src="${this.imageURL}" alt="item img">
+          </div>
+          <div class="itemInfo">
+              <p id="desc">${this.description}</p>
+              <p id="dietR">${this.allergies}</p>
+          </div>
+          <div class="itemFooter">
+              <div class="itemPrice">
+                  <p id="price">$${this.price}</p>
+              </div>
+              <div class="itemAdd">
+                  <button class="add">Add</button>
+              </div>
+              <div class="itemRemove">
+                  <button class="remove">Remove</button>
+              </div>
+          </div>
+        </div>
+      `.trim();
+    }else{
+      template.innerHTML = `
+        <div class="item">
+          <div class="itemName">
+              <p id="name">${this.name}</p>
+          </div>
+          <div class="itemImg">
+              <img src="../Imgs/${this.imageURL}" alt="item img">
+          </div>
+          <div class="itemInfo">
+              <p id="desc">${this.description}</p>
+              <p id="dietR">${this.allergies}</p>
+          </div>
+          <div class="itemFooter">
+              <div class="itemPrice">
+                  <p id="price">$${this.price}</p>
+              </div>
+              <div class="itemAdd">
+                  <button class="add">Add</button>
+              </div>
+              <div class="itemRemove">
+                  <button class="remove">Remove</button>
+              </div>
+          </div>
+        </div>
+      `.trim();
+    }
+
+    const el = template.content.firstElementChild;
+
+    el._menuItemRef = this;
+
+    return el;
   }
 
   removeItem(){
