@@ -313,32 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
-})
-
-
-    const deliveryForm = document.getElementById("fake-delivery-form");
-    const scheduleForm = document.getElementById("fake-schedule-form");
-    const orderRadios = document.getElementsByName("order");
-
-    orderRadios.forEach(radio => {
-        radio.addEventListener("change", function (){
-            if(this.value === "delivery"){
-                deliveryForm.style.display = "block";
-                scheduleForm.style.display = "none";
-            } 
-            else if(this.value === "schedule"){
-                deliveryForm.style.display = "none";
-                scheduleForm.style.display = "block";
-            } 
-            else{
-                deliveryForm.style.display = "none";
-                scheduleForm.style.display = "none";
-            }
-        });
-    });
-
-
-
+    
     const payNowBtn = document.querySelector(".payNow");
 
     payNowBtn.addEventListener("click", function (e) {
@@ -445,6 +420,33 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentScreen.style.display = "none";
         confirmationScreen.style.display = "flex";
     });
+})
+
+
+    const deliveryForm = document.getElementById("fake-delivery-form");
+    const scheduleForm = document.getElementById("fake-schedule-form");
+    const orderRadios = document.getElementsByName("order");
+
+    orderRadios.forEach(radio => {
+        radio.addEventListener("change", function (){
+            if(this.value === "delivery"){
+                deliveryForm.style.display = "block";
+                scheduleForm.style.display = "none";
+            } 
+            else if(this.value === "schedule"){
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "block";
+            } 
+            else{
+                deliveryForm.style.display = "none";
+                scheduleForm.style.display = "none";
+            }
+        });
+    });
+
+
+
+
 
 
 
@@ -575,15 +577,15 @@ document.addEventListener("click", (e) => {
     }
 });
 function refreshFavorites() {
-  const favoritesRow = document.querySelector("#favorites .favorites-row");
-  if (!favoritesRow) return;
+    const favoritesRow = document.querySelector("#favorites .favorites-row");
+    if (!favoritesRow) return;
 
-  favoritesRow.innerHTML = ""; 
+    favoritesRow.innerHTML = ""; 
 
-  favoriteItems.forEach(item => {
-    const itemEl = item.appendItem();
-    itemEl.querySelector(".favBtn").textContent = "❤️"; 
-    favoritesRow.appendChild(itemEl);
-  });
+    favoriteItems.forEach(item => {
+        const itemEl = item.appendItem();
+        itemEl.querySelector(".favBtn").textContent = "❤️"; 
+        favoritesRow.appendChild(itemEl);
+    });
 }
 
