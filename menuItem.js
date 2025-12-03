@@ -32,6 +32,9 @@ export class MenuItem {
               <div class="itemRemove">
                   <button class="remove">Remove</button>
               </div>
+              <div class="itemFav">
+                  <button class="favBtn">♡</button>
+              </div>
           </div>
         </div>
       `.trim();
@@ -57,6 +60,9 @@ export class MenuItem {
               </div>
               <div class="itemRemove">
                   <button class="remove">Remove</button>
+              </div>
+              <div class="itemFav">
+                  <button class="favBtn">♡</button>
               </div>
           </div>
         </div>
