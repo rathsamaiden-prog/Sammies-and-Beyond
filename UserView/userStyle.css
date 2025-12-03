@@ -2,18 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Audiowide', sans-serif;
 }
+
 .header{
     height: 50px;
     width: 100%;
     display: flex;
     align-items: center;
     position: fixed;
-    top: 0;
+    top: 50px;
     left: 0;
     z-index: 1000;
     background-color: #e0e0ff;
+    
 }
 nav{
     display: flex;
@@ -82,7 +84,7 @@ nav{
     justify-content: space-around;
 }   
 .item{
-    max-height: 350px;
+    max-height: auto;
     width: 200px;
     margin: 50px;
     display: flex;
@@ -107,6 +109,7 @@ nav{
     margin: 10px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    
 }
 .itemPrice{
     font-weight: bold;
@@ -118,6 +121,7 @@ nav{
     max-width: 180px;
     overflow-wrap: break-word;
     white-space: normal;
+    
 }
 .itemAdd{
     padding: 5px;
@@ -161,6 +165,7 @@ nav{
     padding: 10px;
     margin-top: auto;
     justify-content: space-between;
+    position: relative
 }
 #desc{
     opacity: 0;
@@ -369,25 +374,28 @@ input[type="text"]{
 .newOrder:hover{
     background-color: #22325e;
 }
+
 footer{
     border: 2px solid rgb(233, 222, 222);
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+   flex-direction: column;
     width: 100%;
     padding: 10px;
     color: white;
-    background-color: transparent;
-    backdrop-filter: blur(20px);
+    background: linear-gradient(to bottom, #1a1a2e, #16213e); 
     margin-top: auto;
-    background: linear-gradient(to bottom, #1a1a2e, #16213e);   
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+    text-align: center;
+   
+    
 }
-.footertop{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 40px;
+.footertop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 40px;
 }
 .footersocials{
     margin-left: 50px;
@@ -397,16 +405,162 @@ footer{
 ion-icon{
     font-size: 30px;
     transition:0.3s ease
+     
+    
 }
 ion-icon:hover {
-   transform: scale(1.4);
+  
+  transform: scale(1.4);
    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
 }  
 .footnav ul{
-    display: flex;
+   display: flex;
     list-style-type: none;
     padding: 10px;
     justify-content: center;
     color: aliceblue;
+    align-items: center;   
+    
 }
 
+footer ul li a {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: aliceblue;
+    transform: 0.3s ease;
+    
+}
+
+.contact{
+    text-align: center;
+    margin: 5px;
+}
+
+footer li :hover{
+    color: rgba(0, 255, 255, 0.3) ;
+    transform: scale(1.2);
+    
+}
+.topbar { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #0e0d0c;
+    color: white;
+    z-index: 1001;
+}
+.topbar ul{
+   display: flex;
+    list-style-type: none;
+    padding: 10px;
+    justify-content: center;
+    color: aliceblue;
+    
+}
+.topbar ul li a{
+    display: flex;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: aliceblue;
+    transform: 0.3s ease;
+    
+}
+.topbar li :hover{
+    color: rgba(0, 255, 255, 0.3) ;
+    transform: scale(1.3);
+}
+#headerText{
+    transition: 0.3s ease;
+    margin-left: 20px;
+}
+#headerText:hover{
+       color: rgba(0, 255, 255, 0.3);
+    transform: scale(1.3);
+   
+}
+#favorites {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #0a0f1c, #050a18);
+       flex-direction: column; 
+    align-items: center;   
+}
+
+
+#favorites .item {
+    max-height: auto;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #121b2e, #0a101d);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    color: white;
+}
+
+#favorites .item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+}
+#favorites .favBtn {
+    
+    top: 10px;
+    right: 10px;
+    font-size: 1.3em;
+    cursor: pointer;
+    color: #ff4d6d;
+    background: none;
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease;
+       background: transparent; 
+    border: none;
+}
+#favorites .favBtn:hover {
+    transform: scale(1.5);
+}
+.favBtn{
+    
+    top: 10px;
+    right: 10px;
+    font-size: 1.3em;
+    cursor: pointer;
+    color: #ff4d6d;
+    background: none;
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease;
+       background: transparent; 
+    border: none;
+}
+.favBtn:hover {
+    transform: scale(1.5);
+}
+
+#favorites1{
+    font-size: 5vw;
+    text-decoration: underline;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ;
+    color: white;
+}
+#favorites .favorites-row {
+    display: flex;          
+    flex-wrap: wrap;        
+    justify-content: center; 
+    gap: 20px;              
+}

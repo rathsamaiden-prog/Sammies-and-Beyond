@@ -44,7 +44,7 @@ function signIn(){
       let users = JSON.parse(localStorage.getItem("users")) || [];
       let user = users.find(u => u.email === email && u.password === password);
      if(user){
-      window.location.href = "https://www.google.com/"
+      window.location.href = "../homeScreen/home.html"
      }else if(email==="manager"&& password==="manager") {
       window.location.href = "../ManagerView/managerView.html"
     }else{

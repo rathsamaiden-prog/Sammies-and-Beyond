@@ -163,8 +163,8 @@ const side5 = new MenuItem(
 
 menu.insertAdjacentHTML("afterbegin", `
   <section id="sammies"></section>
-  <section id="sides"></section>
-  <section id="drinks"></section>
+  <section id="sides">sides</section>
+  <section id="drinks">drinks</section>
 `);
 
 // Get references to each section
@@ -313,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
+})
 
 
     const deliveryForm = document.getElementById("fake-delivery-form");
@@ -445,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmationScreen.style.display = "flex";
     });
 
-});
+
 
 
 document.querySelector(".newOrder").addEventListener("click", function () {
@@ -500,9 +501,28 @@ document.querySelector(".newOrder").addEventListener("click", function () {
 window.addEventListener("storage", () => {
     menuRetriver();
     refresh(sammies, sides, drinks);
+ 
 });
 
+let itemCount = 0
+function sendItems(type, item){
+    let name = type+(++itemCount)
+    localStorage.setItem(name, JSON.stringify(item))
+}
+
+localStorage.clear()
+// send sammies
+totalSammies.forEach(s => sendItems(`sammie`, s))
+itemCount = 0
+// send drinks
+totalDrinks.forEach(d => sendItems(`drink`, d))
+itemCount = 0
+// send sides
+totalSides.forEach(s => sendItems(`side`, s))
+itemCount = 0
+
 function menuRetriver() {
+    if(localStorage.length === 0) return;
     totalSammies = [];
     totalSides = [];
     totalDrinks = [];
@@ -520,11 +540,50 @@ function menuRetriver() {
 
 function refresh(sammies, sides, drinks) {
     sammies.innerHTML = "";
-    totalSammies.forEach(s => sammies.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSammies.forEach(s => sammies.appendChild(s.appendItem()));
 
     drinks.innerHTML = "";
-    totalDrinks.forEach(d => drinks.insertAdjacentHTML("beforeend", d.appendItem()));
+    totalDrinks.forEach(d => drinks.appendChild(d.appendItem()));
 
     sides.innerHTML = "";
-    totalSides.forEach(s => sides.insertAdjacentHTML("beforeend", s.appendItem()));
+    totalSides.forEach(s => sides.appendChild(s.appendItem()));
 }
+let favoriteItems = []; 
+
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("favBtn")) {
+        const btn = e.target;
+        const itemDiv = btn.closest(".item");
+        const itemName = itemDiv.querySelector("#name").textContent;
+
+        
+        const alreadyFav = favoriteItems.some(i => i.name === itemName);
+
+        if (!alreadyFav) {
+            
+            const itemObj = totalSammies.concat(totalSides, totalDrinks)
+                .find(i => i.name === itemName);
+            favoriteItems.push(itemObj);
+            btn.textContent = "❤️"; 
+        } else {
+            
+            favoriteItems = favoriteItems.filter(i => i.name !== itemName);
+            btn.textContent = "♡"; 
+        }
+
+        refreshFavorites(); 
+    }
+});
+function refreshFavorites() {
+  const favoritesRow = document.querySelector("#favorites .favorites-row");
+  if (!favoritesRow) return;
+
+  favoritesRow.innerHTML = ""; 
+
+  favoriteItems.forEach(item => {
+    const itemEl = item.appendItem();
+    itemEl.querySelector(".favBtn").textContent = "❤️"; 
+    favoritesRow.appendChild(itemEl);
+  });
+}
+

@@ -52,7 +52,7 @@ section{
 ::-webkit-scrollbar {
     display: none;
 }
-#commitBtn{
+#commit-btn{
     position: absolute;
     z-index: 99;
     bottom: 10%;
@@ -65,7 +65,7 @@ section{
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-#commitBtn:active{ transform: translateY(1px); }
+#commit-btn:active{ transform: translateY(1px); }
 .item{
     height: 100%;
     max-height: 300px;
@@ -78,6 +78,7 @@ section{
     background: linear-gradient(to bottom, #0a0f1c, #050a18);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab;
 }
 #sammies, #sides, #drinks{
     margin-bottom: 125px;
@@ -115,6 +116,7 @@ section{
     white-space: normal;
 }
 .itemAdd{
+    display: none;
     padding: 5px;
 }
 .itemAdd button{
@@ -132,9 +134,7 @@ section{
     transform: scale(1.05);
 }
 .itemRemove{
-    display: none;
     padding: 5px;
-
 }
 .itemRemove button{
     background-color: #be2121;
@@ -183,10 +183,42 @@ section{
     height: 50%;
     width: 100%;
 }
+#dropZoneTxt{
+    display: none;
+    position: absolute;
+    top: 20%;
+    color: #fff;
+}
 #add-or-edit{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+#remove-img-btn{
+    display: none;
+    position: absolute;
+    z-index: 99;
+    left: 35%;
+    top: 15%;
+    padding: 3px 4px;
+    background-color: #9e1919;
+}
+#img-display{
+    width: 40%;
+    height: 100%;
+    margin: 2%;
+}
+#img-display img{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    height: 90%;
+    margin-bottom: 10%;
+}
+#img-display p, #img-display form{
+    display: none;
+    margin: 0;
+    padding: 0;
 }
 #img-container{
     flex-direction: column;
@@ -198,24 +230,31 @@ section{
     margin: 2%;
 }
 #img-container p{
+    text-align: center;
     color: gray;
     width: 75%;
 }
-#img-container form{
-    align-content: center;
+#upload-img{
+    text-align: center;
     margin-top: 3%;
-    width: 80%;
+    width: 100%;
+}
+#my-file{
+    width: 14vh;
 }
 #name-price-commit{
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5%;
     width: 56%;
-    height: auto;
+    height: fit-content;
+}
+#name-price{
+    width: 55%;
 }
 #commit-btns-container{
-    padding-top: 5%;
-    width: 40%;
+    width: 45%;
+    padding: 4% 5% 3% 0;
 }
 .commitBtns{
     margin: auto;
@@ -227,27 +266,35 @@ section{
 }
 .namePriceTitle{
     font-family: Helvetica, sans-serif;
-    margin-top: 2%;
+    width: fit-content;
+    height: 8%;
+    margin-bottom: 1.5%;
 }
 .editInput{
     background-color: lightgray;
     width: 80%;
-    height: fit-content;
-    margin-bottom: 1.5%;
+    height: 20%;
+    margin-bottom: 2%;
     letter-spacing: 1px;
     padding-left: 10px;
 }
 #textContainer{
-    width: 50%;
-    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 52%;
+    height: 42%;
+    margin: 1% 0;
+}
+#textContainer h4{
+    padding-bottom: 5%;
 }
 #item-description{
     background-color: lightgray;
     resize: none;
     padding: 10px;
     width: 100%;
-    height: 80%;
-    margin-top: 0.5%;
+    margin-top: 1%;
 }
 
 /* REMOVE ITEM */
