@@ -385,7 +385,9 @@ footer{
     color: white;
     background: linear-gradient(to bottom, #1a1a2e, #16213e); 
     margin-top: auto;
-   align-items: center;
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+    text-align: center;
+   
     
 }
 .footertop {
@@ -417,6 +419,7 @@ ion-icon:hover {
     padding: 10px;
     justify-content: center;
     color: aliceblue;
+    align-items: center;   
     
 }
 
