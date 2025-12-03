@@ -9,7 +9,7 @@
 <body>
     <div class="commitedMenu-Container flexBox">
         <div class="container flexBox">
-            <button id="commitBtn">Commit Changes</button>
+            <button id="commit-btn">Commit Changes</button>
             <div class="containerContent" id="menu">
                 
             </div>
@@ -18,12 +18,14 @@
     <!-- <div class="sizeAdjust"></div> -->
     <div class="ordersAndItems">
         <div class="addOrEditItem-Container flexBox">
+            <h1 id="dropZoneTxt">Drop Here To Edit</h1>
             <div class="container flexBox">
                 <div class="containerContent" id="add-or-edit">
+                    <button id="remove-img-btn"><ion-icon name="return-up-back-outline"></ion-icon></button>
                     <div id="img-container" class="flexBox">
                         <p>Drag and drop image here</p>
                         <form action="/action_page.php" id="upload-img">
-                            <input type="file" id="myFile" accept="image/*" name="filename">
+                            <input type="file" id="my-file" accept="image/*" name="filename">
                         </form>
                     </div>
                     <div id="name-price-commit">
@@ -50,7 +52,7 @@
         </div>
         <!-- <div class="sizeAdjust"></div> -->
         <div class="activeOrders-Container flexBox">
-            <div class="container flexBox" id="remove">
+            <div class="container flexBox">
                 <div class="containerContent flexBox">
                     <div>
                         
