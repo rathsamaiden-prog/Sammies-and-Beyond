@@ -41,7 +41,7 @@ function refresh(sammies, sides, drinks){
     }
 
     // Add sides
-    if(drinks){
+    if(sides){
         sides.innerHTML = ``
         totalSides.forEach(s => sides.appendChild(s.appendItem()));
     }
@@ -50,7 +50,7 @@ function refresh(sammies, sides, drinks){
 // ADD - EDIT 
 
 const imgCont = document.getElementById(`img-container`)
-const imgURL = document.getElementById(`myFile`)
+const imgURL = document.getElementById(`my-file`)
 let workingURL
 const itemName = document.getElementsByClassName(`editInput`)[0]
 const itemPrice = document.getElementsByClassName(`editInput`)[1]
@@ -66,6 +66,10 @@ function sendItems(type, item){
 function sendMenu(){
     localStorage.clear()
     // send sammies
+    totalSammies = totalSammies.filter(s => !(removeList.includes(s.name)))
+    totalDrinks = totalDrinks.filter(d => !(removeList.includes(d.name)))
+    totalSides = totalSides.filter(s => !(removeList.includes(s.name)))
+
     totalSammies.forEach(s => sendItems(`sammie`, s))
     itemCount = 0
     // send drinks
@@ -74,10 +78,13 @@ function sendMenu(){
     // send sides
     totalSides.forEach(s => sendItems(`side`, s))
     itemCount = 0
+
+    refresh(sammies, sides, drinks)
 }
 
 // DRAG AND DROP
 const editBox = document.getElementById(`add-or-edit`)
+const dropZone = document.getElementsByClassName(`addOrEditItem-Container`)[0].firstElementChild
 let isDragging = false
 let originalParent, originalNextSibling, draggableItem, offsetX, offsetY
 
@@ -89,6 +96,10 @@ document.addEventListener(`mousedown`, (e) => {
     }
     draggableItem = e.target.closest(`.item`)
     if(!draggableItem) return
+
+    editBox.style.opacity = `0.4`
+    dropZone.style.display = `block`
+    dropZone.style.backgroundColor = `#06555b`
 
     originalParent = draggableItem.parentElement
     originalNextSibling = draggableItem.nextElementSibling
@@ -110,6 +121,8 @@ document.addEventListener(`mousemove`, (e) =>{
 })
 
 document.addEventListener(`mouseup`, (e) => {
+    editBox.style.opacity = `1`
+    dropZone.style.display = `none`
     if(!isDragging) return
 
     isDragging = false
@@ -134,6 +147,8 @@ document.addEventListener(`mouseup`, (e) => {
         imgCont.id = `img-display`
         workingURL = `../Imgs/${draggableItem._menuItemRef.imageURL}`
         imgCont.appendChild(displayImg)
+        // add remove btn
+        document.getElementById(`remove-img-btn`).style.display = `block`
 
         itemName.value = draggableItem._menuItemRef.name
         itemPrice.value = draggableItem._menuItemRef.price
@@ -151,6 +166,7 @@ document.addEventListener(`mouseup`, (e) => {
         draggableItem.style.position = "static"
     }
     draggableItem = null
+    dropZone.classList.replace(`dropZone`, `addOrEditItem-Container`)
 })
 
 imgURL.addEventListener(`change`, function(){
@@ -166,6 +182,9 @@ imgURL.addEventListener(`change`, function(){
     }
 
     reader.readAsDataURL(file)
+
+    // add remove btn
+    document.getElementById(`remove-img-btn`).style.display = `block`
 })
 
 function addItem(section){
@@ -187,8 +206,23 @@ function addItem(section){
 let removeList = []
 
 function removeItem(item){
-    
-    item.style.filter = `saturate(0)`
+    const computedStyle = window.getComputedStyle(item)
+
+    if(computedStyle.filter == `none`){
+        item.style.filter = `saturate(0)`
+        removeList.push(item._menuItemRef.name)
+    }else{
+        item.style.filter = `none`
+        removeList = removeList.filter(itemCheck => itemCheck !== item)
+    }
+    console.log(removeList)
+}
+
+function removeImg(){
+    imgCont.lastElementChild.remove()
+    imgCont.id = `img-container`
+    workingURL = ``
+    document.getElementById(`remove-img-btn`).style.display = `none`
 }
 
 
@@ -202,9 +236,11 @@ addSammieBtn.addEventListener(`click`, () => addItem(`sammie`))
 addSideBtn.addEventListener(`click`, () => addItem(`side`))
 addDrinkBtn.addEventListener(`click`, () => addItem(`drink`))
 
-const commitBtn = document.getElementById(`commitBtn`)
+const commitBtn = document.getElementById(`commit-btn`)
+const removeImgBtn = document.getElementById(`remove-img-btn`)
 
 commitBtn.addEventListener(`click`, sendMenu)
+removeImgBtn.addEventListener(`click`, removeImg)
 
 const localStorageUsageInBytes = JSON.stringify(localStorage).length * 2;
 const localStorageUsageInKB = localStorageUsageInBytes / 1024;

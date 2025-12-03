@@ -501,6 +501,23 @@ window.addEventListener("storage", () => {
     refresh(sammies, sides, drinks);
 });
 
+let itemCount = 0
+function sendItems(type, item){
+    let name = type+(++itemCount)
+    localStorage.setItem(name, JSON.stringify(item))
+}
+
+localStorage.clear()
+// send sammies
+totalSammies.forEach(s => sendItems(`sammie`, s))
+itemCount = 0
+// send drinks
+totalDrinks.forEach(d => sendItems(`drink`, d))
+itemCount = 0
+// send sides
+totalSides.forEach(s => sendItems(`side`, s))
+itemCount = 0
+
 function menuRetriver() {
     totalSammies = [];
     totalSides = [];
