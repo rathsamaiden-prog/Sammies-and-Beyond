@@ -4,7 +4,6 @@
     box-sizing: border-box;
     font-family: 'Audiowide', sans-serif;
 }
-
 .header{
     height: 50px;
     width: 100%;
@@ -15,7 +14,6 @@
     left: 0;
     z-index: 1000;
     background-color: #e0e0ff;
-    
 }
 nav{
     display: flex;
@@ -386,11 +384,9 @@ footer{
     background: linear-gradient(to bottom, #1a1a2e, #16213e); 
     margin-top: auto;
     background: linear-gradient(to bottom, #1a1a2e, #16213e);
-    text-align: center;
-   
-    
+    text-align: center; 
 }
-.footertop {
+.footertop{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -405,45 +401,36 @@ footer{
 ion-icon{
     font-size: 30px;
     transition:0.3s ease
-     
-    
 }
 ion-icon:hover {
-  
-  transform: scale(1.4);
-   text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
+    transform: scale(1.4);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3) ; 
 }  
 .footnav ul{
-   display: flex;
+    display: flex;
     list-style-type: none;
     padding: 10px;
     justify-content: center;
     color: aliceblue;
     align-items: center;   
-    
 }
-
-footer ul li a {
+footer ul li a{
     display: flex;
     flex-direction: column;
     padding: 14px 16px;
     text-decoration: none;
     color: aliceblue;
-    transform: 0.3s ease;
-    
+    transform: 0.3s ease;   
 }
-
 .contact{
     text-align: center;
     margin: 5px;
 }
-
 footer li :hover{
     color: rgba(0, 255, 255, 0.3) ;
-    transform: scale(1.2);
-    
+    transform: scale(1.2);   
 }
-.topbar { 
+.topbar{ 
     position: fixed;
     top: 0;
     left: 0;
@@ -462,8 +449,7 @@ footer li :hover{
     list-style-type: none;
     padding: 10px;
     justify-content: center;
-    color: aliceblue;
-    
+    color: aliceblue;    
 }
 .topbar ul li a{
     display: flex;
@@ -496,8 +482,6 @@ footer li :hover{
        flex-direction: column; 
     align-items: center;   
 }
-
-
 #favorites .item {
     max-height: auto;
     width: 200px;
@@ -511,13 +495,11 @@ footer li :hover{
     position: relative;
     color: white;
 }
-
 #favorites .item:hover {
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
 }
-#favorites .favBtn {
-    
+#favorites .favBtn {   
     top: 10px;
     right: 10px;
     font-size: 1.3em;
@@ -533,8 +515,7 @@ footer li :hover{
 #favorites .favBtn:hover {
     transform: scale(1.5);
 }
-.favBtn{
-    
+.favBtn{   
     top: 10px;
     right: 10px;
     font-size: 1.3em;
@@ -550,7 +531,6 @@ footer li :hover{
 .favBtn:hover {
     transform: scale(1.5);
 }
-
 #favorites1{
     font-size: 5vw;
     text-decoration: underline;
