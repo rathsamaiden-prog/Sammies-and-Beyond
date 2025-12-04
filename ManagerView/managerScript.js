@@ -86,7 +86,7 @@ function sendMenu(){
 const editBox = document.getElementById(`add-or-edit`)
 const dropZone = document.getElementsByClassName(`addOrEditItem-Container`)[0].firstElementChild
 let isDragging = false
-let originalParent, originalNextSibling, draggableItem, offsetX, offsetY
+let originalParent, originalNextSibling, draggableItem, draggableItemProto, offsetX, offsetY
 
 document.addEventListener(`mousedown`, (e) => {
     const removeBtn = e.target.closest(`.remove`)
@@ -96,6 +96,8 @@ document.addEventListener(`mousedown`, (e) => {
     }
     draggableItem = e.target.closest(`.item`)
     if(!draggableItem) return
+
+    draggableItemProto = draggableItem
 
     editBox.style.opacity = `0.4`
     dropZone.style.display = `block`
@@ -157,6 +159,13 @@ document.addEventListener(`mouseup`, (e) => {
 
         originalParent.insertBefore(draggableItem, originalNextSibling)
         draggableItem.style.position = "static"
+
+        // add save btn
+        addSideBtn.style.display = `none`
+        addDrinkBtn.style.display = `none`
+        addSammieBtn.style.display = `none`
+        saveBtn.style.display = `block`
+
     } else {
         if (originalNextSibling) {
             originalParent.insertBefore(draggableItem, originalNextSibling)
@@ -165,7 +174,6 @@ document.addEventListener(`mouseup`, (e) => {
         }
         draggableItem.style.position = "static"
     }
-    draggableItem = null
     dropZone.classList.replace(`dropZone`, `addOrEditItem-Container`)
 })
 
@@ -201,6 +209,31 @@ function addItem(section){
         totalDrinks.push(itemInfo)
         refresh(null, null, drinks)
     } 
+
+    clearView()
+}
+
+function saveChange(obj){
+    obj._menuItemRef.imgURL = workingURL
+    obj._menuItemRef.name = itemName.value
+    obj._menuItemRef.price = itemPrice.value
+    obj._menuItemRef.allergies = itemAllergy.value
+    obj._menuItemRef.description = itemDescr.value
+
+    obj.children[0].firstElementChild.innerHTML = itemName.value
+    obj.children[1].firstElementChild.src = workingURL
+    obj.children[2].firstElementChild.innerHTML = itemDescr.value
+    obj.children[2].lastElementChild.innerHTML = itemAllergy.value
+    obj.children[3].firstElementChild.innerHTML = `$${itemPrice.value}`
+
+    addSideBtn.style.display = `block`
+    addDrinkBtn.style.display = `block`
+    addSammieBtn.style.display = `block`
+    saveBtn.style.display = `none`
+
+    draggableItem = null
+
+    clearView()
 }
 
 let removeList = []
@@ -225,16 +258,26 @@ function removeImg(){
     document.getElementById(`remove-img-btn`).style.display = `none`
 }
 
+function clearView(){
+    removeImg()
+    itemName.value = ``
+    itemPrice.value = ``
+    itemAllergy.value = ``
+    itemDescr.value = ``
+}
+
 
 
 // BTN LISTENERS
 const addSammieBtn = document.getElementById(`add-sammie`)
 const addSideBtn = document.getElementById(`add-side`)
 const addDrinkBtn = document.getElementById(`add-drink`)
+const saveBtn = document.getElementById(`save-btn`)
 
 addSammieBtn.addEventListener(`click`, () => addItem(`sammie`))
 addSideBtn.addEventListener(`click`, () => addItem(`side`))
 addDrinkBtn.addEventListener(`click`, () => addItem(`drink`))
+saveBtn.addEventListener(`click`, () => saveChange(draggableItemProto))
 
 const commitBtn = document.getElementById(`commit-btn`)
 const removeImgBtn = document.getElementById(`remove-img-btn`)
