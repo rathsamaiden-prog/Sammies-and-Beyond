@@ -76,10 +76,6 @@ export class MenuItem {
     return el;
   }
 
-  removeItem(){
-    // something
-  }
-
   editName(name){
     this.name = name
   }

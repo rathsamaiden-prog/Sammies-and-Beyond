@@ -264,6 +264,9 @@ section{
     border-radius: 15%;
     background-color: rgba(165, 42, 42, 0.378);
 }
+#save-btn{
+    display: none;
+}
 .namePriceTitle{
     font-family: Helvetica, sans-serif;
     width: fit-content;
@@ -296,9 +299,9 @@ section{
     width: 100%;
     margin-top: 1%;
 }
-
-/* REMOVE ITEM */
-
+.favBtn{
+    display: none;
+}
 
 /* -------- ACTIVE ORDERS --------- */
 .activeOrders-Container{
