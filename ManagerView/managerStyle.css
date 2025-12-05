@@ -168,6 +168,9 @@ section{
 .item:hover #desc{
     opacity: 1;
 }
+.favBtn{
+    display: none;
+}
 
 /* ------- ORDERS AND ITEMS ------- */
 .ordersAndItems{
@@ -228,11 +231,6 @@ section{
     width: 40%;
     height: 100%;
     margin: 2%;
-}
-#img-container p{
-    text-align: center;
-    color: gray;
-    width: 75%;
 }
 #upload-img{
     text-align: center;
@@ -299,13 +297,78 @@ section{
     width: 100%;
     margin-top: 1%;
 }
-.favBtn{
-    display: none;
-}
 
 /* -------- ACTIVE ORDERS --------- */
 .activeOrders-Container{
     height: 50%;
     width: 100%;
 }
-
+#ticket-cont{
+    overflow-x: scroll;
+    padding-left: 1.5rem;
+}
+#non-active-title{
+    background-color: #0f0e0e7a;
+    color: white;
+    padding: 5% 10%;
+}
+#order-view-btns{
+    position: absolute;
+    justify-content: flex-end;
+    z-index: 99;
+    bottom: 10%;
+    right: 5%;
+    width: 100%;
+}
+.ticketViews-Btn{
+    width: 15%;
+    padding: 1% 2%;
+    margin: 0 2%;
+    border-radius: 6px;
+    background: mediumslateblue;
+    color: #fff;
+    font-size: 10pt;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.ticketViews-Btn:active{ transform: translateY(1px);}
+.ticketNum{
+    padding: 0 8%;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+}
+.orderTickets{
+    height: 80%;
+    min-width: 120px;
+    width: 24vh;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    margin: 0 1rem;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    overflow-y: auto;
+    transition: z-index 0.3s ease, transform 0.3s ease;
+}
+.orderTickets:hover{
+    z-index: 99;
+    transform: scale(1.05);
+}
+.orderTickets h2{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+.orderedItems{
+    white-space: pre-wrap;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+}
+.orderedItems div{
+    padding: 15px 0;
+    border-bottom: 1px dashed #ccc;
+}
