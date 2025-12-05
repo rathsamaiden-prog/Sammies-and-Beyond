@@ -1,4 +1,5 @@
 import { MenuItem } from "/menuItem.js";
+import { OrderTicket } from "../orderTicket.js";
 // localStorage.clear()
 
 // MENU RETRIEVER
@@ -45,6 +46,31 @@ function refresh(sammies, sides, drinks){
         sides.innerHTML = ``
         totalSides.forEach(s => sides.appendChild(s.appendItem()));
     }
+}
+
+// refresh orders
+const ticketNum = document.getElementsByClassName(`ticketNum`)
+let totalOrders_Delivery, totalOrders_PickUp, totalOrders_Scheduled
+
+refreshOrders()
+window.addEventListener(`storage`, refreshOrders)
+
+function refreshOrders(){
+    totalOrders_PickUp = JSON.parse(localStorage.getItem(`orders-pickUp`))
+    if(totalOrders_PickUp){
+        totalOrders_PickUp = totalOrders_PickUp.map(t => new OrderTicket(t.items, t.type))
+        ticketNum[0].innerHTML = totalOrders_PickUp.length
+    }
+    totalOrders_Delivery = JSON.parse(localStorage.getItem(`orders-delivery`))
+    if(totalOrders_Delivery){
+        totalOrders_Delivery = totalOrders_Delivery.map(t => new OrderTicket(t.items, t.type))
+        ticketNum[1].innerHTML = totalOrders_Delivery.length
+    }
+    totalOrders_Scheduled = JSON.parse(localStorage.getItem(`orders-scheduled`))
+    if(totalOrders_Scheduled){
+        totalOrders_Scheduled = totalOrders_Scheduled.map(t => new OrderTicket(t.items, t.type))
+        ticketNum[2].innerHTML = totalOrders_Scheduled.length
+    }  
 }
 
 // ADD - EDIT 
@@ -266,6 +292,22 @@ function clearView(){
     itemDescr.value = ``
 }
 
+const orderView = document.getElementById(`ticket-cont`)
+const nonActiveTitle = document.getElementById(`non-active-title`)
+
+function viewTickets(type){
+    console.log(type)
+    orderView.querySelectorAll(`div`).forEach(ticket => ticket.remove())
+    nonActiveTitle.style.display = `none`
+    if(!type || type.length === 0)
+        nonActiveTitle.style.display = `block`
+    else
+        type.forEach((ticket) => {
+            console.log(ticket)
+            orderView.insertAdjacentHTML("afterbegin", ticket.appendOrder())
+        })
+}
+
 
 
 // BTN LISTENERS
@@ -282,8 +324,16 @@ saveBtn.addEventListener(`click`, () => saveChange(draggableItemProto))
 const commitBtn = document.getElementById(`commit-btn`)
 const removeImgBtn = document.getElementById(`remove-img-btn`)
 
-commitBtn.addEventListener(`click`, sendMenu)
-removeImgBtn.addEventListener(`click`, removeImg)
+commitBtn.addEventListener(`click`, () => sendMenu)
+removeImgBtn.addEventListener(`click`, () => removeImg)
+
+const viewPickUpBtn = document.getElementsByClassName(`ticketViews-Btn`)[0]
+const viewDeliveryBtn = document.getElementsByClassName(`ticketViews-Btn`)[1]
+const viewScheduledBtn = document.getElementsByClassName(`ticketViews-Btn`)[2]
+
+viewPickUpBtn.addEventListener(`click`, () => viewTickets(totalOrders_PickUp))
+viewDeliveryBtn.addEventListener(`click`, () => viewTickets(totalOrders_Delivery))
+viewScheduledBtn.addEventListener(`click`, () => viewTickets(totalOrders_Scheduled))
 
 const localStorageUsageInBytes = JSON.stringify(localStorage).length * 2;
 const localStorageUsageInKB = localStorageUsageInBytes / 1024;
