@@ -434,8 +434,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentScreen.style.display = "none";
         confirmationScreen.style.display = "flex";
     });
-})
-
 
     const deliveryForm = document.getElementById("fake-delivery-form");
     const scheduleForm = document.getElementById("fake-schedule-form");
@@ -457,13 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-
-
-
-
-
-
+})
 
 document.querySelector(".newOrder").addEventListener("click", function () {
 
