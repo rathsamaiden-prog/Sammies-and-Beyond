@@ -183,8 +183,8 @@ nav{
     background-color: #e0e0ff;
     border-radius: 20px;
     position: fixed;
-    top: 120px;
-    left: 1100px;
+    top: 10vh;
+    right: 10vh;
     color: black;
     flex-direction: column;
     justify-content: center;
