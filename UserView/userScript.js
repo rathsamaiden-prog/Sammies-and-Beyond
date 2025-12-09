@@ -675,7 +675,7 @@ function RolePermissions() {
         favButtons.forEach(btn => btn.style.display = "inline-block");
         scheduleRadio.style.display = "inline-block"; 
         favItemButton.style.display = "inline-block";
-        favOrderButton.style.display = "inline-block";
+        favOrderBtn.style.display = "inline-block";
         favOrderSection.style.display = "inline-block";
     }
 }
