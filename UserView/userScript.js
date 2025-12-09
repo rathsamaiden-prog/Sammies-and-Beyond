@@ -183,6 +183,7 @@ let totalSides = [side1, side2, side3, side4, side5]
 window.addEventListener(`load`, () => {
     menuRetriver()
     refresh(sammies, sides, drinks)
+    RolePermissions();
 })
 
 
@@ -503,6 +504,7 @@ document.querySelector(".newOrder").addEventListener("click", function () {
 window.addEventListener("storage", () => {
     menuRetriver();
     refresh(sammies, sides, drinks);
+    RolePermissions();
  
 });
 
@@ -512,7 +514,6 @@ function sendItems(type, item){
     localStorage.setItem(name, JSON.stringify(item))
 }
 
-localStorage.clear()
 // send sammies
 totalSammies.forEach(s => sendItems(`sammie`, s))
 itemCount = 0
@@ -529,16 +530,24 @@ function menuRetriver() {
     totalSides = [];
     totalDrinks = [];
 
+  
     for (let i = 0; i < localStorage.length; i++) {
+         let key = localStorage.key(i);
+         if (!key.startsWith("sammie") && !key.startsWith("side") && !key.startsWith("drink")) {
+            continue;
+         }
         let keyName = localStorage.key(i).replace(/[0-9]/g, ``);
         let item = JSON.parse(localStorage.getItem(localStorage.key(i)));
         let itemInfo = new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price);
-
+       
+        
         if (keyName === "sammie") totalSammies.push(itemInfo);
         else if (keyName === "side") totalSides.push(itemInfo);
         else if (keyName === "drink") totalDrinks.push(itemInfo);
     }
 }
+let favoriteItems = (JSON.parse(localStorage.getItem("favorites")) || [])
+    .map(item => new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price));
 
 function refresh(sammies, sides, drinks) {
     sammies.innerHTML = "";
@@ -550,7 +559,8 @@ function refresh(sammies, sides, drinks) {
     sides.innerHTML = "";
     totalSides.forEach(s => sides.appendChild(s.appendItem()));
 }
-let favoriteItems = []; 
+
+
 
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("favBtn")) {
@@ -571,11 +581,21 @@ document.addEventListener("click", (e) => {
             
             favoriteItems = favoriteItems.filter(i => i.name !== itemName);
             btn.textContent = "♡"; 
-        }
 
-        refreshFavorites(); 
-    }
-});
+            document.querySelectorAll(".item").forEach(item=>{
+                const name = item.querySelector("#name")?.textContent;
+                if(name===itemName){
+                    const heartBtn = item.querySelector(".favBtn");
+                    if (heartBtn) heartBtn.textContent = "♡";
+                }
+            });
+  
+        }
+        localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+        refreshFavorites();
+     }
+   
+    });
 function refreshFavorites() {
     const favoritesRow = document.querySelector("#favorites .favorites-row");
     if (!favoritesRow) return;
@@ -587,5 +607,75 @@ function refreshFavorites() {
         itemEl.querySelector(".favBtn").textContent = "❤️"; 
         favoritesRow.appendChild(itemEl);
     });
+    
 }
+refreshFavorites();
+
+
+
+
+
+function RolePermissions() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || { role: "guest" };
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    const managerBtn = document.getElementById("mngView");
+
+    const favSection = document.getElementById("favorites"); 
+     
+    const scheduleRadio = document.querySelector('input[name="order"][value="schedule"]'); 
+    const favItemButton = document.getElementById("favItemsButton");
+    const favOrderButton = document.getElementById("favOrderButton");
+    const favOrderSection = document.getElementById("favOrder");
+
+   
+    const favButtons = document.querySelectorAll(".favBtn");
+    if (currentUser.role === "guest") {
+        logoutBtn.style.display = "none";
+        managerBtn.style.display = "none";
+
+        favSection.style.display = "none";
+        favButtons.forEach(btn => btn.style.display = "none");
+        scheduleRadio.style.display = "none"; 
+        favItemButton.style.display = "none";
+        favOrderButton.style.display = "none";
+        favOrderSection.style.display = "none";
+    }
+    else if (currentUser.role === "user") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "none";
+
+        favSection.style.display = "block";
+        favButtons.forEach(btn => btn.style.display = "inline-block");
+        scheduleRadio.style.display = "inline-block"; 
+        favItemButton.style.display = "inline-block";
+        favOrderButton.style.display = "inline-block";
+        favOrderSection.style.display = "inline-block";
+    }
+    else if (currentUser.role === "manager") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "block";
+
+        favSection.style.display = "block";
+        favButtons.forEach(btn => btn.style.display = "inline-block");
+        scheduleRadio.style.display = "inline-block"; 
+        favItemButton.style.display = "inline-block";
+        favOrderButton.style.display = "inline-block";
+        favOrderSection.style.display = "inline-block";
+    }
+}
+
+
+
+
+
+
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("currentUser"); 
+     localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
+    window.location.href = "../LogInSignIn/index.html"; 
+    
+});
+
 

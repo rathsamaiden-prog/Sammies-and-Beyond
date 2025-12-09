@@ -107,7 +107,7 @@ input{
      
 }
 
-button{
+.signbutton{
      background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
      backdrop-filter: blur(20px);
@@ -146,7 +146,7 @@ button{
     justify-content: center; 
 }
 footer{
-    border: 2px solid rgb(233, 222, 222);
+    
     display: flex;
     justify-content: space-between;
    flex-direction: column;
@@ -202,4 +202,23 @@ footer ul li a {
 .contact{
     text-align: center;
     margin: 5px;
+}
+#logoutBtn {
+    margin: 10px;
+    margin-top: 6px;
+    background-color: #0e0d0c; 
+    color: white;
+    border: none;
+    padding: 10px 20px;        
+    border-radius: 25px;       
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+#logoutBtn:hover {
+    background-color: #1a1a1a; 
+    color: #00ffff;             
 }
