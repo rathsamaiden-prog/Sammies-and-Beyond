@@ -1,7 +1,7 @@
 import { MenuItem } from "../menuItem.js";
+import { OrderTicket } from "../orderTicket.js";
 
 const menu = document.getElementsByClassName("menu")[0];
-
 
 const sammie1 = new MenuItem(
     "Lunar Loaf",
@@ -36,7 +36,7 @@ const sammie4 = new MenuItem(
 const sammie5 = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
-    "swirling layers of cheese and roast beef.",
+    "Swirling layers of cheese and roast beef.",
     "Gluten, Dairy, Meat",
     "10.99"
 );
@@ -44,7 +44,7 @@ const sammie5 = new MenuItem(
 const sammie6 = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
-    "peanut butter, banana, and berry jam fusion.",
+    "Peanut butter, banana, and berry jam fusion.",
     "Peanuts, Gluten",
     "8.99"
 );
@@ -179,6 +179,9 @@ let totalSammies = [
 ]
 let totalDrinks = [drink1, drink2, drink3, drink4]
 let totalSides = [side1, side2, side3, side4, side5]
+let totalOrders_PickUp = []
+let totalOrders_Delivery = []
+let totalOrders_Scheduled = []
 
 window.addEventListener(`load`, () => {
     menuRetriver()
@@ -345,6 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
         addressDiv.innerHTML = "";
         downloadDiv.innerHTML = "";
 
+        let orderTicket = `\n`
         let receiptText = "ORDER RECEIPT\n\n";
         let orderTotal = 0;
 
@@ -362,6 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `${name} x${quantity} — $${itemTotal.toFixed(2)}<br>`);
 
             receiptText += `${name} x${quantity} — $${itemTotal.toFixed(2)}\n`;
+            orderTicket += `${name} x${quantity}\n`
         });
 
         const option = document.querySelector('input[name="order"]:checked').value;
@@ -377,6 +382,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             receiptText += `\nDelivery Address:\n${street}\n${city}, ${state} ${zip}\n`;
+
+            totalOrders_Delivery.push(new OrderTicket(orderTicket, `DELIVERY`))
+            localStorage.setItem(`orders-delivery`, JSON.stringify(totalOrders_Delivery))
         } 
         else if (option === "schedule") {
             const date = scheduleForm.querySelector(".date").value;
@@ -389,9 +397,15 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             receiptText += `\nScheduled Order:\nOrder will be ready for pick up on: ${date}\nAt: ${time}\n`;
+
+            totalOrders_Scheduled.push(new OrderTicket(orderTicket, `SCHEDULED`))
+            localStorage.setItem(`orders-scheduled`, JSON.stringify(totalOrders_Scheduled))
         }
         else{
             addressDiv.style.display = "none";
+
+            totalOrders_PickUp.push(new OrderTicket(orderTicket, `PICK UP`))
+            localStorage.setItem(`orders-pickUp`, JSON.stringify(totalOrders_PickUp))
         }
 
         const finalTotal = orderTotal + tip;
@@ -429,8 +443,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentScreen.style.display = "none";
         confirmationScreen.style.display = "flex";
     });
-})
-
 
     const deliveryForm = document.getElementById("fake-delivery-form");
     const scheduleForm = document.getElementById("fake-schedule-form");
@@ -452,13 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-
-
-
-
-
-
+})
 
 document.querySelector(".newOrder").addEventListener("click", function () {
 
