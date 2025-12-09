@@ -75,24 +75,4 @@ export class MenuItem {
 
     return el;
   }
-
-  editName(name){
-    this.name = name
-  }
-
-  editImg(url){
-    this.imageUrl = url
-  }
-
-  editDescr(txt){
-    this.description = txt
-  }
-
-  editAllergy(txt){
-    this.allergies = txt
-  }
-
-  editPrice(price){
-    this.price = price
-  }
 }
