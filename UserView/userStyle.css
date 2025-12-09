@@ -80,7 +80,7 @@ nav{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}   
+}
 .item{
     max-height: auto;
     width: 200px;
@@ -107,7 +107,6 @@ nav{
     margin: 10px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    
 }
 .itemPrice{
     font-weight: bold;
@@ -119,7 +118,6 @@ nav{
     max-width: 180px;
     overflow-wrap: break-word;
     white-space: normal;
-    
 }
 .itemAdd{
     padding: 5px;

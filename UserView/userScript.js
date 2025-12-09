@@ -36,7 +36,7 @@ const sammie4 = new MenuItem(
 const sammie5 = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
-    "swirling layers of cheese and roast beef.",
+    "Swirling layers of cheese and roast beef.",
     "Gluten, Dairy, Meat",
     "10.99"
 );
@@ -44,7 +44,7 @@ const sammie5 = new MenuItem(
 const sammie6 = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
-    "peanut butter, banana, and berry jam fusion.",
+    "Peanut butter, banana, and berry jam fusion.",
     "Peanuts, Gluten",
     "8.99"
 );
