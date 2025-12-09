@@ -493,8 +493,8 @@ footer li:hover{
     gap: 30px;
     justify-content: center;
     padding: 20px;
-    background: linear-gradient(to bottom, #0a0f1c, #050a18);
-       flex-direction: column; 
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+    flex-direction: column; 
     align-items: center;   
 }
 #favorites .item {
@@ -559,16 +559,7 @@ footer li:hover{
     justify-content: center; 
     gap: 20px;              
 }
-#favOrder {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(to bottom, #0a0f1c, #050a18);
-       flex-direction: column; 
-    align-items: center;   
-}
+
 .favOrder:hover{
     background-color: #22325e;
 }
@@ -590,4 +581,55 @@ footer li:hover{
 #logoutBtn:hover {
     background-color: #1a1a1a; 
     color: #00ffff;             
+}
+#favOrder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column; 
+    align-items: center;  
+    width: 100%; 
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+}
+.fav-order {
+    max-width: 200px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    text-align: center;
+}
+
+.fav-order:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+}
+#favOrder .favoritesOrderRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.delete-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.05);
 }

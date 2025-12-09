@@ -34,7 +34,7 @@
                 <a href="#sides">Sides</a>
                 <a href="#drinks">Drinks</a>
                <a href="#favorites1" id="favItemsButton">Favorites</a>
-                <a href="#favorites1" id="favOrderButton">Favorite Orders</a>
+                <a href="#favorites1" id="favOrderSection">Favorite Orders</a>
             </div>
             <div class="cartBtn">
                 <button id="cartBtn">Cart</button>
@@ -42,7 +42,7 @@
         </nav>
     </div>
     
-<div class="background">
+
     <div class="main">
    </div>
 </div>
@@ -87,6 +87,7 @@
                 <input class="cvc" type="text" placeholder="CVC" required />
                 <input class="tip" type="text" placeholder="Tip: $0.00" required />
                 <button class="payNow" type="submit" >Pay Now</button>
+                <button class="favOrderBtn" id="favOrderBtn"> favorite your order</button>
                 <div class="totalNum">Total: $0.00</div>
             </form>
         </div>
@@ -97,7 +98,7 @@
             <div class="address"></div>
             <div class="download"></div>
             <button class="newOrder">Start New Order</button>
-            <button class="favOrderBtn"> favorite your order</button>
+            
         </div>
     </div>
 
@@ -108,6 +109,11 @@
 <section id="favorites">
   <h2 id="favorites1">Favorites</h2>
   <div class="favorites-row"></div>
+</section>
+
+<section id="favOrder">
+  <h2 id="favorites1">Favorites Orders</h2>
+  <div class="favoritesOrderRow" id="favoritesOrderRow"></div>
 </section>
 
  
