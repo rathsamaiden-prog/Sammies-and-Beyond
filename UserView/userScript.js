@@ -36,7 +36,7 @@ const sammie4 = new MenuItem(
 const sammie5 = new MenuItem(
     "The Nebula Melt",
     "The-Nebula-Melt.png",
-    "swirling layers of cheese and roast beef.",
+    "Swirling layers of cheese and roast beef.",
     "Gluten, Dairy, Meat",
     "10.99"
 );
@@ -44,7 +44,7 @@ const sammie5 = new MenuItem(
 const sammie6 = new MenuItem(
     "The Space Jamwich",
     "The-Space-Jamwich.png",
-    "peanut butter, banana, and berry jam fusion.",
+    "Peanut butter, banana, and berry jam fusion.",
     "Peanuts, Gluten",
     "8.99"
 );
@@ -186,7 +186,12 @@ let totalOrders_Scheduled = []
 window.addEventListener(`load`, () => {
     menuRetriver()
     refresh(sammies, sides, drinks)
-})
+    RolePermissions()
+    refreshFavOrders()
+ 
+});
+
+
 
 
 let total = 0;
@@ -316,8 +321,12 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
-    
+    const favOrderBtn = document.getElementById("favOrderBtn");
+    favOrderBtn.addEventListener("click",favoriteOrder)
+
+
     const payNowBtn = document.querySelector(".payNow");
+    
 
     payNowBtn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -434,8 +443,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentScreen.style.display = "none";
         confirmationScreen.style.display = "flex";
     });
-})
-
 
     const deliveryForm = document.getElementById("fake-delivery-form");
     const scheduleForm = document.getElementById("fake-schedule-form");
@@ -457,13 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-
-
-
-
-
-
+})
 
 document.querySelector(".newOrder").addEventListener("click", function () {
 
@@ -517,6 +518,8 @@ document.querySelector(".newOrder").addEventListener("click", function () {
 window.addEventListener("storage", () => {
     menuRetriver();
     refresh(sammies, sides, drinks);
+    RolePermissions();
+    refreshFavOrders()
  
 });
 
@@ -542,16 +545,24 @@ function menuRetriver() {
     totalSides = [];
     totalDrinks = [];
 
+  
     for (let i = 0; i < localStorage.length; i++) {
+         let key = localStorage.key(i);
+         if (!key.startsWith("sammie") && !key.startsWith("side") && !key.startsWith("drink")) {
+            continue;
+         }
         let keyName = localStorage.key(i).replace(/[0-9]/g, ``);
         let item = JSON.parse(localStorage.getItem(localStorage.key(i)));
         let itemInfo = new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price);
-
+       
+        
         if (keyName === "sammie") totalSammies.push(itemInfo);
         else if (keyName === "side") totalSides.push(itemInfo);
         else if (keyName === "drink") totalDrinks.push(itemInfo);
     }
 }
+let favoriteItems = (JSON.parse(localStorage.getItem("favorites")) || [])
+    .map(item => new MenuItem(item.name, item.imageURL, item.description, item.allergies, item.price));
 
 function refresh(sammies, sides, drinks) {
     sammies.innerHTML = "";
@@ -563,7 +574,8 @@ function refresh(sammies, sides, drinks) {
     sides.innerHTML = "";
     totalSides.forEach(s => sides.appendChild(s.appendItem()));
 }
-let favoriteItems = []; 
+
+
 
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("favBtn")) {
@@ -584,11 +596,21 @@ document.addEventListener("click", (e) => {
             
             favoriteItems = favoriteItems.filter(i => i.name !== itemName);
             btn.textContent = "♡"; 
-        }
 
-        refreshFavorites(); 
-    }
-});
+            document.querySelectorAll(".item").forEach(item=>{
+                const name = item.querySelector("#name")?.textContent;
+                if(name===itemName){
+                    const heartBtn = item.querySelector(".favBtn");
+                    if (heartBtn) heartBtn.textContent = "♡";
+                }
+            });
+  
+        }
+        localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+        refreshFavorites();
+     }
+   
+    });
 function refreshFavorites() {
     const favoritesRow = document.querySelector("#favorites .favorites-row");
     if (!favoritesRow) return;
@@ -600,5 +622,148 @@ function refreshFavorites() {
         itemEl.querySelector(".favBtn").textContent = "❤️"; 
         favoritesRow.appendChild(itemEl);
     });
+    
+}
+refreshFavorites();
+
+
+
+
+
+function RolePermissions() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || { role: "guest" };
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    const managerBtn = document.getElementById("mngView");
+
+    const favSection = document.getElementById("favorites"); 
+     
+    const scheduleRadio = document.querySelector('input[name="order"][value="schedule"]'); 
+    const favItemButton = document.getElementById("favItemsButton");
+    const favOrderButton = document.getElementById("favOrderButton");
+    const favOrderSection = document.getElementById("favOrder");
+
+   
+    const favButtons = document.querySelectorAll(".favBtn");
+    if (currentUser.role === "guest") {
+        logoutBtn.style.display = "none";
+        managerBtn.style.display = "none";
+        scheduleRadio.disabled = true
+        favSection.style.display = "none";
+        favButtons.forEach(btn => btn.style.display = "none");
+        scheduleRadio.style.display = "none"; 
+        
+        favOrderBtn.style.display = "none";
+        favOrderSection.style.display = "none";
+    }
+    else if (currentUser.role === "user") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "none";
+
+        favSection.style.display = "block";
+        favButtons.forEach(btn => btn.style.display = "inline-block");
+        scheduleRadio.style.display = "inline-block"; 
+        
+        favOrderBtn.style.display = "inline-block";
+        favOrderSection.style.display = "inline-block";
+    }
+    else if (currentUser.role === "manager") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "block";
+
+        favSection.style.display = "block";
+        favButtons.forEach(btn => btn.style.display = "inline-block");
+        scheduleRadio.style.display = "inline-block"; 
+        favItemButton.style.display = "inline-block";
+        favOrderBtn.style.display = "inline-block";
+        favOrderSection.style.display = "inline-block";
+    }
 }
 
+
+
+
+
+
+const logoutBtn = document.getElementById("logoutBtn");
+logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("currentUser"); 
+     localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
+    window.location.href = "../LogInSignIn/index.html"; 
+    
+});
+
+
+
+function favoriteOrder(){
+    const cartItems = document.querySelectorAll(".items .cart-item");
+    const favOrders = JSON.parse(localStorage.getItem("favOrders"))||[]
+    
+    
+        if(cartItems.length === 0){
+            alert("empty cart")
+            return
+        }
+    const newOrder =[]
+
+    cartItems.forEach(item=>{
+        const name = item.dataset.name;
+        const price = parseFloat(item.dataset.price);
+        const quantity = parseInt(item.dataset.quantity);
+
+        newOrder.push({name, price, quantity});
+
+    })
+    favOrders.push(newOrder)
+
+    localStorage.setItem("favOrders", JSON.stringify(favOrders));
+    alert("order saved")
+    refreshFavOrders()
+    }
+
+
+
+function refreshFavOrders() {
+    const favOrders = JSON.parse(localStorage.getItem("favOrders")) || [];
+    const favoritesRow = document.getElementById("favoritesOrderRow");
+    if (!favoritesRow) return;
+
+    favoritesRow.innerHTML = "";
+
+    favOrders.forEach((order, index) => {
+        const orderBox = document.createElement("div");
+        orderBox.classList.add("fav-order");
+
+        orderBox.innerHTML = `
+        <button class="delete-btn">Delete</button>
+        <h3>Favorite Order #${index + 1}</h3>
+        
+        `;
+
+        order.forEach(item => {
+            const p = document.createElement("p");
+            p.textContent = `${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`;
+            orderBox.appendChild(p);
+        });
+        const deleteBtn = orderBox.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", () => deleteFavoriteOrder(index));
+
+        favoritesRow.appendChild(orderBox);
+    });
+}
+favOrderBtn.addEventListener("click", favoriteOrder)
+
+
+
+
+function deleteFavoriteOrder(index) {
+    
+    const favOrders = JSON.parse(localStorage.getItem("favOrders")) || [];
+    favOrders.splice(index, 1);
+
+   
+    localStorage.setItem("favOrders", JSON.stringify(favOrders));
+
+    refreshFavOrders()
+}
+    

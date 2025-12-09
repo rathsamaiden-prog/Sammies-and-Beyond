@@ -22,6 +22,8 @@
             <li><a href="#contact">Contact</a></li>
             <li><a href="../Feedback/feedBack.html">Reviews</a></li>
             <li><a href="../UserView/userView.html">Menu</a></li>
+             <li><a href="../ManagerView/managerView.html" id="mngView">Manage view</a></li>
+            <li><button id="logoutBtn">Log out</button></li>
         </ul>
     
 </div>
@@ -31,7 +33,8 @@
                 <a href="#sammies">Sammies</a>
                 <a href="#sides">Sides</a>
                 <a href="#drinks">Drinks</a>
-               <a href="#favorites1">Favorites</a>
+               <a href="#favorites1" id="favItemsButton">Favorites</a>
+                <a href="#favorites1" id="favOrderSection">Favorite Orders</a>
             </div>
             <div class="cartBtn">
                 <button id="cartBtn">Cart</button>
@@ -39,6 +42,10 @@
         </nav>
     </div>
     
+
+    <div class="main">
+   </div>
+</div>
 
     <div id="cart">
         <div class="items"></div>
@@ -80,6 +87,7 @@
                 <input class="cvc" type="text" placeholder="CVC" required />
                 <input class="tip" type="text" placeholder="Tip: $0.00" required />
                 <button class="payNow" type="submit" >Pay Now</button>
+                <button class="favOrderBtn" id="favOrderBtn"> favorite your order</button>
                 <div class="totalNum">Total: $0.00</div>
             </form>
         </div>
@@ -90,6 +98,7 @@
             <div class="address"></div>
             <div class="download"></div>
             <button class="newOrder">Start New Order</button>
+            
         </div>
     </div>
 
@@ -102,25 +111,30 @@
   <div class="favorites-row"></div>
 </section>
 
+<section id="favOrder">
+  <h2 id="favorites1">Favorites Orders</h2>
+  <div class="favoritesOrderRow" id="favoritesOrderRow"></div>
+</section>
+
+ 
+
   
 
 <footer>
-
-<div class="footertop">
-    <div class="footersocials">
-        <ion-icon name="logo-instagram"></ion-icon>
-        <ion-icon name="logo-twitter"></ion-icon>
-        <ion-icon name="logo-snapchat"></ion-icon>
-        <ion-icon name="logo-facebook"></ion-icon>
-    </div>
+    <div class="footertop">
+        <div class="footersocials">
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-icon name="logo-snapchat"></ion-icon>
+            <ion-icon name="logo-facebook"></ion-icon>
+        </div>
         <p id="copyrights">© 2025 Joshua, Aiden, Jackson. All Rights Reserved.</p>
-</div>  
+    </div>  
 
     <div class="contact">
         <h3>Contact us</h3>
         <p>Phone: 717-867-5309<br> Email: samies&beyond369@gmail.com<br>Adress: 750 E King St, Lancaster, PA 17602 </p>
     </div>
-
 
         <div class="footnav">
             <nav>
@@ -133,7 +147,6 @@
                 </ul>
             </nav>
         </div>
-
 </footer>
     
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

@@ -52,25 +52,70 @@ function reviews() {
 // Display reviews
 function loadReviews() {
     const allReviews = JSON.parse(localStorage.getItem("review")) || [];
-
+     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || { role: "guest" };
    
 
-    allReviews.forEach(r => {
+    allReviews.forEach((r, index) => {
         const starsHTML = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
 
         const reviewCard = document.createElement("div");
         reviewCard.classList.add("reviewCard");
         reviewCard.innerHTML = `
+            <button class="deleteReview" data-index="${index}">delete</button>
             <h3>${r.name}</h3>
             <p>${r.review}</p>
             <p class="rating">${starsHTML}</p>
         `;
-
+            if (currentUser.role === "guest" || currentUser.role === "user") {
+            reviewCard.querySelector(".deleteReview").style.display = "none"
+            }
         reviewGallery.appendChild(reviewCard);
     });
+   
+ }
+ document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("currentUser"); 
+    window.location.href = "../LogInSignIn/index.html"; 
+});
+
+function RolePermissions() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || { role: "guest" };
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    const managerBtn = document.getElementById("mngView");
+
+    if (!logoutBtn || !managerBtn) return;
+
+    
+    if (currentUser.role === "guest") {
+        logoutBtn.style.display = "none";
+        managerBtn.style.display = "none";
+    }
+
+    
+    else if (currentUser.role === "user") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "none";
+    }
+
+   
+    else if (currentUser.role === "manager") {
+        logoutBtn.style.display = "block";
+        managerBtn.style.display = "block";
+    }
 }
+reviewGallery.addEventListener("click", (e) => {
+    if (e.target.classList.contains("deleteReview")) {
+        const index = parseInt(e.target.dataset.index);
+        let allReviews = JSON.parse(localStorage.getItem("review")) || [];
+        allReviews.splice(index, 1);
+        localStorage.setItem("review", JSON.stringify(allReviews));
+        reviewGallery.innerHTML = "";
+        loadReviews();
+    }
+});
 
-// Load reviews on page load
-window.onload = loadReviews;
-
-
+window.addEventListener("DOMContentLoaded", () => {
+    RolePermissions(); 
+    loadReviews();     
+});
