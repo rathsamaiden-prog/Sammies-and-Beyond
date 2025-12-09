@@ -735,8 +735,9 @@ function refreshFavOrders() {
         orderBox.classList.add("fav-order");
 
         orderBox.innerHTML = `
-        <h3>Favorite Order #${index + 1}</h3>
         <button class="delete-btn">Delete</button>
+        <h3>Favorite Order #${index + 1}</h3>
+        
         `;
 
         order.forEach(item => {
