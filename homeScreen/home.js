@@ -16,7 +16,7 @@ document.getElementById("order").addEventListener("click", () => {
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-    window.location.href = "../LogInSignIn/index.html"; 
+    window.location.href = "../index.html"; 
 });
 
 function RolePermissions() {

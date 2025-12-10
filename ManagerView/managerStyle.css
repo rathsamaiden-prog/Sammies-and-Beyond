@@ -8,6 +8,20 @@ body{
     flex-wrap: wrap;
     background-color: #0F0E0E;
 }
+#user-view{
+    position: absolute;
+    z-index: 99;
+    width: 10vh;
+    height: 10vh;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px black solid;
+    top: 5%;
+    left: 3%;
+}
+#user-view ion-icon{
+    transform: scale(2);
+}
 /* ------- SHARED ------- */
 .container{
     position: relative;
@@ -206,30 +220,16 @@ section{
     padding: 3px 4px;
     background-color: #9e1919;
 }
-#img-display{
-    width: 40%;
-    height: 100%;
-    margin: 2%;
-}
-#img-display img{
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 100%;
-    height: 90%;
-    margin-bottom: 10%;
-}
-#img-display p, #img-display form{
-    display: none;
+#img-container form{
     margin: 0;
     padding: 0;
 }
 #img-container{
-    flex-direction: column;
     border: 1px solid black;
     background-color: #0f0e0e7a;
     border-radius: 10px;
     width: 40%;
-    height: 100%;
+    height: 36.5vh;
     margin: 2%;
 }
 #upload-img{
