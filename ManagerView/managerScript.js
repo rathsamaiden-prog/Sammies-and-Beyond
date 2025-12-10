@@ -56,17 +56,17 @@ refreshOrders()
 window.addEventListener(`storage`, refreshOrders)
 
 function refreshOrders(){
-    totalOrders_PickUp = JSON.parse(localStorage.getItem(`orders-pickUp`))
+    totalOrders_PickUp = JSON.parse(localStorage.getItem(`orders-pickUp`)) || []
     if(totalOrders_PickUp){
         totalOrders_PickUp = totalOrders_PickUp.map(t => new OrderTicket(t.items, t.type))
         ticketNum[0].innerHTML = totalOrders_PickUp.length
     }
-    totalOrders_Delivery = JSON.parse(localStorage.getItem(`orders-delivery`))
+    totalOrders_Delivery = JSON.parse(localStorage.getItem(`orders-delivery`)) || []
     if(totalOrders_Delivery){
         totalOrders_Delivery = totalOrders_Delivery.map(t => new OrderTicket(t.items, t.type))
         ticketNum[1].innerHTML = totalOrders_Delivery.length
     }
-    totalOrders_Scheduled = JSON.parse(localStorage.getItem(`orders-scheduled`))
+    totalOrders_Scheduled = JSON.parse(localStorage.getItem(`orders-scheduled`)) || []
     if(totalOrders_Scheduled){
         totalOrders_Scheduled = totalOrders_Scheduled.map(t => new OrderTicket(t.items, t.type))
         ticketNum[2].innerHTML = totalOrders_Scheduled.length
@@ -90,6 +90,7 @@ function sendItems(type, item){
 }
 
 function sendMenu(){
+    console.log(`test`)
     localStorage.clear()
     // send sammies
     totalSammies = totalSammies.filter(s => !(removeList.includes(s.name)))
@@ -278,6 +279,7 @@ function removeItem(item){
 }
 
 function removeImg(){
+    console.log(`test`)
     imgCont.lastElementChild.remove()
     imgCont.id = `img-container`
     workingURL = ``
@@ -294,18 +296,61 @@ function clearView(){
 
 const orderView = document.getElementById(`ticket-cont`)
 const nonActiveTitle = document.getElementById(`non-active-title`)
+let ticketView
 
 function viewTickets(type){
-    console.log(type)
+    ticketView = type
     orderView.querySelectorAll(`div`).forEach(ticket => ticket.remove())
     nonActiveTitle.style.display = `none`
     if(!type || type.length === 0)
         nonActiveTitle.style.display = `block`
     else
         type.forEach((ticket) => {
-            console.log(ticket)
-            orderView.insertAdjacentHTML("afterbegin", ticket.appendOrder())
+            orderView.appendChild(ticket.appendOrder())
         })
+    orderView.scrollLeft = -(orderView.getBoundingClientRect().width)
+}
+
+let completedOrdersArr = []
+let orderToggle, orderTicket
+
+document.addEventListener(`click`, (e) => {
+    orderToggle = e.target.closest(`.orderTickets input[type='checkbox']`)
+    if (!orderToggle) return
+
+    orderTicket = orderToggle.closest(`.orderTickets`)
+
+    console.log(orderToggle.checked)
+    if(orderToggle.checked && !completedOrdersArr.includes(orderTicket._menuItemRef))
+        completedOrdersArr.push(orderTicket._menuItemRef)
+    else
+        completedOrdersArr = completedOrdersArr.filter(i => i !== orderTicket._menuItemRef)
+
+    console.log(completedOrdersArr)
+})
+
+console.log(totalOrders_Delivery)
+
+function completeOrders(arr){
+    if(ticketView == totalOrders_Delivery){
+        totalOrders_Delivery = totalOrders_Delivery.filter(ticket => !arr.includes(ticket))
+        ticketView = totalOrders_Delivery
+    }else if(ticketView == totalOrders_PickUp){
+        totalOrders_PickUp = totalOrders_PickUp.filter(ticket => !arr.includes(ticket))
+        ticketView = totalOrders_PickUp
+    }else{
+        totalOrders_Scheduled = totalOrders_Scheduled.filter(ticket => !arr.includes(ticket))
+        ticketView = totalOrders_Scheduled
+    }
+
+    completedOrdersArr = []
+
+    localStorage.setItem(`orders-delivery`, JSON.stringify(totalOrders_Delivery))
+    localStorage.setItem(`orders-scheduled`, JSON.stringify(totalOrders_Scheduled))
+    localStorage.setItem(`orders-pickUp`, JSON.stringify(totalOrders_PickUp))
+
+    refreshOrders()
+    viewTickets(ticketView)
 }
 
 
@@ -324,13 +369,15 @@ saveBtn.addEventListener(`click`, () => saveChange(draggableItemProto))
 const commitBtn = document.getElementById(`commit-btn`)
 const removeImgBtn = document.getElementById(`remove-img-btn`)
 
-commitBtn.addEventListener(`click`, () => sendMenu)
-removeImgBtn.addEventListener(`click`, () => removeImg)
+commitBtn.addEventListener(`click`, () => sendMenu())
+removeImgBtn.addEventListener(`click`, () => removeImg())
 
+const completeOrdersBtn = document.getElementById(`complete-orders-btn`)
 const viewPickUpBtn = document.getElementsByClassName(`ticketViews-Btn`)[0]
 const viewDeliveryBtn = document.getElementsByClassName(`ticketViews-Btn`)[1]
 const viewScheduledBtn = document.getElementsByClassName(`ticketViews-Btn`)[2]
 
+completeOrdersBtn.addEventListener(`click`, ()  => completeOrders(completedOrdersArr))
 viewPickUpBtn.addEventListener(`click`, () => viewTickets(totalOrders_PickUp))
 viewDeliveryBtn.addEventListener(`click`, () => viewTickets(totalOrders_Delivery))
 viewScheduledBtn.addEventListener(`click`, () => viewTickets(totalOrders_Scheduled))

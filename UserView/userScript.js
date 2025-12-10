@@ -186,8 +186,12 @@ let totalOrders_Scheduled = []
 window.addEventListener(`load`, () => {
     menuRetriver()
     refresh(sammies, sides, drinks)
-    RolePermissions();
-})
+    RolePermissions()
+    refreshFavOrders()
+ 
+});
+
+
 
 
 let total = 0;
@@ -317,8 +321,12 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.style.display = "none";
         paymentScreen.style.display = "block";
     });
-    
+    const favOrderBtn = document.getElementById("favOrderBtn");
+    favOrderBtn.addEventListener("click",favoriteOrder)
+
+
     const payNowBtn = document.querySelector(".payNow");
+    
 
     payNowBtn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -511,6 +519,7 @@ window.addEventListener("storage", () => {
     menuRetriver();
     refresh(sammies, sides, drinks);
     RolePermissions();
+    refreshFavOrders()
  
 });
 
@@ -639,12 +648,12 @@ function RolePermissions() {
     if (currentUser.role === "guest") {
         logoutBtn.style.display = "none";
         managerBtn.style.display = "none";
-
+        scheduleRadio.disabled = true
         favSection.style.display = "none";
         favButtons.forEach(btn => btn.style.display = "none");
         scheduleRadio.style.display = "none"; 
-        favItemButton.style.display = "none";
-        favOrderButton.style.display = "none";
+        
+        favOrderBtn.style.display = "none";
         favOrderSection.style.display = "none";
     }
     else if (currentUser.role === "user") {
@@ -654,8 +663,8 @@ function RolePermissions() {
         favSection.style.display = "block";
         favButtons.forEach(btn => btn.style.display = "inline-block");
         scheduleRadio.style.display = "inline-block"; 
-        favItemButton.style.display = "inline-block";
-        favOrderButton.style.display = "inline-block";
+        
+        favOrderBtn.style.display = "inline-block";
         favOrderSection.style.display = "inline-block";
     }
     else if (currentUser.role === "manager") {
@@ -666,7 +675,7 @@ function RolePermissions() {
         favButtons.forEach(btn => btn.style.display = "inline-block");
         scheduleRadio.style.display = "inline-block"; 
         favItemButton.style.display = "inline-block";
-        favOrderButton.style.display = "inline-block";
+        favOrderBtn.style.display = "inline-block";
         favOrderSection.style.display = "inline-block";
     }
 }
@@ -685,3 +694,76 @@ logoutBtn.addEventListener("click", () => {
 });
 
 
+
+function favoriteOrder(){
+    const cartItems = document.querySelectorAll(".items .cart-item");
+    const favOrders = JSON.parse(localStorage.getItem("favOrders"))||[]
+    
+    
+        if(cartItems.length === 0){
+            alert("empty cart")
+            return
+        }
+    const newOrder =[]
+
+    cartItems.forEach(item=>{
+        const name = item.dataset.name;
+        const price = parseFloat(item.dataset.price);
+        const quantity = parseInt(item.dataset.quantity);
+
+        newOrder.push({name, price, quantity});
+
+    })
+    favOrders.push(newOrder)
+
+    localStorage.setItem("favOrders", JSON.stringify(favOrders));
+    alert("order saved")
+    refreshFavOrders()
+    }
+
+
+
+function refreshFavOrders() {
+    const favOrders = JSON.parse(localStorage.getItem("favOrders")) || [];
+    const favoritesRow = document.getElementById("favoritesOrderRow");
+    if (!favoritesRow) return;
+
+    favoritesRow.innerHTML = "";
+
+    favOrders.forEach((order, index) => {
+        const orderBox = document.createElement("div");
+        orderBox.classList.add("fav-order");
+
+        orderBox.innerHTML = `
+        <button class="delete-btn">Delete</button>
+        <h3>Favorite Order #${index + 1}</h3>
+        
+        `;
+
+        order.forEach(item => {
+            const p = document.createElement("p");
+            p.textContent = `${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`;
+            orderBox.appendChild(p);
+        });
+        const deleteBtn = orderBox.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", () => deleteFavoriteOrder(index));
+
+        favoritesRow.appendChild(orderBox);
+    });
+}
+favOrderBtn.addEventListener("click", favoriteOrder)
+
+
+
+
+function deleteFavoriteOrder(index) {
+    
+    const favOrders = JSON.parse(localStorage.getItem("favOrders")) || [];
+    favOrders.splice(index, 1);
+
+   
+    localStorage.setItem("favOrders", JSON.stringify(favOrders));
+
+    refreshFavOrders()
+}
+    

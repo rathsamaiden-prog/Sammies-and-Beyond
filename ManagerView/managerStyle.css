@@ -304,14 +304,32 @@ section{
     width: 100%;
 }
 #ticket-cont{
+    justify-content: start;
     overflow-x: scroll;
-    padding-left: 1.5rem;
 }
 #non-active-title{
     background-color: #0f0e0e7a;
     color: white;
+    text-align: center;
     padding: 5% 10%;
+    margin: 0 10%;
+    width: 100%;
 }
+#complete-orders-btn{
+    position: absolute;
+    z-index: 99;
+    top: 12%;
+    right: 8%;
+    padding: 1.5% 2%;
+    border-radius: 6px;
+    background: #21be8a;
+    color: #fff;
+    font-size: 14pt;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+#complete-orders-btn:active{ transform: translateY(1px); }
 #order-view-btns{
     position: absolute;
     justify-content: flex-end;
@@ -357,8 +375,14 @@ section{
     z-index: 99;
     transform: scale(1.05);
 }
+#ticket-type{
+    justify-content: space-between;
+}
 .orderTickets h2{
-    font-size: 1.2rem;
+    margin-top: 7.5%;
+    display: inline;
+    width: 70%;
+    font-size: 75%;
     margin-bottom: 0.5rem;
     color: #333;
 }
@@ -371,4 +395,68 @@ section{
 .orderedItems div{
     padding: 15px 0;
     border-bottom: 1px dashed #ccc;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  height: 10%;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 75%;
+  width: 45%;
+  left: 8%;
+  bottom: 12.5%;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  transform: translateX(80%);
+}
+.slider.round {
+  border-radius: 10px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+@media (max-width: 768px) {
+    /* ADD/EDIT */
+
+    /* ACTIVE ORDERS */
+    #non-active-title{
+        width: 80%;
+    }
+    #order-view-btns{
+        right: 0;
+        justify-content: space-around;
+    }
+    .ticketViews-Btn{
+        width: 28%;
+    }
 }
