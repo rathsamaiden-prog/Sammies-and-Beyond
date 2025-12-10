@@ -124,7 +124,7 @@ signUpPassword.addEventListener("input", () => {
 const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-    window.location.href = "../LogInSignIn/index.html"; 
+    window.location.href = "../index.html"; 
 });
 
 function RolePermissions() {

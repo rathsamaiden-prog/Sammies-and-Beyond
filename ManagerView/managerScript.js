@@ -90,8 +90,9 @@ function sendItems(type, item){
 }
 
 function sendMenu(){
-    console.log(`test`)
     localStorage.clear()
+    localStorage.setItem("currentUser", JSON.stringify({ email: "manager", name: "Manager", role: "manager" }))
+
     // send sammies
     totalSammies = totalSammies.filter(s => !(removeList.includes(s.name)))
     totalDrinks = totalDrinks.filter(d => !(removeList.includes(d.name)))
@@ -169,13 +170,10 @@ document.addEventListener(`mouseup`, (e) => {
 
     if (insideDropZone) {
         // EDIT ZONE
-        if(imgCont.id == `img-display`)
-            imgCont.removeChild(imgCont.lastElementChild)
-        const displayImg = document.createElement(`img`)
-        displayImg.src = `../Imgs/${draggableItem._menuItemRef.imageURL}`
-        imgCont.id = `img-display`
+        imgCont.style.background = `url(../Imgs/${draggableItem._menuItemRef.imageURL})`
+        imgCont.style.backgroundSize = `100% 100%`
         workingURL = `../Imgs/${draggableItem._menuItemRef.imageURL}`
-        imgCont.appendChild(displayImg)
+        imgURL.style.display = `none`
         // add remove btn
         document.getElementById(`remove-img-btn`).style.display = `block`
 
@@ -210,10 +208,9 @@ imgURL.addEventListener(`change`, function(){
 
     reader.onload = function(e) {
         workingURL = e.target.result
-        const displayImg = document.createElement(`img`)
-        displayImg.src = workingURL
-        imgCont.id = `img-display`
-        imgCont.appendChild(displayImg)
+        imgCont.style.background = `url(${workingURL})`
+        imgCont.style.backgroundSize = `100% 100%`
+        imgURL.style.display = `none`
     }
 
     reader.readAsDataURL(file)
@@ -240,12 +237,21 @@ function addItem(section){
     clearView()
 }
 
+let key
+
 function saveChange(obj){
+    for (let i = 0; i < localStorage.length; i++) {
+        if(JSON.stringify(obj).includes(localStorage.getItem(localStorage.key(i))))
+            key = localStorage.key(i)
+    }
+    
     obj._menuItemRef.imgURL = workingURL
     obj._menuItemRef.name = itemName.value
     obj._menuItemRef.price = itemPrice.value
     obj._menuItemRef.allergies = itemAllergy.value
     obj._menuItemRef.description = itemDescr.value
+
+    localStorage.setItem(key, obj)
 
     obj.children[0].firstElementChild.innerHTML = itemName.value
     obj.children[1].firstElementChild.src = workingURL
@@ -279,9 +285,9 @@ function removeItem(item){
 }
 
 function removeImg(){
-    console.log(`test`)
-    imgCont.lastElementChild.remove()
-    imgCont.id = `img-container`
+    imgCont.style.background = ``
+    imgCont.style.backgroundSize = `none`
+    imgURL.style.display = `inline`
     workingURL = ``
     document.getElementById(`remove-img-btn`).style.display = `none`
 }
@@ -320,16 +326,11 @@ document.addEventListener(`click`, (e) => {
 
     orderTicket = orderToggle.closest(`.orderTickets`)
 
-    console.log(orderToggle.checked)
     if(orderToggle.checked && !completedOrdersArr.includes(orderTicket._menuItemRef))
         completedOrdersArr.push(orderTicket._menuItemRef)
     else
         completedOrdersArr = completedOrdersArr.filter(i => i !== orderTicket._menuItemRef)
-
-    console.log(completedOrdersArr)
 })
-
-console.log(totalOrders_Delivery)
 
 function completeOrders(arr){
     if(ticketView == totalOrders_Delivery){

@@ -3,6 +3,8 @@ import { OrderTicket } from "../orderTicket.js";
 
 const menu = document.getElementsByClassName("menu")[0];
 
+console.log(localStorage.length)
+
 const sammie1 = new MenuItem(
     "Lunar Loaf",
     "Lunar-loaf.png",
@@ -167,6 +169,8 @@ menu.insertAdjacentHTML("afterbegin", `
   <section id="drinks">drinks</section>
 `);
 
+console.log(localStorage.length)
+
 // Get references to each section
 const sammies = document.getElementById("sammies");
 const drinks = document.getElementById("drinks");
@@ -183,6 +187,8 @@ let totalOrders_PickUp = []
 let totalOrders_Delivery = []
 let totalOrders_Scheduled = []
 
+console.log(localStorage.length)
+
 window.addEventListener(`load`, () => {
     menuRetriver()
     refresh(sammies, sides, drinks)
@@ -192,7 +198,7 @@ window.addEventListener(`load`, () => {
 });
 
 
-
+console.log(localStorage.length)
 
 let total = 0;
 let tip = 0;
@@ -529,17 +535,20 @@ function sendItems(type, item){
     localStorage.setItem(name, JSON.stringify(item))
 }
 
-// send sammies
-totalSammies.forEach(s => sendItems(`sammie`, s))
-itemCount = 0
-// send drinks
-totalDrinks.forEach(d => sendItems(`drink`, d))
-itemCount = 0
-// send sides
-totalSides.forEach(s => sendItems(`side`, s))
-itemCount = 0
+if(localStorage.length !== 0){
+    // send sammies
+    totalSammies.forEach(s => sendItems(`sammie`, s))
+    itemCount = 0
+    // send drinks
+    totalDrinks.forEach(d => sendItems(`drink`, d))
+    itemCount = 0
+    // send sides
+    totalSides.forEach(s => sendItems(`side`, s))
+    itemCount = 0
+}
 
 function menuRetriver() {
+    console.log(localStorage.length)
     if(localStorage.length === 0) return;
     totalSammies = [];
     totalSides = [];
@@ -688,8 +697,8 @@ function RolePermissions() {
 const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-    localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
-    window.location.href = "../LogInSignIn/index.html"; 
+     localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
+    window.location.href = "../index.html"; 
     
 });
 
