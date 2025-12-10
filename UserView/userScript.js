@@ -649,8 +649,9 @@ function RolePermissions() {
      
     const scheduleRadio = document.querySelector('input[name="order"][value="schedule"]'); 
     const favItemButton = document.getElementById("favItemsButton");
-    const favOrderButton = document.getElementById("favOrderButton");
+    const favItemsButton = document.getElementById("favItemsButton");
     const favOrderSection = document.getElementById("favOrder");
+    const favOrderbtn = document.getElementById("favOrderSection");
 
    
     const favButtons = document.querySelectorAll(".favBtn");
@@ -661,8 +662,8 @@ function RolePermissions() {
         favSection.style.display = "none";
         favButtons.forEach(btn => btn.style.display = "none");
         scheduleRadio.style.display = "none"; 
-        
-        favOrderBtn.style.display = "none";
+        favOrderbtn.style.display = "none";
+        favItemsButton.style.display = "none";
         favOrderSection.style.display = "none";
     }
     else if (currentUser.role === "user") {
