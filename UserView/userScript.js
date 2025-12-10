@@ -535,7 +535,7 @@ function sendItems(type, item){
     localStorage.setItem(name, JSON.stringify(item))
 }
 
-if(localStorage.length == 0){
+if(localStorage.length !== 0){
     // send sammies
     totalSammies.forEach(s => sendItems(`sammie`, s))
     itemCount = 0
