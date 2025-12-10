@@ -1,4 +1,4 @@
-import { MenuItem } from "/menuItem.js";
+import { MenuItem } from "../menuItem.js";
 import { OrderTicket } from "../orderTicket.js";
 // localStorage.clear()
 
