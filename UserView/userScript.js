@@ -688,7 +688,7 @@ function RolePermissions() {
 const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-     localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
+    localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
     window.location.href = "../LogInSignIn/index.html"; 
     
 });
