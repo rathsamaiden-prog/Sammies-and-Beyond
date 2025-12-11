@@ -62,7 +62,7 @@ function signIn(){
 
 function guest(){
   localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
-  window.location.href ="../homeScreen/home.html"
+  window.location.href ="homeScreen/home.html"
 }
 
 function showSignIn() {
