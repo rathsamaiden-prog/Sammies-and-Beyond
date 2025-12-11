@@ -652,6 +652,7 @@ function RolePermissions() {
     const favItemsButton = document.getElementById("favItemsButton");
     const favOrderSection = document.getElementById("favOrder");
     const favOrderbtn = document.getElementById("favOrderSection");
+    const favObtn = document.getElementById("favOrderBtn");
 
    
     const favButtons = document.querySelectorAll(".favBtn");
@@ -665,6 +666,7 @@ function RolePermissions() {
         favOrderbtn.style.display = "none";
         favItemsButton.style.display = "none";
         favOrderSection.style.display = "none";
+        favObtn.style.display = "none";
     }
     else if (currentUser.role === "user") {
         logoutBtn.style.display = "block";
