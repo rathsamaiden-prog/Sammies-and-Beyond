@@ -1,22 +1,22 @@
 document.getElementById("sammies").addEventListener("click", () => {
-    window.location.href = "../userView/userView.html";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html";
 });
 
 document.getElementById("sides").addEventListener("click", () => {
-    window.location.href = "../userView/userView.html#sides";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html#sides";
 });
 
 document.getElementById("drinks").addEventListener("click", () => {
-    window.location.href = "../userView/userView.html#drinks";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html#drinks";
 });
 document.getElementById("order").addEventListener("click", () => {
-    window.location.href = "../userView/userView.html";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html";
 });
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-    window.location.href = "../LogInSignIn/index.html"; 
+    window.location.href = "../index.html"; 
 });
 
 function RolePermissions() {

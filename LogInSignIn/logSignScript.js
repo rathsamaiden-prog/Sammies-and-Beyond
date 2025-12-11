@@ -47,11 +47,11 @@ function signIn(){
       if(user){
   
       localStorage.setItem("currentUser", JSON.stringify({ email, name: user.name, role: "user" }));
-       window.location.href = "../homeScreen/home.html"
+       window.location.href = "./homeScreen/home.html"
        return
      }else if(email==="manager"&& password==="manager") {
        localStorage.setItem("currentUser", JSON.stringify({ email, name: "Manager", role: "manager" }));
-      window.location.href = "../homeScreen/home.html"
+      window.location.href = "./homeScreen/home.html"
         return
 
     }else{
@@ -62,7 +62,7 @@ function signIn(){
 
 function guest(){
   localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
-  window.location.href ="../homeScreen/home.html"
+  window.location.href ="homeScreen/home.html"
 }
 
 function showSignIn() {
@@ -124,7 +124,7 @@ signUpPassword.addEventListener("input", () => {
 const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser"); 
-    window.location.href = "../LogInSignIn/index.html"; 
+    window.location.href = "./index.html"; 
 });
 
 function RolePermissions() {
