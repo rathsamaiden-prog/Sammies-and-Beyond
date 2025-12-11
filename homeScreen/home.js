@@ -1,16 +1,16 @@
 document.getElementById("sammies").addEventListener("click", () => {
-    window.location.href = "/Sammies-and-Beyond/userView/userView.html";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html";
 });
 
 document.getElementById("sides").addEventListener("click", () => {
-    window.location.href = "/Sammies-and-Beyond/userView/userView.html#sides";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html#sides";
 });
 
 document.getElementById("drinks").addEventListener("click", () => {
-    window.location.href = "/Sammies-and-Beyond/userView/userView.html#drinks";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html#drinks";
 });
 document.getElementById("order").addEventListener("click", () => {
-    window.location.href = "/Sammies-and-Beyond/userView/userView.html";
+    window.location.href = "/Sammies-and-Beyond/UserView/userView.html";
 });
 
 
